@@ -4,13 +4,16 @@ const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 const concatCss = require('gulp-concat-css');
-const jest = require('gulp-jest').default;
+const jest = require('jest-cli');
 const tslint = require('gulp-tslint');
 
 const webpack = require('webpack');
-const electron = require('electron-connect').server.create();
+const webpackStream = require('webpack-stream');
 
 const path = require('path');
+
+const webpackConfig = require('./webpack.config.js');
+const jestConfig = require('./jest.config.js');
 
 const buildDirName = "dist";
 const buildDir = path.join(__dirname, buildDirName);
@@ -24,7 +27,7 @@ gulp.task('test:lint', function() {
 });
 
 gulp.task('test:app', function() {
-    gulp.src('__tests__/**/*.test.{js, ts}')
+    gulp.src('tests/**/*.test.{js, ts, jsx, tsx}')
     .pipe(jest());
 });
 
@@ -37,41 +40,10 @@ gulp.task('build:less', function() {
     .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('watch', function (cb) {
-    electron.start();
-
-    gulp.watch('src/**/*.ts*', ['build:renderer']);
-    gulp.watch('src/**/*.less', ['build:less']);
-  
-    gulp.watch('src/main.js', electron.restart);
-  
-    gulp.watch(['dist/bundle_renderer.js', 'dist/bundle*.css'], electron.reload);
-  });
-
 gulp.task("build:renderer", function(cb) {
-    const webpackConfig = {
-        devtool: 'source-map',
-        context: __dirname + "/src",
-        entry: "./browser/index.tsx",
-        output: {
-            filename: "bundle_renderer.js",
-            path: buildDir
-        },
-        resolve: {
-            // Add '.ts' and '.tsx' as resolvable extensions.
-            extensions: [".ts", ".tsx", ".js", ".json"]
-        },
-        module: {
-            rules: [
-                { test: /\.ts(x?)$/, loader: 'ts-loader'}
-            ]
-        }
-    };
-
-    webpack(webpackConfig, function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack:build", err);
-        cb();
-    });
+    return gulp.src('src/browser/index.tsx')
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(gulp.dest(buildDir));
 });
 
 gulp.task("build", ["build:renderer", "build:less"]);

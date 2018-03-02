@@ -1,5 +1,5 @@
 const electron = require('electron')
-const client = require('electron-connect').client;
+//const client = require('electron-connect').client;
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -19,7 +19,7 @@ function createWindow () {
   // and load the index.html of the app.
   const indexURL = `file://${app.getAppPath()}/index.html`;
   mainWindow.loadURL(indexURL);
-  client.create(mainWindow);
+  //client.create(mainWindow);
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
