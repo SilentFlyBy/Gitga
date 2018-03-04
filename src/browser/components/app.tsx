@@ -6,7 +6,7 @@ import * as ReactDOM from "react-dom";
 
 import Toolbar from "./toolbar/toolbar";
 
-import * as GCR from "../../core/git-command-runner";
+import * as GC from "../../core/git-instruction/";
 
 export default class App extends React.Component<IAppProps, Partial<IAppState>> {
     constructor(props: IAppProps) {
@@ -17,8 +17,8 @@ export default class App extends React.Component<IAppProps, Partial<IAppState>> 
     }
 
     public componentDidMount() {
-        const runner = new GCR.GitCommandRunner("/usr/bin/git");
-        runner.RunCommand(GCR.GitCommand.Status, [".", "-s"]).then((result) => {
+        const runner = new GC.GitInstructionRunner("/usr/bin/git");
+        runner.RunCommand(GC.GitCommand.Status, [".", "-s"]).then((result) => {
             this.setState({
                 output: result,
             });

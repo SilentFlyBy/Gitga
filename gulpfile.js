@@ -48,8 +48,11 @@ gulp.task('build:less', function() {
 });
 
 gulp.task("build:renderer", function(cb) {
+    const config = webpackConfig;
+    config.mode = "production";
+
     return gulp.src('src/browser/index.tsx')
-    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(webpackStream(config, webpack))
     .pipe(gulp.dest(buildDir));
 });
 
