@@ -6,6 +6,7 @@ const rename = require('gulp-rename');
 const concatCss = require('gulp-concat-css');
 const jest = require('jest-cli');
 const tslint = require('gulp-tslint');
+const ts = require('gulp-typescript');
 
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -14,6 +15,7 @@ const path = require('path');
 
 const webpackConfig = require('./webpack.config.js');
 const jestConfig = require('./jest.config.js');
+const tsConfig = require('./tsconfig.json');
 
 const buildDirName = "dist";
 const buildDir = path.join(__dirname, buildDirName);
@@ -29,6 +31,11 @@ gulp.task('test:lint', function() {
 gulp.task('test:app', function() {
     gulp.src('tests/**/*.test.{js, ts, jsx, tsx}')
     .pipe(jest());
+});
+
+gulp.task('build:typescript', function() {
+    return gulp.src('src/**/*.ts*')
+    .pipe(ts(tsConfig.compilerOptions))
 });
 
 gulp.task('build:less', function() {

@@ -48,6 +48,12 @@
   version "8.9.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.9.4.tgz#dfd327582a06c114eb6e0441fa3d6fab35edad48"
 
+"@types/react-bootstrap@^0.32.5":
+  version "0.32.5"
+  resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.32.5.tgz#a123d67b68c26a0bff5c1ad96825555f2aaf4752"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^16.0.4":
   version "16.0.4"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.4.tgz#2e8fd45f5443780ed49bf2cdd9809e6091177a7d"
@@ -5088,6 +5094,10 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.1.7, rc@^1.2.1:
 react-addons-test-utils@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
+
+react-bootstrap-typescript@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-typescript/-/react-bootstrap-typescript-0.0.9.tgz#0a7eba2379023771110c007d9b88c9f282b73506"
 
 react-bootstrap@^0.32.1:
   version "0.32.1"

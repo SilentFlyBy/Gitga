@@ -12,5 +12,7 @@ module.exports = {
                 { test: /\.ts(x?)$/, loader: 'ts-loader'}
             ]
         },
-        devtool: 'inline-source-map'
+        devtool: 'inline-source-map',
+        target: 'node',
+        performance: { hints: false },
 };
