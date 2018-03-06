@@ -14,7 +14,6 @@ const webpackStream = require('webpack-stream');
 const path = require('path');
 
 const webpackConfig = require('./webpack.config.js');
-const jestConfig = require('./jest.config.js');
 const tsConfig = require('./tsconfig.json');
 
 const buildDirName = "dist";

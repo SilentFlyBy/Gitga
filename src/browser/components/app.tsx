@@ -6,7 +6,7 @@ import * as ReactDOM from "react-dom";
 
 import Toolbar from "./toolbar/toolbar";
 
-import {CommitParam, Git, ILongParameter, IParameter, IStatusCommand, StatusParam} from "../../core/git-instruction";
+import {Git} from "../../core/git";
 
 export default class App extends React.Component<IAppProps, Partial<IAppState>> {
     constructor(props: IAppProps) {
@@ -18,8 +18,11 @@ export default class App extends React.Component<IAppProps, Partial<IAppState>> 
 
     public componentDidMount() {
         Git.Commit().Params([
-            CommitParam.Short,
-            CommitParam.Long,
+            Git.CommitParam.Message(""),
+        ]).Execute();
+
+        Git.Status().Params([
+            Git.StatusParam.Short,
         ]);
     }
 
