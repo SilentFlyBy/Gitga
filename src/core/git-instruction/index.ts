@@ -1,18 +1,12 @@
-export * from "./git-instruction-runner";
-export * from "./git-instruction-validator";
+export * from "./git";
+export * from "./git-command";
+export * from "./parameter";
 
-export enum GitCommand {
-    Commit = "commit",
-    Log = "log",
-    Status = "status",
-}
+export interface ITest1 {}
+export interface ITest2{}
+export interface ITestGeneric<T> {}
 
-export interface IGitCommandParameter {
-    Key: string;
-    Value?: string;
-}
-
-export interface IGitInstruction {
-    Command: GitCommand;
-    Parameters: IGitCommandParameter[];
+export function test() {
+    let p: ITestGeneric<ITest1> = {}
+    let q: ITestGeneric<ITest2> = p;
 }
