@@ -1,0 +1,2 @@
+# Gitga
+*Git graphical assistant*
