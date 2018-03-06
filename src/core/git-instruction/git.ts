@@ -1,5 +1,5 @@
 import * as GC from "./";
-import { ICommitCommand, CommitParam, StatusParam } from "./";
+import { CommitParam, ICommitCommand, StatusParam } from "./";
 
 export class Git {
     public static Commit(): GC.GitCommand<GC.ICommitCommand> {
