@@ -6,10 +6,12 @@ export class GitCommand<T extends IGitCommand> {
     private command: string;
     private Type: T;
     private parameters: Array<IParameter<T>>;
+    private argument: string;
 
-    public constructor(comm: string) {
+    public constructor(comm: string, arg?: string) {
         this.parameters = [];
         this.command = comm;
+        this.argument = arg;
     }
 
     get Command(): string {
@@ -17,6 +19,9 @@ export class GitCommand<T extends IGitCommand> {
     }
     get CommandParameters(): Array<IParameter<T>> {
         return this.parameters;
+    }
+    get Argument(): string {
+        return this.argument;
     }
 
     public async Execute(): Promise<string> {
