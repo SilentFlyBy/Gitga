@@ -4,9 +4,9 @@ const less = require('gulp-less');
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
 const concatCss = require('gulp-concat-css');
-const jest = require('jest-cli');
 const tslint = require('gulp-tslint');
 const ts = require('gulp-typescript');
+const mocha = require('gulp-mocha');
 
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -28,8 +28,11 @@ gulp.task('test:lint', function() {
 });
 
 gulp.task('test:app', function() {
-    gulp.src('tests/**/*.test.{js, ts, jsx, tsx}')
-    .pipe(jest());
+    gulp.src('test/**/*.test.ts')
+    .pipe(mocha({
+        reporter: 'list',
+        require: ['ts-node/register']
+    }));
 });
 
 gulp.task('build:typescript', function() {
