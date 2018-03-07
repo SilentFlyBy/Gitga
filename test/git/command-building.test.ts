@@ -6,27 +6,27 @@ import {GitCommandBuilder} from "../../src/core/git/command/git-command-builder"
 
 describe("Check if the command strings are correctly built from a git command object", () => {
     it("Should return 'status --short'", () => {
-        let expectedCommandString = "status --short";
+        const expectedCommandString = "status --short";
 
-        let command = Git.Status().Params([
-            Git.StatusParam.Short
+        const command = Git.Status().Params([
+            Git.StatusParam.Short,
         ]);
 
-        let commandString = GitCommandBuilder.BuildCommand(command);
+        const commandString = GitCommandBuilder.BuildCommand(command);
 
         expect(commandString).to.equal(expectedCommandString);
     });
 
     it("should return 'commit --file=./test.js --no-verify", () => {
-        let expectedCommandString = "commit --file=./test.js --no-verify";
+        const expectedCommandString = "commit --file=./test.js --no-verify";
 
-        let command = Git.Commit().Params([
+        const command = Git.Commit().Params([
             Git.CommitParam.File("./test.js"),
             Git.CommitParam.NoVerify,
         ]);
 
-        let commandString = GitCommandBuilder.BuildCommand(command);
+        const commandString = GitCommandBuilder.BuildCommand(command);
 
         expect(commandString).to.equal(expectedCommandString);
-    })
+    });
 });

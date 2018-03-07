@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "gulp test",
-    "ctest": "nyc mocha",
+    "coverage": "nyc mocha",
     "build": "gulp build"
   },
   "author": "Erik Moldtmann",
