@@ -16,4 +16,17 @@ describe("Check if the command strings are correctly built from a git command ob
 
         expect(commandString).to.equal(expectedCommandString);
     });
+
+    it("should return 'commit --file=./test.js --no-verify", () => {
+        let expectedCommandString = "commit --file=./test.js --no-verify";
+
+        let command = Git.Commit().Params([
+            Git.CommitParam.File("./test.js"),
+            Git.CommitParam.NoVerify,
+        ]);
+
+        let commandString = GitCommandBuilder.BuildCommand(command);
+
+        expect(commandString).to.equal(expectedCommandString);
+    })
 });
