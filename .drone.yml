@@ -2,11 +2,11 @@ pipeline:
   test:
     image: node
     commands:
-      - npm install
-      - npm run test
+      - yarn
+      - yarn test
 
   build:
     image: node
     commands:
-      - npm install
-      - npm run build
+      - yarn
+      - yarn build
