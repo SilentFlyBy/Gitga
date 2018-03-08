@@ -8,7 +8,9 @@ export default class Toolbar extends React.Component {
 
     public render() {
         return (
-            <p></p>
+            <div className="gitga-toolbar">
+
+            </div>
         );
     }
 }
