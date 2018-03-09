@@ -21,6 +21,7 @@ const buildDirName = "dist";
 const buildDir = path.join(__dirname, buildDirName);
 
 gulp.task('serve', function() {
+    gulp.start('build');
     gulp.start('watch');
 
     electron.start();
@@ -38,7 +39,7 @@ gulp.task('watch:renderer', function() {
 });
 
 gulp.task('test:lint', function() {
-    gulp.src('src/**/*.ts*')
+    return gulp.src('src/**/*.ts*')
     .pipe(tslint())
     .pipe(tslint.report({
         emitError: false
@@ -46,7 +47,7 @@ gulp.task('test:lint', function() {
 });
 
 gulp.task('test:app', function() {
-    gulp.src('test/**/*.test.ts')
+    return gulp.src('test/**/*.test.ts')
     .pipe(mocha({
         reporter: 'list',
         require: ['ts-node/register']
