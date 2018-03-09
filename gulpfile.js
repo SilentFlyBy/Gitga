@@ -42,7 +42,7 @@ gulp.task('test:lint', function() {
     return gulp.src('src/**/*.ts*')
     .pipe(tslint())
     .pipe(tslint.report({
-        emitError: false
+        emitError: true
     }));
 });
 
@@ -70,7 +70,7 @@ gulp.task('build:less', function() {
 
 gulp.task("build:renderer", function(cb) {
     const config = webpackConfig;
-    config.mode = "production";
+    config.mode = "development";
 
     return gulp.src('src/browser/index.tsx')
     .pipe(webpackStream(config, webpack))
