@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import Toolbar from "./toolbar/toolbar";
+import Toolbar from "./toolbar";
 
 import {Git} from "../../core/git";
 
@@ -15,12 +15,12 @@ export default class App extends React.Component<any, any> {
 
     public componentDidMount() {
         Git.Status().Params([
-            Git.StatusParam.Short
+            Git.StatusParam.Short,
         ])
         .Execute()
-        .then(out => {
-            const op = out.split(/\r?\n/)
-            console.log(op);
+        .then((out) => {
+            const op = out.split(/\r?\n/);
+
             this.setState({
                 output: op.map((o) => {
                     return (
@@ -28,9 +28,6 @@ export default class App extends React.Component<any, any> {
                     );
                 }),
             });
-        })
-        .catch(err => {
-            console.error(err);
         });
     }
 
