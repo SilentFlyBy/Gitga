@@ -4,54 +4,28 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Electron: Main",
+            "name": "Serve",
             "protocol": "inspector",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "runtimeExecutable": "npm",
             "runtimeArgs": [
-                "--remote-debugging-port=9223",
-                "."
+                "run-script",
+                "serve",
+                "--"
             ],
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
-            },
-            "outFiles": [
-                "${workspaceRoot}/dist/bundle_renderer.js"
-            ],
-            "cwd": "${workspaceRoot}",
-            "sourceMaps": true
+            "console": "integratedTerminal"
         },
         {
-            "name": "Electron: Renderer",
             "type": "chrome",
             "request": "attach",
-            "port": 9223,
-            "webRoot": "${workspaceRoot}",
-            "timeout": 30000
+            "name": "Electron",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}",
         },
-        {
-            "name": "Debug Renderer Process",
-            "type": "chrome",
-            "request": "launch",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
-            },
-            "runtimeArgs": [
-                "${workspaceRoot}",
-                "--remote-debugging-port=9222"
-            ],
-            "webRoot": "${workspaceRoot}",
-            "preLaunchTask": "build",
-            "cwd": "${workspaceRoot}",
-        }
     ],
     "compounds": [
         {
-            "name": "Electron: All",
-            "configurations": [
-                "Electron: Main",
-                "Electron: Renderer"
-            ]
+        "name": "Full-stack",
+        "configurations": ["Serve", "Electron"]
         }
     ]
 }
