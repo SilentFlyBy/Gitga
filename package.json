@@ -11,7 +11,7 @@
     "coverage": "nyc mocha",
     "build": "webpack --mode production",
     "serve": "concurrently --kill-others \"npm run serve:renderer\" \"npm run serve:electron\" ",
-    "serve:renderer": "webpack-dev-server --mode development",
+    "serve:renderer": "webpack-dev-server --mode development --hot",
     "serve:electron": "electron ."
   },
   "author": "Erik Moldtmann",

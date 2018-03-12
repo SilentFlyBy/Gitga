@@ -1,7 +1,8 @@
 module.exports = {
     entry: './src/browser/index.tsx',
     output: {
-        filename: "bundle_renderer.js"
+        filename: "bundle_renderer.js",
+        publicPath: 'http://localhost:8080/'
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
