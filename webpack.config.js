@@ -1,4 +1,5 @@
 module.exports = {
+    entry: './src/browser/index.tsx',
     output: {
         filename: "bundle_renderer.js"
     },
@@ -8,7 +9,15 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.ts(x?)$/, loader: 'ts-loader' }
+            { test: /\.ts(x?)$/, loader: 'ts-loader' },
+            {
+                test: /\.less$/,
+                use: [
+                  { loader: 'style-loader' },
+                  { loader: 'css-loader' },
+                  { loader: 'less-loader' }
+                ]
+              }
         ]
     },
     target: 'node',

@@ -4,3 +4,4 @@
 --full-trace
 --bail
 test/**/*.ts
+test/**/*.tsx
