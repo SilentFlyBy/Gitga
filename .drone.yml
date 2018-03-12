@@ -1,12 +1,7 @@
 pipeline:
-  test:
+  app:
     image: node
     commands:
-      - yarn
+      - yarn install
       - yarn test
-
-  build:
-    image: node
-    commands:
-      - yarn
       - yarn build
