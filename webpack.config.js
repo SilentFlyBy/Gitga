@@ -20,6 +20,7 @@ module.exports = {
               }
         ]
     },
-    target: 'node',
+    target: 'electron-renderer',
     performance: { hints: false },
+    devtool: 'source-map',
 };

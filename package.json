@@ -9,9 +9,9 @@
   "scripts": {
     "test": "mocha",
     "coverage": "nyc mocha",
-    "build": "webpack",
-    "serve": "concurrently \"npm run serve:renderer\" \"npm run serve:electron\" ",
-    "serve:renderer": "webpack-dev-server",
+    "build": "webpack --mode production",
+    "serve": "concurrently --kill-others \"npm run serve:renderer\" \"npm run serve:electron\" ",
+    "serve:renderer": "webpack-dev-server --mode development",
     "serve:electron": "electron ."
   },
   "author": "Erik Moldtmann",
