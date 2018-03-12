@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.2",
+    "@types/enzyme": "^3.1.9",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/mocha": "^2.2.48",
     "@types/react": "^16.0.39",
     "@types/react-bootstrap": "^0.32.5",
@@ -44,6 +46,8 @@
     "electron": "^1.8.2",
     "electron-builder": "^20.2.0",
     "electron-connect": "^0.6.3",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-concat-css": "^3.0.0",
     "gulp-cssmin": "^0.2.0",

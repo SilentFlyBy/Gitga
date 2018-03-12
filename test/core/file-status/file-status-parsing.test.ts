@@ -1,10 +1,10 @@
 import { expect } from "chai";
 import "mocha";
 
-import {FileStatusProcessor, IFileStatus, Status} from "../../src/core/file-status";
+import {FileStatusProcessor, IFileStatus, Status} from "../../../src/core/file-status";
 
-describe("Check if short Git status strings are correctly parsed", () => {
-    it("Test single added file", () => {
+describe("Git file status parser", () => {
+    it("parses single added file correctly", () => {
         const testString = "A  testfile.txt";
 
         const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
@@ -18,7 +18,7 @@ describe("Check if short Git status strings are correctly parsed", () => {
         expect(fileStatus).to.deep.equal(expectedFileStatus);
     });
 
-    it("Test single moved file", () => {
+    it("parses single moved file correctly", () => {
         const testString = "R  src/browser/components/toolbar/toolbar.tsx -> src/browser/components/toolbar.tsx";
 
         const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
@@ -32,7 +32,7 @@ describe("Check if short Git status strings are correctly parsed", () => {
         expect(fileStatus).to.deep.equal(expectedFileStatus);
     });
 
-    it("Test multiple lines", () => {
+    it("parses multiple lines correctly", () => {
         const testString =
 `M  src/browser/components/app.tsx
 R  src/browser/components/branch-tree/branch-tree.tsx -> src/browser/components/branch-tree.tsx

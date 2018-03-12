@@ -1,11 +1,11 @@
 import { expect } from "chai";
 import "mocha";
 
-import {Git} from "../../src/core/git";
-import {GitCommandBuilder} from "../../src/core/git/command/git-command-builder";
+import {Git} from "../../../src/core/git";
+import {GitCommandBuilder} from "../../../src/core/git/command/git-command-builder";
 
-describe("Check if the command strings are correctly built from a git command object", () => {
-    it("Should return 'status --short'", () => {
+describe("Git command builder", () => {
+    it("builds single command string correctly", () => {
         const expectedCommandString = "status --short";
 
         const command = Git.Status().Params([
@@ -17,7 +17,7 @@ describe("Check if the command strings are correctly built from a git command ob
         expect(commandString).to.equal(expectedCommandString);
     });
 
-    it("should return 'commit --file=./test.js --no-verify", () => {
+    it("builds multiple command string with key-value parameter correctly", () => {
         const expectedCommandString = "commit --file=./test.js --no-verify";
 
         const command = Git.Commit().Params([

@@ -47,7 +47,7 @@ gulp.task('test:lint', function() {
 });
 
 gulp.task('test:app', function() {
-    return gulp.src('test/**/*.test.ts')
+    return gulp.src('test/**/*.test.{ts,tsx}')
     .pipe(mocha({
         reporter: 'list',
         require: ['ts-node/register']
