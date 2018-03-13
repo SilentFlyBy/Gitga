@@ -12,6 +12,7 @@ install:
 
 script:
   - yarn test
+  - yarn coverage
   - yarn coverage-report
   - npm install codecov -g
   - codecov
