@@ -38,6 +38,17 @@ export class FileStatusProcessor {
 
         const fileStatusArray: IFileStatus[] = [];
 
+        if (stagedStatusIndicator === "?" && unstagedStatusIndicator === "?") {
+            fileStatusArray.push({
+                FileName: fileName,
+                NewFileName: newFileName,
+                Staged: false,
+                Status: Status.Unknown,
+            });
+
+            return fileStatusArray;
+        }
+
         if (stagedStatusIndicator !== " ") {
             const status = this.GetStatusFromIndicator(stagedStatusIndicator);
 
@@ -72,7 +83,7 @@ export class FileStatusProcessor {
                 return Status.Deleted;
             case "R":
                 return Status.Renamed;
-            case "??":
+            case "?":
                 return Status.Unknown;
         }
     }
