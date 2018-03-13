@@ -2,7 +2,7 @@ module.exports = {
     entry: './src/browser/index.tsx',
     output: {
         filename: "bundle_renderer.js",
-        publicPath: 'http://localhost:8080/'
+        publicPath: 'http://localhost:8081/'
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -23,5 +23,5 @@ module.exports = {
     },
     target: 'electron-renderer',
     performance: { hints: false },
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
 };
