@@ -1,9 +1,9 @@
 import * as React from "react";
-import Octicon from "react-component-octicons";
 import * as ReactDOM from "react-dom";
+import Octicon from "react-component-octicons";
 
-export default class Toolbar extends React.Component {
-    constructor(props: any) {
+export default class Toolbar extends React.Component<IToolbarProps, any> {
+    constructor(props: IToolbarProps) {
         super(props);
     }
 
@@ -25,12 +25,15 @@ export default class Toolbar extends React.Component {
                 <button onClick={() => this.handleButtonClick(ToolbarButton.Merge)}>
                     <Octicon name="git-merge" />
                 </button>
+                <button onClick={this.props.syncAction}>
+                    <Octicon name="sync" />
+                </button>
             </div>
         );
     }
 
     private handleButtonClick(button: ToolbarButton) {
-        console.log(button.toString());
+        alert(button);
     }
 }
 
@@ -40,4 +43,8 @@ enum ToolbarButton {
     Pull,
     Branch,
     Merge,
+}
+
+export interface IToolbarProps {
+    syncAction: () => void;
 }

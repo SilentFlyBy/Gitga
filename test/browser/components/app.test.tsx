@@ -6,12 +6,16 @@ import "mocha";
 
 import App from "../../../src/browser/components/app";
 import Toolbar from "../../../src/browser/components/toolbar";
+import FileStatus from "../../../src/browser/components/file-status";
 
 configure({ adapter: new ReactSixteenAdapter() });
 
 describe ("<App />", () => {
     it ("renders Toolbar", () => {
-        const result = shallow(<App />).contains(<Toolbar />);
+        const app = shallow(<App />);
+        const result = app.contains(<Toolbar />)
+        && app.contains(<FileStatus />);
+
         expect(result).to.be.true;
     });
 });
