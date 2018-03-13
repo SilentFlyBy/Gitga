@@ -1,5 +1,27 @@
 .gitga-toolbar {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     background-color: @gitga-blue;
     height: 50px;
+
+    button {
+        height: 100%;
+        width: 50px;
+        border: 0;
+        background: none;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: @gitga-blue-dark;
+        }
+    }
+
+    svg {
+        color: @white;
+        width: 100%;
+        height: 100%;
+    }
 }

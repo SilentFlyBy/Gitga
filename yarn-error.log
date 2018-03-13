@@ -75,6 +75,7 @@ npm manifest:
       "nyc": "^11.4.1",
       "react": "^16.2.0",
       "react-addons-test-utils": "^15.6.2",
+      "react-component-octicons": "^1.5.0",
       "react-dom": "^16.2.0",
       "source-map-loader": "^0.2.3",
       "source-map-support": "^0.5.3",
@@ -88,7 +89,8 @@ npm manifest:
       "webpack-dev-server": "^3.1.1",
       "webpack-stream": "^4.0.2",
       "yarn": "^1.5.1"
-    }
+    },
+    "dependencies": {}
   }
 
 yarn manifest: 
@@ -6210,6 +6212,10 @@ Lockfile:
   react-addons-test-utils@^15.6.2:
     version "15.6.2"
     resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
+  
+  react-component-octicons@^1.5.0:
+    version "1.5.0"
+    resolved "https://registry.yarnpkg.com/react-component-octicons/-/react-component-octicons-1.5.0.tgz#7e51a4e040d7ca81d003b16dca859362b795b824"
   
   react-dom@^16.2.0:
     version "16.2.0"
