@@ -102,6 +102,20 @@ describe("Git file status parser", () => {
         expect(fileStatus).to.deep.equal(expectedFileStatus);
     });
 
+    it("parses single ignored file correctly", () => {
+        const testString = "!! test.ts";
+
+        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const expectedFileStatus: IFileStatus = {
+            Path1: "test.ts",
+            Path2: undefined,
+            IndexStatus: Status.Ignored,
+            WorkTreeStatus: Status.Ignored,
+        };
+
+        expect(fileStatus).to.deep.equal(expectedFileStatus);
+    });
+
     it("parses multiple lines correctly", () => {
         const testString =
 `M  src/browser/components/app.tsx

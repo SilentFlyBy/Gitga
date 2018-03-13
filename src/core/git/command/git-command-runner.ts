@@ -21,12 +21,14 @@ export class GitCommandRunner {
     }
 
     private static async TryGetGitExecutable(): Promise<string> {
-        const platform = process.platform;
+        const testing = process.env.NODE_ENV;
+        const platform = testing === "test" ? testing : process.platform;
 
         return new Promise<string>((resolve, reject) => {
             switch (platform) {
                 case "win32":
                     resolve("git");
+                    break;
                 case "linux":
                     const gitExecutable = "/usr/bin/git";
                     CP.exec(`${gitExecutable} --version`, (err, stdout) => {
@@ -36,6 +38,10 @@ export class GitCommandRunner {
 
                         resolve(gitExecutable);
                     });
+                    break;
+                case "test":
+                    resolve("node_modules/git-mock/git-mock");
+                    break;
             }
         });
     }

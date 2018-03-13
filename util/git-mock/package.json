@@ -1,0 +1,8 @@
+{
+  "name": "git-mock",
+  "version": "1.0.0",
+  "description": "A git mockup",
+  "bin": {
+    "git-mock": "git-mock"
+  }
+}

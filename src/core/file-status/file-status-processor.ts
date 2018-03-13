@@ -2,10 +2,9 @@ import {Git} from "../git";
 import {IFileStatus, Status} from "./file-status";
 
 export class FileStatusProcessor {
-    public static async GetAllFileStates(): Promise<IFileStatus[]> {
-
+    public static async GetAllFileStates(path?: string): Promise<IFileStatus[]> {
         return new Promise<IFileStatus[]>((resolve, reject) => {
-            return Git.Status().Params([Git.StatusParam.Porcelain]).Execute()
+            return Git.Status().Params([Git.StatusParam.Porcelain]).Args(path).Execute()
             .then((output) => {
                 const fileStatusList: IFileStatus[] = this.ParseStatusLines(output);
 
@@ -17,6 +16,10 @@ export class FileStatusProcessor {
     public static ParseStatusLines(lines: string): IFileStatus[] {
         const fileStatusList: IFileStatus[] = [];
         lines.split(/\r?\n/).forEach((line) => {
+            if (line.length < 1) {
+                return;
+            }
+
             const parsedLine = this.ParseStatusLine(line);
             fileStatusList.push(parsedLine);
         });

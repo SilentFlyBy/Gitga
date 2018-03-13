@@ -45,6 +45,10 @@
   version "8.9.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.9.5.tgz#162b864bc70be077e6db212b322754917929e976"
 
+"@types/promise.prototype.finally@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/promise.prototype.finally/-/promise.prototype.finally-2.0.2.tgz#68fefb8f0e23f21893a33740c931c79f44be3499"
+
 "@types/react-bootstrap@^0.32.5":
   version "0.32.6"
   resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.32.6.tgz#5db16ce070a238af84656f826f97eda87322c846"
@@ -2984,6 +2988,9 @@ gh-got@^6.0.0:
   dependencies:
     got "^7.0.0"
     is-plain-obj "^1.1.0"
+
+"git-mock@file:./util/git-mock":
+  version "1.0.0"
 
 github-username@^4.0.0:
   version "4.1.0"

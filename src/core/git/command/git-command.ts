@@ -31,6 +31,11 @@ export class GitCommand<T extends IGitCommand> {
         this.parameters = params;
         return this;
     }
+
+    public Args(args: string) {
+        this.argument = args;
+        return this;
+    }
 }
 
 export interface IGitCommand {
