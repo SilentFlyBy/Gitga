@@ -10,10 +10,6 @@ cache: yarn
 install:
   - yarn
 
-stages:
-  - test
-  - build
-
 script:
   - yarn test
   - yarn build
