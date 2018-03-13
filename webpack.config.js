@@ -23,5 +23,5 @@ module.exports = {
     },
     target: 'electron-renderer',
     performance: { hints: false },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
 };
