@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\EMO\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js serve
+  C:\Program Files\nodejs\node.exe C:\Users\EMO\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js test
 
 PATH: 
   C:\Program Files\Docker\Docker\Resources\bin;C:\ProgramData\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\msys64\mingw64\bin;C:\Program Files\PuTTY\;C:\Program Files\TortoiseHg\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Users\EMO\.cargo\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\EMO\.cargo\bin;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.3.0\bin;C:\Users\EMO\AppData\Local\Microsoft\WindowsApps;C:\Users\EMO\AppData\Local\atom\bin;C:\xampp\php;C:\Users\EMO\AppData\Local\Microsoft\WindowsApps;C:\Users\EMO\AppData\Roaming\npm;
@@ -8275,7 +8275,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c concurrently --kill-others "npm run serve:renderer" "npm run serve:electron" 
+  Arguments: /d /s /c mocha
   Directory: C:\Users\EMO\git\Gitty
   Output:
   

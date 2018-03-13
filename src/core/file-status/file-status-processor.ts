@@ -18,59 +18,34 @@ export class FileStatusProcessor {
         const fileStatusList: IFileStatus[] = [];
         lines.split(/\r?\n/).forEach((line) => {
             const parsedLine = this.ParseStatusLine(line);
-            fileStatusList.push.apply(fileStatusList, parsedLine);
+            fileStatusList.push(parsedLine);
         });
 
         return fileStatusList;
     }
 
-    public static ParseStatusLine(line: string): IFileStatus[] {
-        const stagedStatusIndicator = line.charAt(0);
-        const unstagedStatusIndicator = line.charAt(1);
+    public static ParseStatusLine(line: string): IFileStatus {
+        const XIndicator = line.charAt(0);
+        const YIndicator = line.charAt(1);
         const fileString = line.substring(3);
 
-        let newFileName;
+        let path2;
         const splitByArrow = fileString.split(/\s\-\>\s/);
-        const fileName = splitByArrow[0];
+        const path1 = splitByArrow[0];
+
         if (splitByArrow.length > 1) {
-            newFileName = splitByArrow[1];
+            path2 = splitByArrow[1];
         }
 
-        const fileStatusArray: IFileStatus[] = [];
+        const xStatus = this.GetStatusFromIndicator(XIndicator);
+        const yStatus = this.GetStatusFromIndicator(YIndicator);
 
-        if (stagedStatusIndicator === "?" && unstagedStatusIndicator === "?") {
-            fileStatusArray.push({
-                FileName: fileName,
-                NewFileName: newFileName,
-                Staged: false,
-                Status: Status.Unknown,
-            });
-
-            return fileStatusArray;
-        }
-
-        if (stagedStatusIndicator !== " ") {
-            const status = this.GetStatusFromIndicator(stagedStatusIndicator);
-
-            fileStatusArray.push({
-                FileName: fileName,
-                NewFileName: newFileName,
-                Staged: true,
-                Status: status,
-            });
-        }
-        if (unstagedStatusIndicator !== " ") {
-            const status = this.GetStatusFromIndicator(unstagedStatusIndicator);
-
-            fileStatusArray.push({
-                FileName: fileName,
-                NewFileName: newFileName,
-                Staged: false,
-                Status: status,
-            });
-        }
-
-        return fileStatusArray;
+        return {
+            IndexStatus: xStatus,
+            Path1: path1,
+            Path2: path2,
+            WorkTreeStatus: yStatus,
+        };
     }
 
     private static GetStatusFromIndicator(indicator: string): Status {
@@ -84,7 +59,15 @@ export class FileStatusProcessor {
             case "R":
                 return Status.Renamed;
             case "?":
-                return Status.Unknown;
+                return Status.Untracked;
+            case "!":
+                return Status.Ignored;
+            case "C":
+                return Status.Copied;
+            case "U":
+                return Status.Updated;
+            default:
+                return Status.None;
         }
     }
 }

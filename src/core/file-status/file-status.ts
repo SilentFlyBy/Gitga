@@ -1,14 +1,18 @@
 export interface IFileStatus {
-    FileName: string;
-    NewFileName?: string;
-    Status: Status;
-    Staged: boolean;
+    Path1: string;
+    Path2?: string;
+    IndexStatus: Status;
+    WorkTreeStatus: Status;
 }
 
 export enum Status {
-    Unknown,
+    Untracked,
+    Ignored,
     Added,
     Deleted,
     Modified,
     Renamed,
+    Copied,
+    Updated,
+    None,
 }

@@ -1,14 +1,10 @@
 import * as React from "react";
+import Octicon from "react-component-octicons";
 import * as ReactDOM from "react-dom";
-import Octicon from 'react-component-octicons';
 
 export default class Toolbar extends React.Component {
     constructor(props: any) {
         super(props);
-    }
-
-    private handleButtonClick(button: ToolbarButton) {
-        console.log(button.toString());
     }
 
     public render() {
@@ -32,6 +28,10 @@ export default class Toolbar extends React.Component {
             </div>
         );
     }
+
+    private handleButtonClick(button: ToolbarButton) {
+        console.log(button.toString());
+    }
 }
 
 enum ToolbarButton {
@@ -39,5 +39,5 @@ enum ToolbarButton {
     Push,
     Pull,
     Branch,
-    Merge
+    Merge,
 }
