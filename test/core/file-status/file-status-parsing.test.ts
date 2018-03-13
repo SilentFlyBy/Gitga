@@ -60,15 +60,15 @@ describe("Git file status parser", () => {
         expect(fileStatus).to.deep.equal(expectedFileStatus);
     });
 
-    it("parses single unknown file correctly", () => {
+    it("parses single untracked file correctly", () => {
         const testString = "?? test.ts";
 
         const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
-            IndexStatus: Status.Unknown,
-            WorkTreeStatus: Status.Unknown,
+            IndexStatus: Status.Untracked,
+            WorkTreeStatus: Status.Untracked,
         };
 
         expect(fileStatus).to.deep.equal(expectedFileStatus);
@@ -147,8 +147,8 @@ AM src/core/file-status/file-status-processor.ts
             {
                 Path1: "src/core/file-status/test.ts",
                 Path2: undefined,
-                IndexStatus: Status.Unknown,
-                WorkTreeStatus: Status.Unknown,
+                IndexStatus: Status.Untracked,
+                WorkTreeStatus: Status.Untracked,
             },
         ];
 
