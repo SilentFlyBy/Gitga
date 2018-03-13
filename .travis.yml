@@ -12,4 +12,9 @@ install:
 
 script:
   - yarn test
+  - yarn coverage
   - yarn build
+  - npm install codecov -g
+
+after_success:
+  - codecov
