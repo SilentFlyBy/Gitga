@@ -25,7 +25,7 @@ export default class Toolbar extends React.Component<IToolbarProps, any> {
                 <button onClick={() => this.handleButtonClick(ToolbarButton.Merge)}>
                     <Octicon name="git-merge" />
                 </button>
-                <button onClick={this.props.syncAction}>
+                <button className="syncButton" onClick={this.props.syncAction}>
                     <Octicon name="sync" />
                 </button>
             </div>
@@ -46,5 +46,5 @@ enum ToolbarButton {
 }
 
 export interface IToolbarProps {
-    syncAction: () => void;
+    syncAction?: () => void;
 }

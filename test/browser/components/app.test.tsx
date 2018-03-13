@@ -13,9 +13,7 @@ configure({ adapter: new ReactSixteenAdapter() });
 describe ("<App />", () => {
     it ("renders Toolbar", () => {
         const app = shallow(<App />);
-        const result = app.contains(<Toolbar />)
-        && app.contains(<FileStatus />);
 
-        expect(result).to.be.true;
+        expect(app.find(Toolbar)).to.have.length(1);
     });
 });
