@@ -12,18 +12,18 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
 
         for (const s of this.props.fileStates) {
             fileStateElements.push(
-            <li key={s.Path1 + s.Status.toString()}>
-                <span className="fileStatusIcon">{this.GetFileStatusIndicator(s.Status)}</span>
-                <span className="fileName">{s.Path1}</span>
-            </li>,
+            <tr key={s.Path1 + s.Status.toString()}>
+                <td className="file-status-icon">{this.GetFileStatusIndicator(s.Status)}</td>
+                <td className="file-name">{s.Path1}</td>
+            </tr>,
             );
         }
 
         return(
-            <div className={this.props.className}>
-                <ul>
+            <div className={["file-status-area", this.props.className].join(" ")}>
+                <table>
                     {fileStateElements}
-                </ul>
+                </table>
             </div>
         );
     }

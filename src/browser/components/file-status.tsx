@@ -19,9 +19,9 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
 
     public render() {
         return(
-            <div className="fileStatus">
-                <FileStatusArea className="stagingArea" fileStates={this.state.stagedFileStates} />
-                <FileStatusArea className="workspaceArea" fileStates={this.state.unstagedFileStates} />
+            <div className="file-status">
+                <FileStatusArea className="staging-area" fileStates={this.state.stagedFileStates} />
+                <FileStatusArea className="workspace-area" fileStates={this.state.unstagedFileStates} />
             </div>
         );
     }
