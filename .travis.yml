@@ -11,6 +11,10 @@ cache: yarn
 install:
   - yarn
 
+stages:
+  - test
+  - build
+
 jobs:
   include:
     - stage: test
