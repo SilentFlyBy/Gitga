@@ -5,11 +5,11 @@ import {FileStatusProcessor, IFileStatus, Status} from "../../../src/core/file-s
 
 describe("Git file status processor", () => {
     it("fetches file states correctly", async () => {
-        const result = await FileStatusProcessor.GetAllFileStates("./fixture/");
+        const result = await FileStatusProcessor.GetAllFileStates(".");
 
         const expectedStates: IFileStatus[] = [{
             IndexStatus: Status.Added,
-            Path1: "test.ts",
+            Path1: "test.js",
             Path2: undefined,
             WorkTreeStatus: Status.None,
         }];

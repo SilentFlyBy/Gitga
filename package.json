@@ -7,9 +7,9 @@
     "electron": "./node_modules/.bin/electron"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha",
-    "coverage": "nyc mocha",
-    "coverage-report": "nyc report --reporter=text-lcov > coverage.lcov",
+    "test": "cross-env NODE_ENV=test mocha",
+    "coverage": "cross-env NODE_ENV=test nyc mocha",
+    "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
     "build": "webpack --mode production",
     "serve": "concurrently --kill-others \"npm run serve:renderer\" \"npm run serve:electron\" ",
     "serve:renderer": "webpack-dev-server --mode development --hot --port 8081",
@@ -49,6 +49,7 @@
     "bootstrap-less": "^3.3.8",
     "chai": "^4.1.2",
     "concurrently": "^3.5.1",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
     "electron": "^1.8.2",
     "electron-connect": "^0.6.3",

@@ -1,8 +1,13 @@
 {
   "name": "git-mock",
   "version": "1.0.0",
-  "description": "A git mockup",
+  "description": "",
+  "main": "git-mock.js",
+  "scripts": {
+  },
   "bin": {
-    "git-mock": "git-mock"
-  }
+    "git-mock": "bin/git-mock.js"
+  },
+  "author": "Erik Moldtmann",
+  "license": "GPL-3.0"
 }

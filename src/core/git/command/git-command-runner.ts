@@ -40,7 +40,7 @@ export class GitCommandRunner {
                     });
                     break;
                 case "test":
-                    resolve("node_modules/git-mock/git-mock");
+                    resolve("node_modules/.bin/git-mock");
                     break;
             }
         });
