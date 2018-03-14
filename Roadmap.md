@@ -1,4 +1,4 @@
-# Gitja Project Roadmap
+# Gitga Project Roadmap
 
 ## Will happen
 ### Release 1.0
