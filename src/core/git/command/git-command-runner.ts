@@ -33,7 +33,7 @@ export class GitCommandRunner {
                     const gitExecutable = "/usr/bin/git";
                     CP.exec(`${gitExecutable} --version`, (err, stdout) => {
                         if (err) {
-                            reject(`Execution error on attempt to invoke 'which': ${err}`);
+                            reject(`Execution error on attempt to invoke 'git': ${err}`);
                         }
 
                         resolve(gitExecutable);
