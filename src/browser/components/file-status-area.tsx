@@ -105,7 +105,7 @@ export enum FileStatusAreaType {
 }
 
 interface IFileStatusProps {
-    fileStates?: IAreaFileStatus[];
+    fileStates: IAreaFileStatus[];
     type?: FileStatusAreaType;
     onSync?: () => void;
 }
