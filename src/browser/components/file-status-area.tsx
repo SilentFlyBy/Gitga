@@ -28,24 +28,33 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
             const stagingActionIcon = this.GetStagingActionIcon(this.props.type);
 
             fileStateElements.push(
-            <tr key={s.Path1 + s.Status.toString()}>
-                <td className={iconClassName}>{fileStatus}</td>
-                <td className="file-name">{s.Path1}</td>
-                <td className="action-buttons">
-                    <a onClick={this.onStageClick.bind(this, s)}>{stagingActionIcon}</a>
-                </td>
-            </tr>,
+                <tr key={s.Path1 + s.Status.toString()}>
+                    <td className={iconClassName}>{fileStatus}</td>
+                    <td className="file-name">{s.Path1}</td>
+                    <td className="action-buttons">
+                        <a onClick={() => this.onStageClick(s.Path1)}>{stagingActionIcon}</a>
+                    </td>
+                </tr>,
             );
         }
 
-        return(
+        const headline = `${FileStatusAreaType[this.props.type]} Area`;
+
+        return (
             <div className={["file-status-area", this.className].join(" ")}>
                 <table>
                     <thead>
                         <tr>
-                        <th>Status</th>
-                        <th>Filename</th>
-                        <th>Action</th>
+                            <th colSpan={3}>{headline}</th>
+                        </tr>
+                        <tr>
+                            <th className="file-status-icon">Status</th>
+                            <th className="file-name">Filename</th>
+                            <th className="action-buttons">
+                                <a onClick={() => this.onStageClick(".")}>
+                                    {this.GetStagingActionIcon(this.props.type)}
+                                </a>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,8 +65,8 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         );
     }
 
-    private onStageClick = (status: IAreaFileStatus) => {
-        this.handleStagingAction(status);
+    private onStageClick = (fileName: string) => {
+        this.handleStagingAction(fileName);
     }
 
     private Sync() {
@@ -66,12 +75,12 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         }
     }
 
-    private async handleStagingAction(s: IAreaFileStatus) {
+    private async handleStagingAction(fileName: string) {
         if (this.props.type === FileStatusAreaType.WorkTree) {
-            await Git.Add().Args(s.Path1).Execute();
+            await Git.Add().Args(fileName).Execute();
             this.Sync();
         } else if (this.props.type === FileStatusAreaType.Index) {
-            await Git.Reset().Args(s.Path1).Execute();
+            await Git.Reset().Args(fileName).Execute();
             this.Sync();
         }
     }

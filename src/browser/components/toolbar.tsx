@@ -5,8 +5,6 @@ import Octicon from "react-component-octicons";
 export default class Toolbar extends React.Component<IToolbarProps, any> {
     constructor(props: IToolbarProps) {
         super(props);
-
-        this.onSync = this.onSync.bind(this);
     }
 
     public render() {
@@ -27,7 +25,7 @@ export default class Toolbar extends React.Component<IToolbarProps, any> {
                 <button onClick={() => this.handleButtonClick(ToolbarButton.Merge)}>
                     <Octicon name="git-merge" />
                 </button>
-                <button className="syncButton" onClick={this.onSync}>
+                <button className="syncButton" onClick={() => this.onSync()}>
                     <Octicon name="sync" />
                 </button>
             </div>

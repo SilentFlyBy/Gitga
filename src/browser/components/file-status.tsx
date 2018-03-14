@@ -8,7 +8,6 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
     constructor(props: any) {
         super(props);
 
-        this.updateFileStatus = this.updateFileStatus.bind(this);
         this.state = {
             unstagedFileStates: [],
             stagedFileStates: [],
@@ -35,7 +34,7 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
         );
     }
 
-    public async updateFileStatus() {
+    public updateFileStatus = async () => {
         const fileStates = await FileStatusProcessor.GetAllFileStates();
         const stagedFileStates = fileStates.filter((s) => s.IndexStatus !== Status.None
             && s.IndexStatus !== Status.Untracked)

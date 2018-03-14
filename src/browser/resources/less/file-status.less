@@ -4,9 +4,35 @@
     .file-status-area {
         display: block;
         min-height: 7.5em;
+        margin-bottom: 1em;
 
         table {
             width: 100%;
+
+            border-collapse: collapse;
+
+            td {
+                border: 1px solid;
+                border-color: @black;
+
+                &.file-status-icon {
+                    text-align: center;
+                }
+
+                &.action-buttons {
+                    text-align: center;
+                }
+            }
+
+            th {
+                &.file-status-icon {
+                    width: 5em;
+                }
+
+                &.action-buttons {
+                    width: 5em;
+                }
+            }
         }
 
         .file-status-icon {
