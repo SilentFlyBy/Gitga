@@ -47,3 +47,15 @@ export interface ICommitCommand extends IGitCommand {
 export interface IStatusCommand extends IGitCommand {
     statusCommand: any;
 }
+
+export interface IAddCommand extends IGitCommand {
+    addCommand: any;
+}
+
+export interface IRemoveCommand extends IGitCommand {
+    removeCommand: any;
+}
+
+export interface IResetCommand extends IGitCommand {
+    resetCommand: any;
+}

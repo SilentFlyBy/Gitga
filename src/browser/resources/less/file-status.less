@@ -1,5 +1,30 @@
 .file-status {
+    font-size: .8rem;
+
     .file-status-area {
-        
+        display: block;
+        min-height: 7.5em;
+
+        table {
+            width: 100%;
+        }
+
+        .file-status-icon {
+            font-family: "Roboto-Bold";
+
+            &.M {
+                color: @modified-yellow;
+            }
+
+            &.A {
+                color: @added-green;
+            }
+        }
+
+        .action-buttons {
+            a {
+                cursor: pointer;
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ describe("<Toolbar />", () => {
 
     it("calls button click handlers", () => {
         const onClick = sinon.spy();
-        const toolbar = shallow(<Toolbar syncAction={onClick} />);
+        const toolbar = shallow(<Toolbar onSync={onClick} />);
         toolbar.find(".syncButton").simulate("click");
 
         expect(onClick.calledOnce).to.be.true;

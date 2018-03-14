@@ -3,13 +3,11 @@ import {IFileStatus, Status} from "./file-status";
 
 export class FileStatusProcessor {
     public static async GetAllFileStates(path?: string): Promise<IFileStatus[]> {
-        return new Promise<IFileStatus[]>((resolve, reject) => {
-            return Git.Status().Params([Git.StatusParam.Porcelain]).Args(path).Execute()
-            .then((output) => {
-                const fileStatusList: IFileStatus[] = this.ParseStatusLines(output);
+        return new Promise<IFileStatus[]>(async (resolve, reject) => {
+            const output = await Git.Status().Params([Git.StatusParam.Porcelain]).Args(path).Execute()
+            const fileStatusList: IFileStatus[] = this.ParseStatusLines(output);
 
-                resolve(fileStatusList);
-            });
+            return resolve(fileStatusList);
         });
     }
 

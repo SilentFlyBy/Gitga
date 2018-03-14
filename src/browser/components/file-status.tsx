@@ -1,12 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {FileStatusProcessor, IFileStatus, Status} from "../../core/file-status";
-import FileStatusArea, { IAreaFileStatus } from "./file-status-area";
+import { FileStatusProcessor, IFileStatus, Status } from "../../core/file-status";
+import FileStatusArea, { IAreaFileStatus, FileStatusAreaType } from "./file-status-area";
 
 export default class FileStatus extends React.Component<any, IFileStatusState> {
     constructor(props: any) {
         super(props);
+
+        this.updateFileStatus = this.updateFileStatus.bind(this);
         this.state = {
             unstagedFileStates: [],
             stagedFileStates: [],
@@ -18,25 +20,32 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
     }
 
     public render() {
-        return(
+        return (
             <div className="file-status">
-                <FileStatusArea className="staging-area" fileStates={this.state.stagedFileStates} />
-                <FileStatusArea className="workspace-area" fileStates={this.state.unstagedFileStates} />
+                <FileStatusArea
+                    type={FileStatusAreaType.Index}
+                    fileStates={this.state.stagedFileStates}
+                    onSync={this.updateFileStatus} />
+
+                <FileStatusArea
+                    type={FileStatusAreaType.WorkTree}
+                    fileStates={this.state.unstagedFileStates}
+                    onSync={this.updateFileStatus} />
             </div>
         );
     }
 
-    public updateFileStatus() {
-        FileStatusProcessor.GetAllFileStates().then((fileStates) => {
-            const stagedFileStates = fileStates.filter((s) => s.IndexStatus !== Status.None
-                                                           && s.IndexStatus !== Status.Untracked)
-                .map((s) => {
-                    return {
-                        Status: s.IndexStatus,
-                        Path1: s.Path1,
-                    };
-                });
-            const unstagedFileStates = fileStates.filter((s) => s.WorkTreeStatus !== Status.None)
+    public async updateFileStatus() {
+        const fileStates = await FileStatusProcessor.GetAllFileStates();
+        const stagedFileStates = fileStates.filter((s) => s.IndexStatus !== Status.None
+            && s.IndexStatus !== Status.Untracked)
+            .map((s) => {
+                return {
+                    Status: s.IndexStatus,
+                    Path1: s.Path1,
+                };
+            });
+        const unstagedFileStates = fileStates.filter((s) => s.WorkTreeStatus !== Status.None)
             .map((s) => {
                 return {
                     Status: s.WorkTreeStatus,
@@ -44,10 +53,9 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
                 };
             });
 
-            this.setState({
-                stagedFileStates,
-                unstagedFileStates,
-            });
+        this.setState({
+            stagedFileStates,
+            unstagedFileStates,
         });
     }
 

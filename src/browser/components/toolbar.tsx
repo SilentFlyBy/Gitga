@@ -5,6 +5,8 @@ import Octicon from "react-component-octicons";
 export default class Toolbar extends React.Component<IToolbarProps, any> {
     constructor(props: IToolbarProps) {
         super(props);
+
+        this.onSync = this.onSync.bind(this);
     }
 
     public render() {
@@ -25,7 +27,7 @@ export default class Toolbar extends React.Component<IToolbarProps, any> {
                 <button onClick={() => this.handleButtonClick(ToolbarButton.Merge)}>
                     <Octicon name="git-merge" />
                 </button>
-                <button className="syncButton" onClick={this.props.syncAction}>
+                <button className="syncButton" onClick={this.onSync}>
                     <Octicon name="sync" />
                 </button>
             </div>
@@ -34,6 +36,12 @@ export default class Toolbar extends React.Component<IToolbarProps, any> {
 
     private handleButtonClick(button: ToolbarButton) {
         alert(button);
+    }
+
+    private onSync() {
+        if (typeof this.props.onSync === "function") {
+            this.props.onSync();
+        }
     }
 }
 
@@ -46,5 +54,5 @@ enum ToolbarButton {
 }
 
 export interface IToolbarProps {
-    syncAction?: () => void;
+    onSync?: () => void;
 }
