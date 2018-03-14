@@ -31,8 +31,7 @@ describe("<FileStatusArea />", () => {
 
     it("calls button actions correctly", () => {
         const onClick = sinon.spy();
-        const wrapper = shallow(<FileStatusArea
-            fileStates={fileStates} type={FileStatusAreaType.Index} onSync={onClick}/>);
+        const wrapper = shallow(<FileStatusArea fileStates={fileStates} onStageClick={onClick}/>);
         wrapper.find(".action-buttons a").simulate("click");
 
         expect(onClick.calledOnce).to.be.true;

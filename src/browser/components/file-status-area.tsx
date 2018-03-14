@@ -14,6 +14,9 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         } else if (props.type === FileStatusAreaType.WorkTree) {
             this.className = "workspaceArea";
         }
+        if (typeof props.onStageClick === "function") {
+            this.onStageClick = this.props.onStageClick;
+        }
     }
 
     public render() {
@@ -29,7 +32,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                 <td className={iconClassName}>{fileStatus}</td>
                 <td className="file-name">{s.Path1}</td>
                 <td className="action-buttons">
-                    <a onClick={() => this.handleStagingAction(s)}>{stagingActionIcon}</a>
+                    <a onClick={this.onStageClick.bind(this, s)}>{stagingActionIcon}</a>
                 </td>
             </tr>,
             );
@@ -53,7 +56,11 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         );
     }
 
-    private onSync() {
+    private onStageClick = (status: IAreaFileStatus) => {
+        this.handleStagingAction(status);
+    }
+
+    private Sync() {
         if (typeof this.props.onSync === "function") {
             this.props.onSync();
         }
@@ -62,10 +69,10 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
     private async handleStagingAction(s: IAreaFileStatus) {
         if (this.props.type === FileStatusAreaType.WorkTree) {
             await Git.Add().Args(s.Path1).Execute();
-            this.onSync();
+            this.Sync();
         } else if (this.props.type === FileStatusAreaType.Index) {
             await Git.Reset().Args(s.Path1).Execute();
-            this.onSync();
+            this.Sync();
         }
     }
 
@@ -108,4 +115,5 @@ interface IFileStatusProps {
     fileStates: IAreaFileStatus[];
     type?: FileStatusAreaType;
     onSync?: () => void;
+    onStageClick?: () => void;
 }
