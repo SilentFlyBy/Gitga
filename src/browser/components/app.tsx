@@ -16,7 +16,7 @@ export default class App extends React.Component<any, any> {
     public render() {
         return (
             <div>
-                <Toolbar onSync={() => this.fileStatusComponent.updateFileStatus()}/>
+                <Toolbar onSyncClick={() => this.fileStatusComponent.updateFileStatus()}/>
                 <FileStatus ref={(ref) => this.fileStatusComponent = ref}/>
             </div>
         );

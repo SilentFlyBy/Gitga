@@ -15,7 +15,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
             this.className = "workspaceArea";
         }
         if (typeof props.onStageClick === "function") {
-            this.onStageClick = this.props.onStageClick;
+            this.OnStageClick = this.props.onStageClick;
         }
     }
 
@@ -32,7 +32,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                     <td className={iconClassName}>{fileStatus}</td>
                     <td className="file-name">{s.Path1}</td>
                     <td className="action-buttons">
-                        <a onClick={() => this.onStageClick(s.Path1)}>{stagingActionIcon}</a>
+                        <a onClick={() => this.OnStageClick(s.Path1)}>{stagingActionIcon}</a>
                     </td>
                 </tr>,
             );
@@ -51,7 +51,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                             <th className="file-status-icon">Status</th>
                             <th className="file-name">Filename</th>
                             <th className="action-buttons">
-                                <a onClick={() => this.onStageClick(".")}>
+                                <a onClick={() => this.OnStageClick(".")}>
                                     {this.GetStagingActionIcon(this.props.type)}
                                 </a>
                             </th>
@@ -65,23 +65,23 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         );
     }
 
-    private onStageClick = (fileName: string) => {
-        this.handleStagingAction(fileName);
-    }
-
-    private Sync() {
-        if (typeof this.props.onSync === "function") {
-            this.props.onSync();
-        }
-    }
-
-    private async handleStagingAction(fileName: string) {
+    public async HandleStagingAction(fileName: string) {
         if (this.props.type === FileStatusAreaType.WorkTree) {
             await Git.Add().Args(fileName).Execute();
             this.Sync();
         } else if (this.props.type === FileStatusAreaType.Index) {
             await Git.Reset().Args(fileName).Execute();
             this.Sync();
+        }
+    }
+
+    private OnStageClick = (fileName: string) => {
+        this.HandleStagingAction(fileName);
+    }
+
+    private Sync() {
+        if (typeof this.props.onSync === "function") {
+            this.props.onSync();
         }
     }
 

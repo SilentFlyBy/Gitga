@@ -31,11 +31,33 @@ describe("<FileStatusArea />", () => {
 
     it("calls button actions correctly", () => {
         const onClick = sinon.spy();
-        const wrapper = shallow(<FileStatusArea fileStates={fileStates} onStageClick={onClick}/>);
+        const wrapper = shallow(<FileStatusArea fileStates={fileStates} onStageClick={onClick} />);
         wrapper.find("td.action-buttons a").simulate("click");
         wrapper.find("th.action-buttons a").simulate("click");
 
         expect(onClick.calledWith("test.js")).to.be.true;
         expect(onClick.calledWith(".")).to.be.true;
+    });
+
+    it("Stages file correctly", async () => {
+        const onClick = sinon.spy();
+        const indexWrapper = shallow(<FileStatusArea
+            fileStates={fileStates}
+            onSync={onClick}
+            type={FileStatusAreaType.Index} />)
+            .instance() as FileStatusArea;
+
+        const workTreeWrapper = shallow(<FileStatusArea
+            fileStates={fileStates}
+            onSync={onClick}
+            type={FileStatusAreaType.Index} />)
+            .instance() as FileStatusArea;
+
+        await Promise.all([
+            indexWrapper.HandleStagingAction("test.js"),
+            workTreeWrapper.HandleStagingAction("test.js"),
+        ]);
+
+        expect(onClick.calledTwice).to.be.true;
     });
 });
