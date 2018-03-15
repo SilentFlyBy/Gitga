@@ -5,7 +5,7 @@ import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 import FileStatus from "../../../src/browser/components/file-status";
 import FileStatusArea, { IAreaFileStatus } from "../../../src/browser/components/file-status-area";
-import { IFileStatus, Status } from "../../../src/core/file-status";
+import { IFileStatus, Status } from "../../../src/core/git/file-status";
 
 describe("<FileStatus />", () => {
     it("renders two file status areas", () => {

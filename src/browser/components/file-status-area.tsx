@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { IFileStatus, Status } from "../../core/file-status";
+import { IFileStatus, Status } from "../../core/git/file-status";
 import { Git } from "../../core/git";
 
 export default class FileStatusArea extends React.Component<IFileStatusProps, any> {
@@ -32,7 +32,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                     <td className={iconClassName}>{fileStatus}</td>
                     <td className="file-name">{s.Path1}</td>
                     <td className="action-buttons">
-                        <a onClick={() => this.OnStageClick(s.Path1)}>{stagingActionIcon}</a>
+                        <a onClick={() => this.OnStageClick(s.Path1, s.Path2)}>{stagingActionIcon}</a>
                     </td>
                 </tr>,
             );
@@ -51,7 +51,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                             <th className="file-status-icon">Status</th>
                             <th className="file-name">Filename</th>
                             <th className="action-buttons">
-                                <a onClick={() => this.OnStageClick(".")}>
+                                <a onClick={() => this.OnStageClick(".", undefined)}>
                                     {this.GetStagingActionIcon(this.props.type)}
                                 </a>
                             </th>
@@ -65,7 +65,8 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         );
     }
 
-    public async HandleStagingAction(fileName: string) {
+    public async HandleStagingAction(fileName1: string, fileName2: string) {
+        const fileName = fileName2 || fileName1;
         if (this.props.type === FileStatusAreaType.WorkTree) {
             await Git.Add().Args(fileName).Execute();
             this.Sync();
@@ -75,8 +76,8 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         }
     }
 
-    private OnStageClick = (fileName: string) => {
-        this.HandleStagingAction(fileName);
+    private OnStageClick = (fileName1: string, fileName2: string) => {
+        this.HandleStagingAction(fileName1, fileName2);
     }
 
     private Sync() {
@@ -97,6 +98,8 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                 return "?";
             case Status.Modified:
                 return "M";
+            case Status.Renamed:
+                return "R";
         }
     }
 
@@ -112,6 +115,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
 
 export interface IAreaFileStatus {
     Path1: string;
+    Path2?: string;
     Status: Status;
 }
 

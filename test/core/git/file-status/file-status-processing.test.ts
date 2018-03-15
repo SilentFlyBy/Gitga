@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import "mocha";
 
-import {FileStatusProcessor, IFileStatus, Status} from "../../../src/core/file-status";
+import {FileStatusProcessor, IFileStatus, Status} from "../../../../src/core/git/file-status";
 
 describe("Git file status processor", () => {
     it("fetches file states correctly", async () => {

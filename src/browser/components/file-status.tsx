@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { FileStatusProcessor, IFileStatus, Status } from "../../core/file-status";
+import { FileStatusProcessor, IFileStatus, Status } from "../../core/git/file-status";
 import FileStatusArea, { IAreaFileStatus, FileStatusAreaType } from "./file-status-area";
 
 export default class FileStatus extends React.Component<any, IFileStatusState> {
@@ -42,6 +42,7 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
                 return {
                     Status: s.IndexStatus,
                     Path1: s.Path1,
+                    Path2: s.Path2,
                 };
             });
         const unstagedFileStates = fileStates.filter((s) => s.WorkTreeStatus !== Status.None)
@@ -49,6 +50,7 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
                 return {
                     Status: s.WorkTreeStatus,
                     Path1: s.Path1,
+                    Path2: s.Path2,
                 };
             });
 

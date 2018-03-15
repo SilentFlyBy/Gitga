@@ -4,7 +4,7 @@ import { shallow, mount, configure } from "enzyme";
 import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 import FileStatusArea, { IAreaFileStatus, FileStatusAreaType } from "../../../src/browser/components/file-status-area";
-import { Status } from "../../../src/core/file-status";
+import { Status } from "../../../src/core/git/file-status";
 import * as sinon from "sinon";
 
 const fileStates: IAreaFileStatus[] = [{
@@ -54,8 +54,8 @@ describe("<FileStatusArea />", () => {
             .instance() as FileStatusArea;
 
         await Promise.all([
-            indexWrapper.HandleStagingAction("test.js"),
-            workTreeWrapper.HandleStagingAction("test.js"),
+            indexWrapper.HandleStagingAction("test.js", undefined),
+            workTreeWrapper.HandleStagingAction("test.js", undefined),
         ]);
 
         expect(onClick.calledTwice).to.be.true;

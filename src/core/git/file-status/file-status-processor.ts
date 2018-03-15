@@ -4,7 +4,10 @@ import {IFileStatus, Status} from "./file-status";
 export class FileStatusProcessor {
     public static async GetAllFileStates(path?: string): Promise<IFileStatus[]> {
         return new Promise<IFileStatus[]>(async (resolve, reject) => {
-            const output = await Git.Status().Params([Git.StatusParam.Porcelain]).Args(path).Execute();
+            const output = await Git.Status().Params([
+                Git.StatusParam.Porcelain,
+                Git.StatusParam.UntrackedFiles("all"),
+            ]).Args(path).Execute();
             const fileStatusList: IFileStatus[] = this.ParseStatusLines(output);
 
             return resolve(fileStatusList);
