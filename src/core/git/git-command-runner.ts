@@ -1,6 +1,7 @@
 import * as CP from "child_process";
 import { GitCommandBuilder } from "./git-command-builder";
 import { IGitCommand, GitCommand } from "./command/git-command";
+import { ChildProcess } from "../child-process";
 
 export class GitCommandRunner {
     public static async RunCommand<T extends IGitCommand>(command: GitCommand<T>): Promise<string> {
@@ -21,29 +22,23 @@ export class GitCommandRunner {
         });
     }
 
+    public static async GetGitExecutableFromPlatform(platform: string): Promise<string> {
+        switch (platform) {
+            case "win32":
+                const exe = await ChildProcess.Execute("where git");
+                return exe
+                    .replace("\n", "")
+                    .replace("\\", "\\\\");
+            case "linux":
+                return await ChildProcess.Execute("which git");
+        }
+    }
+
     private static async TryGetGitExecutable(): Promise<string> {
-        const testing = process.env.NODE_ENV;
-        const platform = testing === "test" ? testing : process.platform;
+        if (process.env.NODE_ENV === "test") {
+            return "util/git-mock/git-mock";
+        }
 
-        return new Promise<string>((resolve, reject) => {
-            switch (platform) {
-                case "win32":
-                    resolve("git");
-                    break;
-                case "linux":
-                    const gitExecutable = "/usr/bin/git";
-                    CP.exec(`${gitExecutable} --version`, (err, stdout) => {
-                        if (err) {
-                            reject(`Execution error on attempt to invoke 'git': ${err}`);
-                        }
-
-                        resolve(gitExecutable);
-                    });
-                    break;
-                case "test":
-                    resolve("node_modules/.bin/git-mock");
-                    break;
-            }
-        });
+        return this.GetGitExecutableFromPlatform(process.platform);
     }
 }
