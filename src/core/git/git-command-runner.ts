@@ -1,4 +1,3 @@
-import * as CP from "child_process";
 import { GitCommandBuilder } from "./git-command-builder";
 import { IGitCommand, GitCommand } from "./command/git-command";
 import { ChildProcess } from "../child-process";
@@ -9,17 +8,10 @@ export class GitCommandRunner {
 
         const gitExecutable = await this.TryGetGitExecutable();
         if (!gitExecutable) {
-            return Promise.reject("Failed to find git executable");
+            throw new Error("Failed to find git executable");
         }
 
-        return new Promise<string>((resolve, reject) => {
-            CP.exec(`"${gitExecutable}" ${commandString}`, (err, stdout) => {
-                if (err) {
-                    reject(`Execution of git command '${commandString}' failed: ${err}`);
-                }
-                resolve(stdout);
-            });
-        });
+        return await ChildProcess.Execute(`"${gitExecutable}" ${commandString}`);
     }
 
     public static async GetGitExecutableFromPlatform(platform: string): Promise<string> {
