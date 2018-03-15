@@ -1,11 +1,10 @@
 import { expect } from "chai";
 import "mocha";
-
-import {FileStatusProcessor, IFileStatus, Status} from "../../../../src/core/git/file-status";
+import { FileStatusProcessor, IFileStatus, Status } from "../../../../../../src/core/git/file-status";
 
 describe("Git file status processor", () => {
     it("fetches file states correctly", async () => {
-        const result = await FileStatusProcessor.GetAllFileStates(".");
+        const result = await new FileStatusProcessor().GetAllFileStates(".");
 
         const expectedStates: IFileStatus[] = [{
             IndexStatus: Status.Added,

@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import "mocha";
-import { Git } from "../../../../src/core/git";
+import { Git } from "../../../../../src/core/git";
 
 describe("Git module", () => {
     it("has correct commit command", () => {

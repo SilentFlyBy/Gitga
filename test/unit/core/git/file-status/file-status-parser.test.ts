@@ -1,13 +1,13 @@
 import { expect } from "chai";
 import "mocha";
-
-import {FileStatusProcessor, IFileStatus, Status} from "../../../../src/core/git/file-status";
+import { GitFileStatusParser } from "../../../../../src/core/git/file-status/file-status-parser";
+import { IFileStatus, Status } from "../../../../../src/core/git/file-status";
 
 describe("Git file status parser", () => {
     it("parses single added file correctly", () => {
         const testString = "A  testfile.txt";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "testfile.txt",
             Path2: undefined,
@@ -21,7 +21,7 @@ describe("Git file status parser", () => {
     it("parses single moved file correctly", () => {
         const testString = "R  src/browser/components/toolbar/toolbar.tsx -> src/browser/components/toolbar.tsx";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "src/browser/components/toolbar/toolbar.tsx",
             Path2: "src/browser/components/toolbar.tsx",
@@ -35,7 +35,7 @@ describe("Git file status parser", () => {
     it("parses single deleted file correctly", () => {
         const testString = "D  test.ts";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
@@ -49,7 +49,7 @@ describe("Git file status parser", () => {
     it("parses single renamed file correctly", () => {
         const testString = "R  test.ts";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
@@ -63,7 +63,7 @@ describe("Git file status parser", () => {
     it("parses single untracked file correctly", () => {
         const testString = "?? test.ts";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
@@ -77,7 +77,7 @@ describe("Git file status parser", () => {
     it("parses single copied file correctly", () => {
         const testString = " C test.ts";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
@@ -91,7 +91,7 @@ describe("Git file status parser", () => {
     it("parses single updated file correctly", () => {
         const testString = " U test.ts";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
@@ -105,7 +105,7 @@ describe("Git file status parser", () => {
     it("parses single ignored file correctly", () => {
         const testString = "!! test.ts";
 
-        const fileStatus = FileStatusProcessor.ParseStatusLine(testString);
+        const fileStatus = GitFileStatusParser.ParseFileStatusLine(testString);
         const expectedFileStatus: IFileStatus = {
             Path1: "test.ts",
             Path2: undefined,
@@ -125,7 +125,7 @@ A  src/browser/components/file-status.tsx
 AM src/core/file-status/file-status-processor.ts
 ?? src/core/file-status/test.ts`;
 
-        const fileStatuses = FileStatusProcessor.ParseStatusLines(testString);
+        const fileStatuses = GitFileStatusParser.ParseFileStatusLines(testString.split(/\r?\n/));
 
         const expectedFileStatuses: IFileStatus[] = [
             {

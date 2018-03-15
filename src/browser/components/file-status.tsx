@@ -35,7 +35,7 @@ export default class FileStatus extends React.Component<any, IFileStatusState> {
     }
 
     public updateFileStatus = async () => {
-        const fileStates = await FileStatusProcessor.GetAllFileStates();
+        const fileStates = await new FileStatusProcessor().GetAllFileStates();
         const stagedFileStates = fileStates.filter((s) => s.IndexStatus !== Status.None
             && s.IndexStatus !== Status.Untracked)
             .map((s) => {
