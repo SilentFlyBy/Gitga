@@ -1,5 +1,5 @@
-import {IStatusCommand} from "../command";
-import {KeyValueParameter, LongParameter} from "./";
+import { IStatusCommand } from "./git-status-command";
+import { LongParameter, KeyValueParameter } from "../../parameter";
 
 const statusCommandType: IStatusCommand = {gitCommand: "status", statusCommand: {}};
 

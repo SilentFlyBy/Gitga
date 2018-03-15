@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { IFileStatus, Status } from "../../core/git/file-status";
 import { Git } from "../../core/git";
+import { AddArgument } from "../../core/git/command/add/git-add-command";
 
 export default class FileStatusArea extends React.Component<IFileStatusProps, any> {
     private className: string;
@@ -67,12 +68,17 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
 
     public async HandleStagingAction(fileName1: string, fileName2: string) {
         const fileName = fileName2 || fileName1;
+
         if (this.props.type === FileStatusAreaType.WorkTree) {
-            await Git.Add().Args(fileName).Execute();
+
+            await Git.Add().Args(new AddArgument(fileName)).Execute();
             this.Sync();
+
         } else if (this.props.type === FileStatusAreaType.Index) {
-            await Git.Reset().Args(fileName).Execute();
+
+            await Git.Reset().Args(new AddArgument(fileName)).Execute();
             this.Sync();
+
         }
     }
 

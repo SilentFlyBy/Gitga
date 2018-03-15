@@ -1,5 +1,5 @@
-import {ICommitCommand} from "../command";
-import {KeyValueParameter, LongParameter} from "./";
+import { LongParameter, KeyValueParameter } from "../../parameter";
+import { ICommitCommand } from "./git-commit-command";
 
 const commitCommandType: ICommitCommand = {gitCommand: "commit", commitCommand: {}};
 

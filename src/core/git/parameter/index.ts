@@ -1,7 +1,5 @@
-import {IGitCommand} from "../command";
+import { IGitCommand } from "../command/git-command";
 
-export * from "./commit-parameter";
-export * from "./status-parameter";
 export * from "./long-parameter";
 export * from "./key-value-parameter";
 

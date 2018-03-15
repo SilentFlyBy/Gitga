@@ -1,5 +1,5 @@
-import { LongParameter } from ".";
-import { IAddCommand } from "../command";
+import { IAddCommand } from "./git-add-command";
+import { LongParameter } from "../../parameter";
 
 const addCommandType: IAddCommand = { gitCommand: "add", addCommand: {} };
 

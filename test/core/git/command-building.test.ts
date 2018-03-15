@@ -2,7 +2,7 @@ import { expect } from "chai";
 import "mocha";
 
 import {Git} from "../../../src/core/git";
-import {GitCommandBuilder} from "../../../src/core/git/command/git-command-builder";
+import { GitCommandBuilder } from "../../../src/core/git/git-command-builder";
 
 describe("Git command builder", () => {
     it("builds single command string correctly", () => {

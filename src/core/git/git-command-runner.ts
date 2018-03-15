@@ -1,5 +1,6 @@
 import * as CP from "child_process";
-import {GitCommand, GitCommandBuilder, IGitCommand} from "./";
+import { GitCommandBuilder } from "./git-command-builder";
+import { IGitCommand, GitCommand } from "./command/git-command";
 
 export class GitCommandRunner {
     public static async RunCommand<T extends IGitCommand>(command: GitCommand<T>): Promise<string> {

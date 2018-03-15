@@ -1,6 +1,13 @@
-import {GitCommand, ICommitCommand, IStatusCommand, IAddCommand, IRemoveCommand, IResetCommand} from "./command";
-import {CommitParam, StatusParam} from "./parameter";
-import { AddParam } from "./parameter/add-param";
+import { StatusParam } from "./command/status/git-status-parameter";
+import { AddParam } from "./command/add/git-add-parameter";
+import { ICommitCommand } from "./command/commit/git-commit-command";
+import { IStatusCommand } from "./command/status/git-status-command";
+import { IAddCommand } from "./command/add/git-add-command";
+import { IRemoveCommand } from "./command/remove/git-remove-command";
+import { IResetCommand } from "./command/reset/git-reset-command";
+import { ICheckoutCommand } from "./command/checkout/git-checkout-command";
+import { GitCommand } from "./command/git-command";
+import { CommitParam } from "./command/commit/git-commit-parameter";
 
 export class Git {
     public static CommitParam: CommitParam = new CommitParam();
@@ -24,5 +31,9 @@ export class Git {
 
     public static Reset(): GitCommand<IResetCommand> {
         return new GitCommand<IResetCommand>("reset");
+    }
+
+    public static Checkout(): GitCommand<ICheckoutCommand> {
+        return new GitCommand<ICheckoutCommand>("checkout");
     }
 }

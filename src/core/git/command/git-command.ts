@@ -1,17 +1,25 @@
 import {ChildProcess} from "child_process";
 import {IParameter} from "../parameter";
-import {GitCommandRunner} from "./";
+import { GitCommandRunner } from "../git-command-runner";
 
 export class GitCommand<T extends IGitCommand> {
     private command: string;
     private Type: T;
     private parameters: Array<IParameter<T>>;
-    private argument: string;
+    private argument: IGitArgument<T>;
 
-    public constructor(comm: string, arg?: string) {
+    public constructor(comm: string, arg?: IGitArgument<T>) {
         this.parameters = [];
         this.command = comm;
-        this.argument = arg;
+
+        if (!arg) {
+            this.argument = {
+                gitArgument: undefined,
+                toString: () => "",
+            };
+        } else {
+            this.argument = arg;
+        }
     }
 
     get Command(): string {
@@ -20,7 +28,7 @@ export class GitCommand<T extends IGitCommand> {
     get CommandParameters(): Array<IParameter<T>> {
         return this.parameters;
     }
-    get Argument(): string {
+    get Argument(): IGitArgument<T> {
         return this.argument;
     }
 
@@ -32,7 +40,7 @@ export class GitCommand<T extends IGitCommand> {
         return this;
     }
 
-    public Args(args: string) {
+    public Args(args: IGitArgument<T>) {
         this.argument = args;
         return this;
     }
@@ -41,21 +49,8 @@ export class GitCommand<T extends IGitCommand> {
 export interface IGitCommand {
     gitCommand: string;
 }
-export interface ICommitCommand extends IGitCommand {
-    commitCommand: any;
-}
-export interface IStatusCommand extends IGitCommand {
-    statusCommand: any;
-}
 
-export interface IAddCommand extends IGitCommand {
-    addCommand: any;
-}
-
-export interface IRemoveCommand extends IGitCommand {
-    removeCommand: any;
-}
-
-export interface IResetCommand extends IGitCommand {
-    resetCommand: any;
+export interface IGitArgument<T extends IGitCommand> {
+    gitArgument: any;
+    toString(): string;
 }

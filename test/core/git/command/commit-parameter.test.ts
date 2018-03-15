@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import "mocha";
-import { CommitParam } from "../../../src/core/git/parameter";
+import { CommitParam } from "../../../../src/core/git/command/commit/git-commit-parameter";
 
 const commitParam: CommitParam = new CommitParam();
 const testString = "test";

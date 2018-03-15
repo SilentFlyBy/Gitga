@@ -1,13 +1,15 @@
 import {Git} from "../git";
 import {IFileStatus, Status} from "./file-status";
+import { StatusArgument } from "../command/status/git-status-command";
 
 export class FileStatusProcessor {
     public static async GetAllFileStates(path?: string): Promise<IFileStatus[]> {
         return new Promise<IFileStatus[]>(async (resolve, reject) => {
+            const p: StatusArgument = new StatusArgument(path);
             const output = await Git.Status().Params([
                 Git.StatusParam.Porcelain,
                 Git.StatusParam.UntrackedFiles("all"),
-            ]).Args(path).Execute();
+            ]).Args(p).Execute();
             const fileStatusList: IFileStatus[] = this.ParseStatusLines(output);
 
             return resolve(fileStatusList);
