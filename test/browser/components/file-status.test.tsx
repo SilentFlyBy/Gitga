@@ -22,6 +22,7 @@ describe("<FileStatus />", () => {
         const expectedFileStatus: IAreaFileStatus[] = [{
             Status: Status.Added,
             Path1: "test.js",
+            Path2: undefined,
         }];
 
         expect(instance.state.stagedFileStates).to.deep.equal(expectedFileStatus);
