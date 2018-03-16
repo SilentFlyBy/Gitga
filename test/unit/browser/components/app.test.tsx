@@ -5,8 +5,7 @@ import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 
 import App from "../../../../src/browser/components/app";
-import Toolbar from "../../../../src/browser/components/toolbar";
-import FileStatus from "../../../../src/browser/components/file-status";
+import Toolbar from "../../../../src/browser/containers/toolbar";
 
 configure({ adapter: new ReactSixteenAdapter() });
 

@@ -8,7 +8,7 @@ import * as sinon from "sinon";
 import FileStatusArea, {
     FileStatusAreaType,
     IAreaFileStatus,
-} from "../../../../src/browser/components/file-status-area";
+} from "../../../../src/browser/components/app/file-status/file-status-area";
 import { Status } from "../../../../src/core/git/file-status";
 
 const fileStates: IAreaFileStatus[] = [{
@@ -35,7 +35,7 @@ describe("<FileStatusArea />", () => {
 
     it("calls button actions correctly", () => {
         const onClick = sinon.spy();
-        const wrapper = shallow(<FileStatusArea fileStates={fileStates} onStageClick={onClick} />);
+        const wrapper = shallow(<FileStatusArea fileStates={fileStates} onStage={onClick} />);
         wrapper.find("td.action-buttons a").simulate("click");
         wrapper.find("th.action-buttons a").simulate("click");
 

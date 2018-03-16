@@ -4,8 +4,8 @@ import { shallow, mount, configure } from "enzyme";
 import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 import * as sinon from "sinon";
+import Toolbar from "../../../../src/browser/components/app/toolbar";
 
-import Toolbar from "../../../../src/browser/components/toolbar";
 import Octicon from "react-component-octicons";
 
 describe("<Toolbar />", () => {
