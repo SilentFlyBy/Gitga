@@ -10,6 +10,11 @@ export class CheckoutArgument implements IGitArgument<ICheckoutCommand> {
     public branch?: string;
     public pathSpec?: string;
 
+    constructor(branch?: string, pathSpec?: string) {
+        this.branch = branch;
+        this.pathSpec = pathSpec;
+    }
+
     public toString(): string {
         throw new Error("Method not implemented.");
     }

@@ -1,8 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { IFileStatus, Status } from "../../core/git/file-status";
-import { Git } from "../../core/git";
-import { AddArgument } from "../../core/git/command/add/git-add-command";
+import { Status } from "../../../../core/git/file-status";
 
 export default class FileStatusArea extends React.Component<IFileStatusProps, any> {
     private className: string;
@@ -14,9 +12,6 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
             this.className = "stagingArea";
         } else if (props.type === FileStatusAreaType.WorkTree) {
             this.className = "workspaceArea";
-        }
-        if (typeof props.onStageClick === "function") {
-            this.OnStageClick = this.props.onStageClick;
         }
     }
 
@@ -33,7 +28,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                     <td className={iconClassName}>{fileStatus}</td>
                     <td className="file-name">{s.Path1}</td>
                     <td className="action-buttons">
-                        <a onClick={() => this.OnStageClick(s.Path1, s.Path2)}>{stagingActionIcon}</a>
+                        <a onClick={() => this.OnStage(s.Path1, s.Path2)}>{stagingActionIcon}</a>
                     </td>
                 </tr>,
             );
@@ -52,7 +47,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                             <th className="file-status-icon">Status</th>
                             <th className="file-name">Filename</th>
                             <th className="action-buttons">
-                                <a onClick={() => this.OnStageClick(".", undefined)}>
+                                <a onClick={() => this.OnStage(".", undefined)}>
                                     {this.GetStagingActionIcon(this.props.type)}
                                 </a>
                             </th>
@@ -66,24 +61,11 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         );
     }
 
-    public async HandleStagingAction(fileName1: string, fileName2: string) {
+    private OnStage = (fileName1: string, fileName2: string) => {
         const fileName = fileName2 || fileName1;
-
-        if (this.props.type === FileStatusAreaType.WorkTree) {
-
-            await Git.Add().Args(new AddArgument(fileName)).Execute();
-            this.Sync();
-
-        } else if (this.props.type === FileStatusAreaType.Index) {
-
-            await Git.Reset().Args(new AddArgument(fileName)).Execute();
-            this.Sync();
-
+        if (typeof this.props.onStage === "function") {
+            this.props.onStage(fileName);
         }
-    }
-
-    private OnStageClick = (fileName1: string, fileName2: string) => {
-        this.HandleStagingAction(fileName1, fileName2);
     }
 
     private Sync() {
@@ -134,5 +116,5 @@ interface IFileStatusProps {
     fileStates: IAreaFileStatus[];
     type?: FileStatusAreaType;
     onSync?: () => void;
-    onStageClick?: () => void;
+    onStage?: (file: string) => void;
 }
