@@ -1,11 +1,10 @@
-import { IGitCommand, IGitArgument } from "../git-command";
+import { IGitArgument } from "../git-command";
 
-export interface IAddCommand extends IGitCommand {
-    addCommand: any;
-}
+export const AddCommand = "GIT_ADD";
+export type AddCommand = typeof AddCommand;
 
-export class AddArgument implements IGitArgument<IAddCommand> {
-    public gitArgument: IAddCommand;
+export class AddArgument implements IGitArgument<AddCommand> {
+    public type: AddCommand;
     public pathspec?: string;
 
     constructor(pathSpec?: string) {

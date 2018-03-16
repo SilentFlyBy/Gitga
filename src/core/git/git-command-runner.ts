@@ -1,9 +1,9 @@
 import { GitCommandBuilder } from "./git-command-builder";
-import { IGitCommand, GitCommand } from "./command/git-command";
+import { GitCommandType, GitCommand } from "./command/git-command";
 import { ChildProcess } from "../child-process";
 
 export class GitCommandRunner {
-    public static async RunCommand<T extends IGitCommand>(command: GitCommand<T>): Promise<string> {
+    public static async RunCommand<T extends GitCommandType>(command: GitCommand<T>): Promise<string> {
         const commandString = GitCommandBuilder.BuildCommand(command);
 
         const gitExecutable = await this.TryGetGitExecutable();
@@ -22,7 +22,9 @@ export class GitCommandRunner {
                     .replace("\n", "")
                     .replace("\\", "\\\\");
             case "linux":
-                return await ChildProcess.Execute("which git");
+                const bin = await ChildProcess.Execute("which git");
+                return bin
+                    .replace("\n", "");
         }
     }
 

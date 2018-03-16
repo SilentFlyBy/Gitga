@@ -1,8 +1,14 @@
 import {ChildProcess} from "child_process";
 import {IParameter} from "../parameter";
 import { GitCommandRunner } from "../git-command-runner";
+import { CommitCommand } from "./commit/git-commit-command";
+import { ResetCommand } from "./reset/git-reset-command";
+import { StatusCommand } from "./status/git-status-command";
+import { AddCommand } from "./add/git-add-command";
+import { CheckoutCommand } from "./checkout/git-checkout-command";
+import { RemoveCommand } from "./remove/git-remove-command";
 
-export class GitCommand<T extends IGitCommand> {
+export class GitCommand<T extends GitCommandType> {
     private command: string;
     private Type: T;
     private parameters: Array<IParameter<T>>;
@@ -14,7 +20,7 @@ export class GitCommand<T extends IGitCommand> {
 
         if (!arg) {
             this.argument = {
-                gitArgument: undefined,
+                type: undefined,
                 toString: () => "",
             };
         } else {
@@ -46,11 +52,15 @@ export class GitCommand<T extends IGitCommand> {
     }
 }
 
-export interface IGitCommand {
-    gitCommand: string;
-}
-
-export interface IGitArgument<T extends IGitCommand> {
-    gitArgument: any;
+export interface IGitArgument<T> {
+    type: T;
     toString(): string;
 }
+
+export type GitCommandType =
+    CommitCommand
+    | ResetCommand
+    | StatusCommand
+    | AddCommand
+    | CheckoutCommand
+    | RemoveCommand;

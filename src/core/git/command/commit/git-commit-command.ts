@@ -1,5 +1,2 @@
-import { IGitCommand } from "../git-command";
-
-export interface ICommitCommand extends IGitCommand {
-    commitCommand: any;
-}
+export const CommitCommand = "GIT_COMMIT";
+export type CommitCommand = typeof CommitCommand;

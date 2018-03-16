@@ -1,46 +1,44 @@
 import { LongParameter, KeyValueParameter } from "../../parameter";
-import { ICommitCommand } from "./git-commit-command";
-
-const commitCommandType: ICommitCommand = {gitCommand: "commit", commitCommand: {}};
+import { CommitCommand } from "./git-commit-command";
 
 export class CommitParam {
-    public All: LongParameter<ICommitCommand> = new LongParameter("all", commitCommandType);
-    public Patch: LongParameter<ICommitCommand> = new LongParameter("patch", commitCommandType);
-    public Short: LongParameter<ICommitCommand> = new LongParameter("short", commitCommandType);
-    public Branch: LongParameter<ICommitCommand> = new LongParameter("branch", commitCommandType);
-    public Porcelain: LongParameter<ICommitCommand> = new LongParameter("porcelain", commitCommandType);
-    public Long: LongParameter<ICommitCommand> = new LongParameter("long", commitCommandType);
-    public Null: LongParameter<ICommitCommand> = new LongParameter("null", commitCommandType);
-    public Signoff: LongParameter<ICommitCommand> = new LongParameter("signoff", commitCommandType);
-    public NoVerify: LongParameter<ICommitCommand> = new LongParameter("no-verify", commitCommandType);
-    public ReuseMessage(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("reuse-message", val, commitCommandType);
+    public All: LongParameter<CommitCommand> = new LongParameter("all", CommitCommand);
+    public Patch: LongParameter<CommitCommand> = new LongParameter("patch", CommitCommand);
+    public Short: LongParameter<CommitCommand> = new LongParameter("short", CommitCommand);
+    public Branch: LongParameter<CommitCommand> = new LongParameter("branch", CommitCommand);
+    public Porcelain: LongParameter<CommitCommand> = new LongParameter("porcelain", CommitCommand);
+    public Long: LongParameter<CommitCommand> = new LongParameter("long", CommitCommand);
+    public Null: LongParameter<CommitCommand> = new LongParameter("null", CommitCommand);
+    public Signoff: LongParameter<CommitCommand> = new LongParameter("signoff", CommitCommand);
+    public NoVerify: LongParameter<CommitCommand> = new LongParameter("no-verify", CommitCommand);
+    public ReuseMessage(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("reuse-message", val, CommitCommand);
     }
-    public ReeditMessage(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("reedit-message", val, commitCommandType);
+    public ReeditMessage(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("reedit-message", val, CommitCommand);
     }
-    public Fixup(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("fixup", val, commitCommandType);
+    public Fixup(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("fixup", val, CommitCommand);
     }
-    public Squash(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("squash", val, commitCommandType);
+    public Squash(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("squash", val, CommitCommand);
     }
-    public ResetAuthor(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("reset-author", val, commitCommandType);
+    public ResetAuthor(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("reset-author", val, CommitCommand);
     }
-    public File(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("file", val, commitCommandType);
+    public File(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("file", val, CommitCommand);
     }
-    public Author(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("author", val, commitCommandType);
+    public Author(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("author", val, CommitCommand);
     }
-    public Date(val: Date): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("date", val.toDateString(), commitCommandType);
+    public Date(val: Date): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("date", val.toDateString(), CommitCommand);
     }
-    public Message(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("message", val, commitCommandType);
+    public Message(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("message", val, CommitCommand);
     }
-    public Template(val: string): KeyValueParameter<ICommitCommand> {
-        return new KeyValueParameter("template", val, commitCommandType);
+    public Template(val: string): KeyValueParameter<CommitCommand> {
+        return new KeyValueParameter("template", val, CommitCommand);
     }
 }

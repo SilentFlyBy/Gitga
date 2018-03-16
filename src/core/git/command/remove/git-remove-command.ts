@@ -1,5 +1,2 @@
-import { IGitCommand } from "../git-command";
-
-export interface IRemoveCommand extends IGitCommand {
-    removeCommand: any;
-}
+export const RemoveCommand = "GIT_REMOVE";
+export type RemoveCommand = typeof RemoveCommand;

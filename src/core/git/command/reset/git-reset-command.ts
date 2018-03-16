@@ -1,11 +1,10 @@
-import { IGitCommand, IGitArgument } from "../git-command";
+import { IGitArgument } from "../git-command";
 
-export interface IResetCommand extends IGitCommand {
-    resetCommand: any;
-}
+export const ResetCommand = "GIT_RESET";
+export type ResetCommand = typeof ResetCommand;
 
-export class ResetArgument implements IGitArgument<IResetCommand> {
-    public gitArgument: any;
+export class ResetArgument implements IGitArgument<ResetCommand> {
+    public type: ResetCommand;
     public pathSpec: string;
     public branch: string;
 

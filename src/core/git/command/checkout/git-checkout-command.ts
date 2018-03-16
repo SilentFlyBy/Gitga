@@ -1,12 +1,10 @@
-import { IGitCommand, IGitArgument } from "../git-command";
+import { IGitArgument } from "../git-command";
 
-export interface ICheckoutCommand extends IGitCommand {
-    resetCommand: any;
-    (val: string): () => void;
-}
+export const CheckoutCommand = "GIT_CHECKOUT";
+export type CheckoutCommand = typeof CheckoutCommand;
 
-export class CheckoutArgument implements IGitArgument<ICheckoutCommand> {
-    public gitArgument: any;
+export class CheckoutArgument implements IGitArgument<CheckoutCommand> {
+    public type: CheckoutCommand;
     public branch?: string;
     public pathSpec?: string;
 

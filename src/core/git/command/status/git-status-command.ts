@@ -1,11 +1,10 @@
-import { IGitCommand, IGitArgument } from "../git-command";
+import { IGitArgument } from "../git-command";
 
-export interface IStatusCommand extends IGitCommand {
-    statusCommand: any;
-}
+export const StatusCommand = "GIT_STATUS";
+export type StatusCommand = typeof StatusCommand;
 
-export class StatusArgument implements IGitArgument<IStatusCommand> {
-    public gitArgument: any;
+export class StatusArgument implements IGitArgument<StatusCommand> {
+    public type: StatusCommand;
     public pathspec?: string;
 
     constructor(pathSpec?: string) {

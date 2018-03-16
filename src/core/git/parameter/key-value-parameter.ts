@@ -1,7 +1,7 @@
 import { IParameter } from ".";
-import { IGitCommand } from "../command/git-command";
+import { GitCommandType } from "../command/git-command";
 
-export class KeyValueParameter<T extends IGitCommand> implements IParameter<T> {
+export class KeyValueParameter<T extends GitCommandType> implements IParameter<T> {
     public Key: string;
     public Value: string;
     public Type: T;
