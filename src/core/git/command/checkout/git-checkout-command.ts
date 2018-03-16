@@ -16,6 +16,6 @@ export class CheckoutArgument implements IGitArgument<ICheckoutCommand> {
     }
 
     public toString(): string {
-        throw new Error("Method not implemented.");
+        return `${this.branch} ${this.pathSpec}`;
     }
 }
