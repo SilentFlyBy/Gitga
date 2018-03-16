@@ -7,11 +7,13 @@ export interface IResetCommand extends IGitCommand {
 export class ResetArgument implements IGitArgument<IResetCommand> {
     public gitArgument: any;
     public pathSpec: string;
+    public branch: string;
 
-    constructor(pathSpec?: string) {
+    constructor(branch?: string, pathSpec?: string) {
+        this.branch = branch;
         this.pathSpec = pathSpec;
     }
     public toString(): string {
-        return this.pathSpec;
+        return `${this.branch} ${this.pathSpec}`;
     }
 }

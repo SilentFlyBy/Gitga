@@ -32,7 +32,7 @@ export function StageFile(file: string) {
 
 export function UnstageFile(file: string) {
     return async (dispatch: any) => {
-        await Git.Reset().Args(new ResetArgument(file)).Execute();
+        await Git.Reset().Args(new ResetArgument("--", file)).Execute();
         dispatch(Sync());
     };
 }
