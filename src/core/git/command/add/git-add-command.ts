@@ -5,7 +5,7 @@ export interface IAddCommand extends IGitCommand {
 }
 
 export class AddArgument implements IGitArgument<IAddCommand> {
-    public gitArgument: any;
+    public gitArgument: IAddCommand;
     public pathspec?: string;
 
     constructor(pathSpec?: string) {
