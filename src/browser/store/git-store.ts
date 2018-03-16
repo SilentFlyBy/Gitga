@@ -12,9 +12,15 @@ export default function configureStore() {
 
 export interface IStoreState {
     FileState: IStoreFileState;
+    GitPath: IStoreGitPathState;
 }
 
 export interface IStoreFileState {
     FileState: IFileStatus[];
+    Error: Error;
+}
+
+export interface IStoreGitPathState {
+    GitPath: string;
     Error: Error;
 }

@@ -28,7 +28,7 @@ export class GitCommandRunner {
         }
     }
 
-    private static async TryGetGitExecutable(): Promise<string> {
+    public static async TryGetGitExecutable(): Promise<string> {
         if (process.env.NODE_ENV === "test") {
             return "util/git-mock/git-mock";
         }
