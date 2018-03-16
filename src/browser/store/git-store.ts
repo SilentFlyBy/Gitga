@@ -11,5 +11,10 @@ export default function configureStore() {
 }
 
 export interface IStoreState {
-    FileStates: IFileStatus[];
+    FileState: IStoreFileState;
+}
+
+export interface IStoreFileState {
+    FileState: IFileStatus[];
+    Error: Error;
 }

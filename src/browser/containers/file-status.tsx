@@ -6,7 +6,7 @@ import { StageFile, UnstageFile } from "../actions/file-staging";
 import { Sync } from "../actions/sync";
 
 const mapStateToProps = (state: IStoreState): IFileStatusProps => {
-    const stagedFileStates = state.FileStates.filter((s) => s.IndexStatus !== Status.None
+    const stagedFileStates = state.FileState.FileState.filter((s) => s.IndexStatus !== Status.None
         && s.IndexStatus !== Status.Untracked)
         .map((s) => {
             return {
@@ -15,7 +15,7 @@ const mapStateToProps = (state: IStoreState): IFileStatusProps => {
                 Path2: s.Path2,
             };
         });
-    const unstagedFileStates = state.FileStates.filter((s) => s.WorkTreeStatus !== Status.None)
+    const unstagedFileStates = state.FileState.FileState.filter((s) => s.WorkTreeStatus !== Status.None)
         .map((s) => {
             return {
                 Status: s.WorkTreeStatus,

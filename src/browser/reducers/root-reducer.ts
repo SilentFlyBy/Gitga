@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { SyncSuccess } from "./sync";
+import { SyncResult } from "./sync";
 
 export default combineReducers({
-    FileStates: SyncSuccess,
+    FileState: SyncResult,
 });

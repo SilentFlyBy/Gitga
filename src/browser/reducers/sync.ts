@@ -1,11 +1,19 @@
-import { Sync, SYNC, SYNC_SUCCESS, ISyncSuccess } from "../actions/sync";
-import { IStoreState } from "../store/git-store";
-import { IFileStatus } from "../../core/git/file-status";
+import { Sync, SYNC, SYNC_SUCCESS, ISyncSuccess, SYNC_FAILURE } from "../actions/sync";
 
-export function SyncSuccess(state: IFileStatus[] = [], action: ISyncSuccess): IFileStatus[] {
+import { IFileStatus } from "../../core/git/file-status";
+import { IStoreFileState } from "../store/git-store";
+
+const initialStoreFileState: IStoreFileState = {
+    FileState: [],
+    Error: null,
+};
+
+export function SyncResult(state: IStoreFileState = initialStoreFileState, action: Sync): IStoreFileState {
     switch (action.type) {
         case SYNC_SUCCESS:
-            return action.newFileStates;
+            return {...state, FileState: action.newFileStates};
+        case SYNC_FAILURE:
+            return {...state, Error: action.error};
     }
 
     return state;
