@@ -3,6 +3,7 @@ import "mocha";
 import { GitCommandRunner } from "../../../../src/core/git/git-command-runner";
 import { GitCommand, IGitArgument } from "../../../../src/core/git/command/git-command";
 import { CommitCommand } from "../../../../src/core/git/command/commit/git-commit-command";
+import { Git } from "../../../../src/core/git/git";
 
 describe("Git command runner", () => {
     it("gets test executable correctly", async () => {
@@ -18,9 +19,10 @@ describe("Git command runner", () => {
         };
 
         const command = new GitCommand("test", arg);
+        command.Params([Git.CommitParam.Long]);
 
         const actualString = await GitCommandRunner.RunCommand(command);
-        const expectedString = "test test";
+        const expectedString = "test --long test";
 
         expect(actualString.trim()).to.equal(expectedString);
     });
