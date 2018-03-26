@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [$1 = "status"]
+if [ $1 = "status" ]
 then
     echo "A  test.js"
 else
