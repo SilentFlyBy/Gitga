@@ -42,4 +42,14 @@ describe("<FileStatusArea />", () => {
         expect(onClick.calledWith("test.js")).to.be.true;
         expect(onClick.calledWith(".")).to.be.true;
     });
+
+    it("calls action handlers correctly", () => {
+        const onSync = sinon.spy();
+        const wrapper
+            = shallow(<FileStatusArea fileStates={fileStates} onSync={onSync} />).instance() as FileStatusArea;
+
+        wrapper.OnSync();
+
+        expect(onSync.calledOnce).to.be.true;
+    });
 });

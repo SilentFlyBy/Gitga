@@ -61,16 +61,16 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         );
     }
 
+    public OnSync() {
+        if (typeof this.props.onSync === "function") {
+            this.props.onSync();
+        }
+    }
+
     private OnStage = (fileName1: string, fileName2: string) => {
         const fileName = fileName2 || fileName1;
         if (typeof this.props.onStage === "function") {
             this.props.onStage(fileName);
-        }
-    }
-
-    private Sync() {
-        if (typeof this.props.onSync === "function") {
-            this.props.onSync();
         }
     }
 
