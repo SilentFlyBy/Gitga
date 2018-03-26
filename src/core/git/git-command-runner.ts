@@ -5,6 +5,7 @@ import { ChildProcess } from "../child-process";
 export class GitCommandRunner {
     public static async RunCommand<T extends GitCommandType>(command: GitCommand<T>): Promise<string> {
         const commandString = GitCommandBuilder.BuildCommand(command);
+        console.log(commandString);
 
         const gitExecutable = await this.TryGetGitExecutable();
         if (!gitExecutable) {

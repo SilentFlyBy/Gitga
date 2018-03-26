@@ -13,6 +13,6 @@ export class ResetArgument implements IGitArgument<ResetCommand> {
         this.pathSpec = pathSpec;
     }
     public toString(): string {
-        return `${this.branch} ${this.pathSpec}`;
+        return [this.branch, this.pathSpec].join(" ");
     }
 }

@@ -20,7 +20,7 @@ describe("Git command runner", () => {
         const command = new GitCommand("test", arg);
 
         const actualString = await GitCommandRunner.RunCommand(command);
-        const expectedString = "test  test";
+        const expectedString = "test test";
 
         expect(actualString.trim()).to.equal(expectedString);
     });

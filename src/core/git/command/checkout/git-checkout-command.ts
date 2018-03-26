@@ -14,6 +14,6 @@ export class CheckoutArgument implements IGitArgument<CheckoutCommand> {
     }
 
     public toString(): string {
-        return `${this.branch} ${this.pathSpec}`;
+        return [this.branch, this.pathSpec].join(" ");
     }
 }

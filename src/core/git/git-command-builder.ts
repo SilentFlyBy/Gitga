@@ -10,14 +10,14 @@ export class GitCommandBuilder {
             if (parameterString.length === 0) {
                 parameterString = param.ToParameterString();
             } else {
-                parameterString = `${parameterString} ${param.ToParameterString()}`;
+                parameterString = [parameterString, param.ToParameterString()].join(" ");
             }
         }
 
         if (argString && argString.length > 0) {
-            return `${commandString} ${parameterString} ${argString}`;
+            return [commandString, parameterString, argString].join(" ");
         }
 
-        return `${commandString} ${parameterString}`;
+        return [commandString, parameterString].join(" ");
     }
 }
