@@ -4,23 +4,24 @@ import { connect } from "react-redux";
 import { IStoreState } from "../store/git-store";
 import { StageFile, UnstageFile } from "../actions/file-staging";
 import { Sync } from "../actions/sync";
+import { StatusFile } from "nodegit";
+import { IAreaFileStatus } from "../components/app/file-status/file-status-area";
 
 const mapStateToProps = (state: IStoreState): IFileStatusProps => {
-    const stagedFileStates = state.FileState.FileState.filter((s) => s.IndexStatus !== Status.None
-        && s.IndexStatus !== Status.Untracked)
+    const stagedFileStates: IAreaFileStatus[] = state.FileState.FileState.filter((s) => s.inIndex())
         .map((s) => {
             return {
-                Status: s.IndexStatus,
-                Path1: s.Path1,
-                Path2: s.Path2,
+                Status: GitStatusFileToGileStatus(s),
+                Path1: s.path(),
+                Path2: "",
             };
         });
-    const unstagedFileStates = state.FileState.FileState.filter((s) => s.WorkTreeStatus !== Status.None)
+    const unstagedFileStates: IAreaFileStatus[] = state.FileState.FileState.filter((s) => s.inWorkingTree())
         .map((s) => {
             return {
-                Status: s.WorkTreeStatus,
-                Path1: s.Path1,
-                Path2: s.Path2,
+                Status: GitStatusFileToGileStatus(s),
+                Path1: s.path(),
+                Path2: "",
             };
         });
 
@@ -30,10 +31,26 @@ const mapStateToProps = (state: IStoreState): IFileStatusProps => {
     };
 };
 
+const GitStatusFileToGileStatus = (statusFile: StatusFile): Status => {
+    if (statusFile.isDeleted()) {
+        return Status.Deleted;
+    } else if (statusFile.isIgnored()) {
+        return Status.Ignored;
+    } else if (statusFile.isModified()) {
+        return Status.Modified;
+    } else if (statusFile.isNew()) {
+        return Status.Added;
+    } else if (statusFile.isRenamed()) {
+        return Status.Renamed;
+    } else {
+        return Status.None;
+    }
+};
+
 const mapDispatchToProps = (dispatch: any): IFileStatusProps => {
     return {
-        onStage: (file: string) => dispatch(StageFile(file)),
-        onUnstage: (file: string) => dispatch(UnstageFile(file)),
+        onStage: (file: string[]) => dispatch(StageFile(file)),
+        onUnstage: (file: string[]) => dispatch(UnstageFile(file)),
         onSync: () => dispatch(Sync()),
     };
 };

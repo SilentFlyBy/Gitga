@@ -1,4 +1,5 @@
 import { FileStatusProcessor, IFileStatus } from "../../core/git/file-status";
+import * as Git from "nodegit";
 
 export const SYNC = "SYNC";
 export type SYNC = typeof SYNC;
@@ -15,7 +16,7 @@ export interface ISync {
 
 export interface ISyncSuccess {
     type: SYNC_SUCCESS;
-    newFileStates: IFileStatus[];
+    newFileStates: Git.StatusFile[];
 }
 
 export interface ISyncFailure {
@@ -32,7 +33,7 @@ export function Sync() {
     };
 }
 
-export function SyncSuccess(newFileStates: IFileStatus[]): Sync {
+export function SyncSuccess(newFileStates: Git.StatusFile[]): Sync {
     return {
         type: SYNC_SUCCESS,
         newFileStates,

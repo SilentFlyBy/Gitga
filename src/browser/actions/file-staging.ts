@@ -1,5 +1,5 @@
 import { IFileStatus } from "../../core/git/file-status";
-import { Git } from "../../core/git";
+import * as Git from "nodegit";
 import { AddArgument } from "../../core/git/command/add/git-add-command";
 import { Sync } from "./sync";
 import { CheckoutArgument } from "../../core/git/command/checkout/git-checkout-command";
@@ -23,16 +23,26 @@ export interface IUnstageFiles {
 
 export type FileStagingAction = IStageFiles | IUnstageFiles;
 
-export function StageFile(file: string) {
+export function StageFile(file: string[]) {
     return async (dispatch: any) => {
-        await Git.Add().Args(new AddArgument(file)).Execute();
+        const repo = await Git.Repository.open(".");
+        const index = await repo.refreshIndex();
+        await Promise.all(file.map((f) => {
+            return index.addByPath(f);
+        }));
+        await index.write();
         dispatch(Sync());
     };
 }
 
-export function UnstageFile(file: string) {
+export function UnstageFile(file: string[]) {
     return async (dispatch: any) => {
-        await Git.Reset().Args(new ResetArgument("--", file)).Execute();
+        const repo = await Git.Repository.open(".");
+        const index = await repo.refreshIndex();
+        await Promise.all(file.map((f) => {
+            return index.removeByPath(f);
+        }));
+        await index.write();
         dispatch(Sync());
     };
 }

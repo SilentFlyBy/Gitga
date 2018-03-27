@@ -27,15 +27,15 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
         );
     }
 
-    public onStage = (file: string) => {
+    public onStage = (files: string[]) => {
         if (typeof this.props.onStage === "function") {
-            this.props.onStage(file);
+            this.props.onStage(files);
         }
     }
 
-    public onUnStage = (file: string) => {
+    public onUnStage = (files: string[]) => {
         if (typeof this.props.onUnstage === "function") {
-            this.props.onUnstage(file);
+            this.props.onUnstage(files);
         }
     }
 
@@ -49,7 +49,7 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
 export interface IFileStatusProps {
     unstagedFileStates?: IAreaFileStatus[];
     stagedFileStates?: IAreaFileStatus[];
-    onStage?: (file: string) => void;
-    onUnstage?: (file: string) => void;
+    onStage?: (file: string[]) => void;
+    onUnstage?: (file: string[]) => void;
     onSync?: () => void;
 }

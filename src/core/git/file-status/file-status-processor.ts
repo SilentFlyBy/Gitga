@@ -1,19 +1,16 @@
-import {Git} from "../git";
+// import {Git} from "../git";
 import {IFileStatus, Status} from "./file-status";
 import { StatusArgument } from "../command/status/git-status-command";
 import { IFileStatusProcessor } from "../../file-status-processor";
 import { GitFileStatusParser } from "./file-status-parser";
+import * as Git from "nodegit";
 
 export class FileStatusProcessor implements IFileStatusProcessor {
 
-    public async GetAllFileStates(path?: string): Promise<IFileStatus[]> {
-        const p: StatusArgument = new StatusArgument(path);
-        const output = await Git.Status().Params([
-            Git.StatusParam.Porcelain,
-            Git.StatusParam.UntrackedFiles("all"),
-        ]).Args(p).Execute();
+    public async GetAllFileStates(path?: string): Promise<Git.StatusFile[]> {
+        const repo = await Git.Repository.open(".");
+        const status = await repo.getStatus();
 
-        const lines = output.split(/\r?\n/);
-        return GitFileStatusParser.ParseFileStatusLines(lines);
+        return status;
     }
 }

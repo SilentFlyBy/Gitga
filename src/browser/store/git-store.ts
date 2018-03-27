@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import rootReducer from "../reducers/root-reducer";
 import thunk from "redux-thunk";
 import { IFileStatus } from "../../core/git/file-status";
+import * as Git from "nodegit";
 
 export default function configureStore() {
     return createStore(
@@ -16,7 +17,7 @@ export interface IStoreState {
 }
 
 export interface IStoreFileState {
-    FileState: IFileStatus[];
+    FileState: Git.StatusFile[];
     Error: Error;
 }
 

@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 module.exports = {
     entry: './src/browser/index.tsx',
     output: {
@@ -31,4 +33,7 @@ module.exports = {
     target: 'electron-renderer',
     performance: { hints: false },
     devtool: 'source-map',
+    externals: {
+        nodegit: 'commonjs nodegit'
+    },
 };

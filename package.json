@@ -11,6 +11,7 @@
     "coverage": "cross-env NODE_ENV=test nyc mocha",
     "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
     "build": "webpack --mode production",
+    "rebuild": "rebuild --runtime=electron --target=1.7.9 --disturl=https://atom.io/download/electron --build-from-source",
     "serve": "concurrently --kill-others \"npm run serve:renderer\" \"npm run serve:electron\" ",
     "serve:renderer": "webpack-dev-server --mode development --hot --port 8081",
     "serve:electron": "electron . --remote-debugging-port 9222"
@@ -54,6 +55,7 @@
     "css-loader": "^0.28.10",
     "electron": "^1.8.4",
     "electron-connect": "^0.6.3",
+    "electron-rebuild": "^1.7.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "file-loader": "^1.1.11",
@@ -61,6 +63,7 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "mocha": "^5.0.5",
+    "node-loader": "^0.6.0",
     "nyc": "^11.4.1",
     "react": "^16.2.0",
     "react-component-octicons": "^1.5.0",
@@ -82,5 +85,8 @@
     "webpack-stream": "^4.0.2",
     "yarn": "^1.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/nodegit": "^0.18.5",
+    "nodegit": "^0.21.2"
+  }
 }

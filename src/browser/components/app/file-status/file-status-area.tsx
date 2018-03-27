@@ -28,7 +28,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                     <td className={iconClassName}>{fileStatus}</td>
                     <td className="file-name">{s.Path1}</td>
                     <td className="action-buttons">
-                        <a onClick={() => this.OnStage(s.Path1, s.Path2)}>{stagingActionIcon}</a>
+                        <a onClick={() => this.OnStage([s.Path1])}>{stagingActionIcon}</a>
                     </td>
                 </tr>,
             );
@@ -47,7 +47,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
                             <th className="file-status-icon">Status</th>
                             <th className="file-name">Filename</th>
                             <th className="action-buttons">
-                                <a onClick={() => this.OnStage(".", undefined)}>
+                                <a onClick={() => this.OnStage(this.props.fileStates.map((s) => s.Path1))}>
                                     {this.GetStagingActionIcon(this.props.type)}
                                 </a>
                             </th>
@@ -67,10 +67,9 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
         }
     }
 
-    private OnStage = (fileName1: string, fileName2: string) => {
-        const fileName = fileName2 || fileName1;
+    private OnStage = (fileNames: string[]) => {
         if (typeof this.props.onStage === "function") {
-            this.props.onStage(fileName);
+            this.props.onStage(fileNames);
         }
     }
 
@@ -116,5 +115,5 @@ interface IFileStatusProps {
     fileStates: IAreaFileStatus[];
     type?: FileStatusAreaType;
     onSync?: () => void;
-    onStage?: (file: string) => void;
+    onStage?: (file: string[]) => void;
 }
