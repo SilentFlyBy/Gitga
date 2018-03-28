@@ -45,12 +45,6 @@
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.0.tgz#f5d649cc49af8ed6507d15dc6e9b43fe8b927540"
 
-"@types/nodegit@^0.18.5":
-  version "0.18.5"
-  resolved "https://registry.yarnpkg.com/@types/nodegit/-/nodegit-0.18.5.tgz#ad55ab56eb517d2fb268a71adc2751d4afe95103"
-  dependencies:
-    "@types/node" "*"
-
 "@types/promise.prototype.finally@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/promise.prototype.finally/-/promise.prototype.finally-2.0.2.tgz#68fefb8f0e23f21893a33740c931c79f44be3499"
