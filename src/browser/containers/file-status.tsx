@@ -49,8 +49,8 @@ const GitStatusFileToGileStatus = (statusFile: StatusFile): Status => {
 
 const mapDispatchToProps = (dispatch: any): IFileStatusProps => {
     return {
-        onStage: (file: string[]) => dispatch(StageFile(file)),
-        onUnstage: (file: string[]) => dispatch(UnstageFile(file)),
+        onStage: (files: IAreaFileStatus[]) => dispatch(StageFile(files)),
+        onUnstage: (files: IAreaFileStatus[]) => dispatch(UnstageFile(files)),
         onSync: () => dispatch(Sync()),
     };
 };

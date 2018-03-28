@@ -1,6 +1,5 @@
 import { Sync, SYNC, SYNC_SUCCESS, ISyncSuccess, SYNC_FAILURE } from "../actions/sync";
 
-import { IFileStatus } from "../../core/git/file-status";
 import { IStoreFileState } from "../store/git-store";
 
 const initialStoreFileState: IStoreFileState = {

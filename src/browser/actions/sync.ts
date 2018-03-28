@@ -1,4 +1,3 @@
-import { FileStatusProcessor, IFileStatus } from "../../core/git/file-status";
 import * as Git from "nodegit";
 
 export const SYNC = "SYNC";
@@ -28,8 +27,9 @@ export type Sync = ISync | ISyncSuccess | ISyncFailure;
 
 export function Sync() {
     return async (dispatch: any) => {
-        const newFileStates = await new FileStatusProcessor().GetAllFileStates();
-        dispatch(SyncSuccess(newFileStates));
+        const repo = await Git.Repository.open(".");
+        const states = await repo.getStatus();
+        dispatch(SyncSuccess(states));
     };
 }
 

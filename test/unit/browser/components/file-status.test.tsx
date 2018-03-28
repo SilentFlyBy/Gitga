@@ -24,8 +24,8 @@ describe("<FileStatus />", () => {
         = shallow(<FileStatus onStage={onStage} onUnstage={onUnStage} onSync={onSync} />).instance() as FileStatus;
         expect(onSync.calledOnce).to.be.true;
 
-        wrapper.onStage("test1");
-        wrapper.onUnStage("test2");
+        wrapper.onStage(["test1"]);
+        wrapper.onUnStage(["test2"]);
         wrapper.onSync();
 
         expect(onStage.calledOnceWith("test1")).to.be.true;
