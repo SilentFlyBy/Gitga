@@ -6,7 +6,7 @@ export interface PushOptions {
     version?: number;
     pbParallelism?: number;
     callbacks?: RemoteCallbacks;
-    customHeaders?: Strarray | string | string[];
+    customHeaders?: Strarray;
     proxyOpts?: ProxyOptions;
     [key: string]: any;
 }

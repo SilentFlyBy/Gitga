@@ -4,7 +4,7 @@ export interface DiffOptions {
     version?: number;
     flags?: number;
     ignoreSubmodules?: number;
-    pathspec?: Strarray | string | string[];
+    pathspec?: Strarray;
     notifyCb?: Function;
     contextLines?: number;
     interhunkLines?: number;

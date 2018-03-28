@@ -7,7 +7,7 @@ export interface FetchOptions {
     prune?: number;
     updateFetchhead?: number;
     downloadTags?: number;
-    customHeaders?: Strarray | string | string[];
+    customHeaders?: Strarray;
     proxyOpts?: any;
     [key: string]: any;
 }

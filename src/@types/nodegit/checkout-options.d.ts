@@ -14,7 +14,7 @@ export class CheckoutOptions {
     notifyPayload?: undefined;
     progressCb?: any;
     progressPayload?: undefined;
-    paths?: Strarray | string | string[];
+    paths?: Strarray;
     baseline?: Tree;
     baselineIndex?: Index;
     targetDirectory?: string;
