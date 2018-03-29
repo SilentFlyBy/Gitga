@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Toolbar, ToolbarGroup, ToolbarTitle, FontIcon, SvgIcon } from "material-ui";
+import { red500, greenA200 } from "material-ui/styles/colors";
 import Octicon from "react-component-octicons";
 
 export default class ToolbarComponent extends React.Component<IToolbarProps, any> {
@@ -8,27 +10,22 @@ export default class ToolbarComponent extends React.Component<IToolbarProps, any
     }
 
     public render() {
+
+        const iconStyles = {
+            marginRight: 24,
+        };
+
         return (
-            <div className="gitga-toolbar">
-                <button onClick={() => this.OnCommitClick()} className="commit-button">
-                    <Octicon name="git-commit" />
-                </button>
-                <button onClick={() => this.OnPushClick()} className="push-button">
-                    <Octicon name="repo-push" />
-                </button>
-                <button onClick={() => this.OnPullClick()} className="pull-button">
-                    <Octicon name="repo-pull" />
-                </button>
-                <button onClick={() => this.OnBranchClick()} className="branch-button">
-                    <Octicon name="git-branch" />
-                </button>
-                <button onClick={() => this.OnMergeClick()} className="merge-button">
-                    <Octicon name="git-merge" />
-                </button>
-                <button onClick={() => this.OnSyncClick()} className="sync-button">
-                    <Octicon name="sync" />
-                </button>
-            </div>
+            <Toolbar>
+                <ToolbarGroup>
+                    <button onClick={() => this.OnCommitClick()}>
+                        <Octicon name="git-commit" />
+                    </button>
+                    <button onClick={() => this.OnSyncClick()}>
+                        <Octicon name="sync" />
+                    </button>
+                </ToolbarGroup>
+            </Toolbar>
         );
     }
 
