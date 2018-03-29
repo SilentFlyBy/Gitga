@@ -33,6 +33,10 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
+"@types/events@*":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
+
 "@types/mocha@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.0.0.tgz#a3014921991066193f6c8e47290d4d598dfd19e6"
@@ -44,6 +48,13 @@
 "@types/node@^8.0.24":
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.0.tgz#f5d649cc49af8ed6507d15dc6e9b43fe8b927540"
+
+"@types/nodegit@^0.18.6":
+  version "0.18.6"
+  resolved "https://registry.yarnpkg.com/@types/nodegit/-/nodegit-0.18.6.tgz#9e4fa7bcb6613bee177c2c6b50d091f487e9f676"
+  dependencies:
+    "@types/events" "*"
+    "@types/node" "*"
 
 "@types/promise.prototype.finally@^2.0.2":
   version "2.0.2"
