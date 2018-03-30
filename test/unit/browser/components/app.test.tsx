@@ -5,14 +5,14 @@ import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 
 import App from "../../../../src/browser/components/app";
-import Toolbar from "../../../../src/browser/containers/toolbar";
+import { AppBar } from "material-ui";
 
 configure({ adapter: new ReactSixteenAdapter() });
 
 describe ("<App />", () => {
-    it ("renders Toolbar", () => {
+    it ("renders AppBar", () => {
         const app = shallow(<App />);
 
-        expect(app.find(Toolbar)).to.have.length(1);
+        expect(app.find(AppBar)).to.have.length(1);
     });
 });

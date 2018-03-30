@@ -6,7 +6,7 @@ import "mocha";
 import * as sinon from "sinon";
 import { Status } from "../../../../src/core/git/file-status";
 import FileStatus from "../../../../src/browser/components/app/file-status";
-import FileStatusArea from "../../../../src/browser/components/app/file-status/file-status-area";
+import FileStatusArea, { IAreaFileStatus } from "../../../../src/browser/components/app/file-status/file-status-area";
 
 describe("<FileStatus />", () => {
     it("renders two file status areas", () => {
@@ -20,16 +20,25 @@ describe("<FileStatus />", () => {
         const onUnStage = sinon.spy();
         const onSync = sinon.spy();
 
+        const file1: IAreaFileStatus[] = [{
+            Path1: "test1",
+            Status: Status.Added,
+        }];
+        const file2: IAreaFileStatus[] = [{
+            Path1: "test2",
+            Status: Status.Modified,
+        }];
+
         const wrapper
         = shallow(<FileStatus onStage={onStage} onUnstage={onUnStage} onSync={onSync} />).instance() as FileStatus;
         expect(onSync.calledOnce).to.be.true;
 
-        wrapper.onStage(["test1"]);
-        wrapper.onUnStage(["test2"]);
+        wrapper.onStage(file1);
+        wrapper.onUnStage(file2);
         wrapper.onSync();
 
-        expect(onStage.calledOnceWith("test1")).to.be.true;
-        expect(onUnStage.calledOnceWith("test2")).to.be.true;
+        expect(onStage.calledOnceWith(file1)).to.be.true;
+        expect(onUnStage.calledOnceWith(file2)).to.be.true;
         expect(onSync.calledTwice).to.be.true;
     });
 });
