@@ -7,8 +7,8 @@
     "electron": "./node_modules/.bin/electron"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha",
-    "coverage": "cross-env NODE_ENV=test nyc mocha",
+    "test": "cross-env NODE_ENV=test electron-mocha",
+    "coverage": "cross-env NODE_ENV=test nyc electron-mocha",
     "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
     "build": "webpack --mode production",
     "rebuild": "rebuild --runtime=electron --target=1.7.9 --disturl=https://atom.io/download/electron --build-from-source",
@@ -57,6 +57,7 @@
     "css-loader": "^0.28.10",
     "electron": "^1.8.4",
     "electron-connect": "^0.6.3",
+    "electron-mocha": "^6.0.1",
     "electron-rebuild": "^1.7.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
