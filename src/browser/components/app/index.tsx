@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import FileStates from "../../containers/file-status";
+import CommitArea from "../../containers/commit";
 import Toolbar from "../../containers/toolbar";
 import { IStoreState } from "../../store/git-store";
 import { connect } from "react-redux";
@@ -15,21 +16,35 @@ export default class AppComponent extends React.Component<IAppProps, any> {
         super(props);
     }
 
+    public componentDidMount() {
+        if (typeof this.props.getGitRepo === "function") {
+            this.props.getGitRepo(".");
+        }
+    }
+
     public render() {
         return (
             <div>
                 <AppBar title="Gitga"
                     iconElementRight={
-                        <IconButton>
+                        <IconButton onClick={() => this.onSync()}>
                             <Octicon name="sync" />
                         </IconButton>
                     } />
                 <FileStates />
+                <CommitArea />
             </div>
         );
     }
+
+    private onSync = () => {
+        if (typeof this.props.onSync === "function") {
+            this.props.onSync();
+        }
+    }
 }
 
-interface IAppProps {
-    getGitPath?: () => void;
+export interface IAppProps {
+    getGitRepo?: (path: string) => void;
+    onSync?: () => void;
 }

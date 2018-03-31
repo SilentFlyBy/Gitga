@@ -2,6 +2,7 @@ import { IFileStatus, Status } from "../../core/git/file-status";
 import * as Git from "nodegit";
 import { Sync } from "./sync";
 import { IAreaFileStatus } from "../components/app/file-status/file-status-area";
+import { IStoreState } from "../store/git-store";
 
 export const STAGE_FILE = "STAGE_FILE";
 export type STAGE_FILE = typeof STAGE_FILE;
@@ -22,8 +23,8 @@ export interface IUnstageFiles {
 export type FileStagingAction = IStageFiles | IUnstageFiles;
 
 export function StageFile(files: IAreaFileStatus[]) {
-    return async (dispatch: any) => {
-        const repo = await Git.Repository.open(".");
+    return async (dispatch: any, getState: () => IStoreState) => {
+        const repo = getState().RepositoryState.Repository;
         const index = await repo.refreshIndex();
 
         await Promise.all(files.map((f) => {
@@ -39,10 +40,17 @@ export function StageFile(files: IAreaFileStatus[]) {
 }
 
 export function UnstageFile(files: IAreaFileStatus[]) {
-    return async (dispatch: any) => {
-        const repo = await Git.Repository.open(".");
-        const head = await repo.getHeadCommit();
-        const obj = await Git.Object.lookup(repo, head.id(), 1);
+    return async (dispatch: any, getState: () => IStoreState) => {
+        const repo = getState().RepositoryState.Repository;
+        let obj: Git.Object;
+
+        try {
+            const head = await repo.head();
+            obj = await head.peel(Git.Reference.TYPE.OID);
+        }
+        /* tslint:disable:no-empty one-line */
+        catch (error) {}
+
         const index = await repo.refreshIndex();
 
         await Git.Reset.default(repo, obj, files.map((f) => f.Path1));
