@@ -7,8 +7,9 @@
     "electron": "./node_modules/.bin/electron"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test electron-mocha",
-    "coverage": "cross-env NODE_ENV=test nyc electron-mocha",
+    "test": "cross-env NODE_ENV=test mocha",
+    "electron-test": "cross-env NODE_ENV=test electron-mocha",
+    "coverage": "cross-env NODE_ENV=test nyc mocha",
     "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
     "build": "webpack --mode production",
     "rebuild": "rebuild --runtime=electron --target=1.7.9 --disturl=https://atom.io/download/electron --build-from-source",
