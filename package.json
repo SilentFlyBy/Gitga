@@ -69,7 +69,6 @@
     "mocha": "^5.0.5",
     "node-loader": "^0.6.0",
     "nyc": "^11.4.1",
-    "octicons": "^7.2.0",
     "react": "^16.2.0",
     "react-component-octicons": "^1.5.0",
     "react-dom": "^16.2.0",

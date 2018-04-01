@@ -6,9 +6,6 @@ import CommitArea from "../../containers/commit";
 import Toolbar from "../../containers/toolbar";
 import { IStoreState } from "../../store/git-store";
 import { connect } from "react-redux";
-import "octicons";
-import { AppBar, IconButton } from "material-ui";
-import Octicon from "react-component-octicons";
 
 export default class AppComponent extends React.Component<IAppProps, any> {
 
@@ -23,12 +20,7 @@ export default class AppComponent extends React.Component<IAppProps, any> {
     public render() {
         return (
             <div>
-                <AppBar title="Gitga"
-                    iconElementRight={
-                        <IconButton onClick={() => this.onSync()}>
-                            <Octicon name="sync" />
-                        </IconButton>
-                    } />
+                <Toolbar />
                 <FileStates />
                 <CommitArea />
             </div>

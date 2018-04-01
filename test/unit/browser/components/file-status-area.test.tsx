@@ -10,19 +10,6 @@ import FileStatusArea, {
     IAreaFileStatus,
 } from "../../../../src/browser/components/app/file-status/file-status-area";
 import { Status } from "../../../../src/core/git/file-status";
-import { Paper, ListItem, List } from "material-ui";
-import { MuiThemeProvider } from "material-ui/styles";
-
-import { JSDOM } from "jsdom";
-
-const jsdom = new JSDOM("<!doctype html><html><body></body></html>");
-const { window } = jsdom;
-
-global.window = window;
-global.document = window.document;
-global.navigator = {
-    userAgent: "node.js",
-};
 
 const fileStates: IAreaFileStatus[] = [{
     Path1: "test.js",
@@ -30,42 +17,30 @@ const fileStates: IAreaFileStatus[] = [{
 }];
 
 describe("<FileStatusArea />", () => {
-    it("renders paper", () => {
+    it("renders table", () => {
         const wrapper = shallow(<FileStatusArea fileStates={[]} type={FileStatusAreaType.Index} />);
 
-        expect(wrapper.find(Paper)).to.have.length(1);
+        expect(wrapper.find("table")).to.have.length(1);
     });
 
     it("shows file states correctly", () => {
-        const wrapperIndex = mount(
-            <MuiThemeProvider>
-                <FileStatusArea fileStates={fileStates} type={FileStatusAreaType.Index} />
-            </MuiThemeProvider>,
-        );
-        const wrapperWorkTree = mount(
-            <MuiThemeProvider>
-                <FileStatusArea fileStates={fileStates} type={FileStatusAreaType.WorkTree} />
-            </MuiThemeProvider>,
-        );
+        const wrapperIndex = shallow(<FileStatusArea fileStates={fileStates} type={FileStatusAreaType.Index} />);
+        const wrapperWorkTree = shallow(<FileStatusArea fileStates={fileStates} type={FileStatusAreaType.WorkTree} />);
 
-        expect(wrapperIndex.find("span").first().text()).to.equal("Index");
-        expect(wrapperIndex.find("span").last().text()).to.equal("test.js");
-        expect(wrapperWorkTree.find("span").first().text()).to.equal("Worktree");
-        expect(wrapperWorkTree.find("span").last().text()).to.equal("test.js");
+        expect(wrapperIndex.find("td.file-name").text()).to.equal("test.js");
+        expect(wrapperIndex.find("td.file-status-icon").text()).to.equal("A");
+        expect(wrapperIndex.find("td.action-buttons a").text()).to.equal("-");
+        expect(wrapperWorkTree.find("td.action-buttons a").text()).to.equal("+");
     });
 
     it("calls button actions correctly", () => {
         const onClick = sinon.spy();
-        const wrapper = mount(
-            <MuiThemeProvider>
-                <FileStatusArea fileStates={fileStates} onStage={onClick} type={FileStatusAreaType.Index} />
-            </MuiThemeProvider>,
-        );
-        wrapper.find("svg").last().simulate("click");
-        wrapper.find("svg").first().simulate("click");
+        const wrapper = shallow(<FileStatusArea fileStates={fileStates} onStage={onClick} />);
+        wrapper.find("td.action-buttons a").simulate("click");
+        wrapper.find("th.action-buttons a").simulate("click");
 
-        expect(onClick.calledWith(fileStates)).to.be.true;
-        expect(onClick.calledTwice).to.be.true;
+        expect(onClick.calledWith("test.js")).to.be.true;
+        expect(onClick.calledWith(".")).to.be.true;
     });
 
     it("calls action handlers correctly", () => {
