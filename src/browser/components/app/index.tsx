@@ -17,9 +17,7 @@ export default class AppComponent extends React.Component<IAppProps, any> {
     }
 
     public componentDidMount() {
-        if (typeof this.props.getGitRepo === "function") {
-            this.props.getGitRepo(".");
-        }
+        this.onInit();
     }
 
     public render() {
@@ -42,9 +40,16 @@ export default class AppComponent extends React.Component<IAppProps, any> {
             this.props.onSync();
         }
     }
+
+    private onInit = () => {
+        if (typeof this.props.onInit === "function") {
+            this.props.onInit();
+        }
+    }
 }
 
 export interface IAppProps {
     getGitRepo?: (path: string) => void;
     onSync?: () => void;
+    onInit?: () => void;
 }

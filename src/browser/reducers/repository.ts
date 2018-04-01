@@ -3,6 +3,7 @@ import { OpenRepository, OPEN_REPOSITORY_SUCCESS, OPEN_REPOSITORY_FAILURE } from
 
 const initialRepositoryState: IRepositoryState = {
     Repository: undefined,
+    RepositoryPath: undefined,
     Error: undefined,
 };
 
@@ -12,7 +13,7 @@ export function OpenRepositoryResult(
 ): IRepositoryState {
     switch (action.type) {
         case OPEN_REPOSITORY_SUCCESS:
-            return {...state, Repository: action.repository};
+            return {...state, Repository: action.repository, RepositoryPath: action.path};
         case OPEN_REPOSITORY_FAILURE:
             return {...state, Error: action.error};
     }

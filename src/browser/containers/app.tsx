@@ -1,5 +1,5 @@
 import AppComponent, { IAppProps } from "../components/app";
-import { OpenRepository } from "../actions/repository";
+import { OpenRepository, OpenInitialRepository } from "../actions/repository";
 import { connect } from "react-redux";
 import { Sync } from "../actions/sync";
 
@@ -11,6 +11,7 @@ const mapDispatchToProps = (dispatch: any): IAppProps => {
     return {
         getGitRepo: (path: string) => dispatch(OpenRepository(path)),
         onSync: () => dispatch(Sync()),
+        onInit: () => dispatch(OpenInitialRepository()),
     };
 };
 

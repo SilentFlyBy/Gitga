@@ -48,6 +48,7 @@ export function UnstageFile(files: IAreaFileStatus[]) {
             const head = await repo.head();
             obj = await head.peel(Git.Reference.TYPE.OID);
         }
+        // in new repositories there is no HEAD. Leave obj undefined then
         /* tslint:disable:no-empty one-line */
         catch (error) {}
 

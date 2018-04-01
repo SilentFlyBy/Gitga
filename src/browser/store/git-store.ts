@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "../reducers/root-reducer";
 import thunk from "redux-thunk";
-
+import * as Nedb from "nedb";
+import * as path from "path";
 import * as Git from "nodegit";
+import {app} from "electron";
 
 export default function configureStore() {
     return createStore(
@@ -28,5 +30,6 @@ export interface ICommitMessageState {
 
 export interface IRepositoryState {
     Repository: Git.Repository;
+    RepositoryPath: string;
     Error: Error;
 }

@@ -7,10 +7,6 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
         super(props);
     }
 
-    public componentDidMount() {
-        this.onSync();
-    }
-
     public render() {
         return (
             <div className="file-status">
