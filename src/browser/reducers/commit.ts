@@ -1,17 +1,19 @@
 import { ICommitMessageState } from "../store/git-store";
-import { CommitMessageChange, COMMIT_MESSAGE_CHANGE } from "../actions/commit";
+import { Commit, COMMIT_MESSAGE_CHANGE, COMMIT_SUCCESS } from "../actions/commit";
 
 const initialStoreCommitMessageState: ICommitMessageState = {
     CommitMessage: "",
 };
 
-export function CommitMessageChange(
+export function CommitResult(
     state: ICommitMessageState = initialStoreCommitMessageState,
-    action: CommitMessageChange,
+    action: Commit,
 ): ICommitMessageState {
     switch (action.type) {
         case COMMIT_MESSAGE_CHANGE:
             return { ...state, CommitMessage: action.message };
+        case COMMIT_SUCCESS:
+            return { ...state, CommitMessage: ""};
     }
 
     return state;

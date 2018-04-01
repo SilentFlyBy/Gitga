@@ -1,7 +1,7 @@
 import { IStoreState } from "../store/git-store";
 import { connect } from "react-redux";
 import { CommitComponent, ICommitComponentProps } from "../components/app/commit";
-import { ChangeCommitMessage } from "../actions/commit";
+import { ChangeCommitMessage, Commit } from "../actions/commit";
 
 const mapStateToProps = (state: IStoreState): ICommitComponentProps => {
     return {
@@ -12,6 +12,7 @@ const mapStateToProps = (state: IStoreState): ICommitComponentProps => {
 const mapDispatchToProps = (dispatch: any): ICommitComponentProps => {
     return {
         onCommitMessageChange: (message: string) => dispatch(ChangeCommitMessage(message)),
+        onCommit: () => dispatch(Commit()),
     };
 };
 

@@ -12,7 +12,8 @@ export class CommitComponent extends React.Component<ICommitComponentProps, any>
                 <textarea
                     rows={2}
                     placeholder="Commit message"
-                    onChange={(event) => this.onTextEnter(event.target.value)} />
+                    onChange={(event) => this.onTextEnter(event.target.value)}
+                    value={this.props.commitMessage} />
                 <button onClick={() => this.onCommit()}>Commit</button>
             </div>
         );

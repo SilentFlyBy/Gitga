@@ -1,6 +1,6 @@
 import * as Git from "nodegit";
 import { Sync } from "./sync";
-import Settings, { REPOSITORY_PATH } from "../../core/settings";
+import Settings from "../../core/settings";
 
 export const OPEN_REPOSITORY = "OPEN_REPOSITORY";
 export type OPEN_REPOSITORY = typeof OPEN_REPOSITORY;
@@ -30,7 +30,7 @@ export type OpenRepository = IOpenRepository | IOpenRepositorySuccess | IOpenRep
 
 export function OpenInitialRepository() {
     return async (dispatch: any) => {
-        const repoPath = await Settings.get(REPOSITORY_PATH) as string;
+        const repoPath = await Settings.getRepositoryPath();
         dispatch(OpenRepository(repoPath));
     };
 }
@@ -39,7 +39,7 @@ export function OpenRepository(path: string) {
     return async (dispatch: any) => {
         try {
             const repo = await Git.Repository.open(path);
-            Settings.save({type: REPOSITORY_PATH, value: path});
+            await Settings.setRepositoryPath(path);
             await dispatch(OpenRepositorySuccess(repo, path));
             dispatch(Sync());
         } catch (error) {
