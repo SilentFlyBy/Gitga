@@ -39,8 +39,7 @@ describe("<FileStatusArea />", () => {
         wrapper.find("td.action-buttons a").simulate("click");
         wrapper.find("th.action-buttons a").simulate("click");
 
-        expect(onClick.calledWith("test.js")).to.be.true;
-        expect(onClick.calledWith(".")).to.be.true;
+        expect(onClick.calledWith(fileStates)).to.be.true;
     });
 
     it("calls action handlers correctly", () => {
