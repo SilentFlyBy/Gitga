@@ -1,11 +1,14 @@
 import { combineReducers } from "redux";
-import { SyncResult } from "./sync";
-import { CommitResult } from "./commit";
-import { OpenRepositoryResult } from "./repository";
-import { IStoreState } from "../store/git-store";
+import { SyncReducer } from "./sync";
+import { CommitReducer } from "./commit";
+import { RepositoryReducer } from "./repository";
+import { ErrorReducer } from "./error";
+import { NotificationReducer } from "./notification";
 
 export default combineReducers({
-    FileState: SyncResult,
-    CommitMessage: CommitResult,
-    RepositoryState: OpenRepositoryResult,
+    FileState: SyncReducer,
+    CommitMessage: CommitReducer,
+    RepositoryState: RepositoryReducer,
+    ErrorState: ErrorReducer,
+    NotificationState: NotificationReducer,
 });

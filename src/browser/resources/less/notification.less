@@ -1,0 +1,46 @@
+.notification {
+    position: absolute;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 20em;
+    padding: 1em;
+    border-radius: 5px;
+
+    left: 0;
+    right: 0;
+    margin: 1rem auto;
+
+    button {
+        border: 0;
+        background: none;
+        color: @white;
+
+        cursor: pointer;
+    }
+
+    &.fade-enter {
+        opacity: 0.01;
+    }
+      
+    &.fade-enter.fade-enter-active {
+        opacity: 1;
+        transition: opacity 200ms ease-in;
+    }
+      
+    &.fade-leave {
+        opacity: 1;
+    }
+      
+    &.fade-leave.fade-leave-active {
+        opacity: 0.01;
+        transition: opacity 200ms ease-in;
+    }
+
+    &.success {
+        color: @white;
+        background-color: @notification-green;
+    }
+}

@@ -4,6 +4,7 @@ import * as ReactDOM from "react-dom";
 import FileStates from "../../containers/file-status";
 import CommitArea from "../../containers/commit";
 import Toolbar from "../../containers/toolbar";
+import Notification from "../../containers/notification";
 import { IStoreState } from "../../store/git-store";
 import { connect } from "react-redux";
 
@@ -20,6 +21,7 @@ export default class AppComponent extends React.Component<IAppProps, any> {
     public render() {
         return (
             <div>
+                <Notification />
                 <Toolbar />
                 <FileStates />
                 <CommitArea />

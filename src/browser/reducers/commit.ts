@@ -5,7 +5,7 @@ const initialStoreCommitMessageState: ICommitMessageState = {
     CommitMessage: "",
 };
 
-export function CommitResult(
+export function CommitReducer(
     state: ICommitMessageState = initialStoreCommitMessageState,
     action: Commit,
 ): ICommitMessageState {

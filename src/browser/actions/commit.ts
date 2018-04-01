@@ -3,6 +3,7 @@ import { IStoreState } from "../store/git-store";
 import Settings from "../../core/settings";
 import { Sync } from "./sync";
 import GitConfig from "../../core/git/config";
+import { NotificationSuccess, NotificationError } from "./notification";
 
 export const COMMIT = "COMMIT";
 export type COMMIT = typeof COMMIT;
@@ -74,13 +75,27 @@ export function Commit() {
     };
 }
 
-export function CommitSuccess(): Commit {
+export function CommitSuccess() {
+    return async (dispatch: any) => {
+        dispatch(NotificationSuccess("Commit success"));
+        dispatch(_CommitSuccess());
+    };
+}
+
+export function _CommitSuccess(): Commit {
     return {
         type: COMMIT_SUCCESS,
     };
 }
 
-export function CommitFailure(error: Error): Commit {
+export function CommitFailure(error: Error) {
+    return async (dispatch: any) => {
+        dispatch(NotificationError(error.message));
+        dispatch(_CommitFailure(error));
+    };
+}
+
+export function _CommitFailure(error: Error): Commit {
     return {
         type: COMMIT_FAILURE,
         error,

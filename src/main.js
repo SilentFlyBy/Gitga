@@ -1,3 +1,5 @@
+const {Menu} =  require('electron');
+
 const electron = require('electron')
 //const client = require('electron-connect').client;
 // Module to control application life.
@@ -59,3 +61,91 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+const template = [
+  {
+    label: "File",
+    submenu: [
+      {
+        label: "Open"
+      }
+    ]
+  },
+  {
+     label: 'Edit',
+     submenu: [
+        {
+           role: 'undo'
+        },
+        {
+           role: 'redo'
+        },
+        {
+           type: 'separator'
+        },
+        {
+           role: 'cut'
+        },
+        {
+           role: 'copy'
+        },
+        {
+           role: 'paste'
+        }
+     ]
+  },
+  
+  {
+     label: 'View',
+     submenu: [
+        {
+           role: 'reload'
+        },
+        {
+           role: 'toggledevtools'
+        },
+        {
+           type: 'separator'
+        },
+        {
+           role: 'resetzoom'
+        },
+        {
+           role: 'zoomin'
+        },
+        {
+           role: 'zoomout'
+        },
+        {
+           type: 'separator'
+        },
+        {
+           role: 'togglefullscreen'
+        }
+     ]
+  },
+  
+  {
+     role: 'window',
+     submenu: [
+        {
+           role: 'minimize'
+        },
+        {
+           role: 'close'
+        }
+     ]
+  },
+  
+  {
+     role: 'help',
+     submenu: [
+        {
+           label: 'Learn More'
+        }
+     ]
+  }
+]
+
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
