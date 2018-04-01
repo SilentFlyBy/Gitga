@@ -11,7 +11,7 @@ const mapStateToProps = (state: IStoreState): IFileStatusProps => {
     const stagedFileStates: IAreaFileStatus[] = state.FileState.FileState.filter((s) => s.inIndex())
         .map((s) => {
             return {
-                Status: GitStatusFileToGileStatus(s),
+                Status: GitStatusFileToFileStatus(s),
                 Path1: s.path(),
                 Path2: "",
             };
@@ -19,7 +19,7 @@ const mapStateToProps = (state: IStoreState): IFileStatusProps => {
     const unstagedFileStates: IAreaFileStatus[] = state.FileState.FileState.filter((s) => s.inWorkingTree())
         .map((s) => {
             return {
-                Status: GitStatusFileToGileStatus(s),
+                Status: GitStatusFileToFileStatus(s),
                 Path1: s.path(),
                 Path2: "",
             };
@@ -31,7 +31,7 @@ const mapStateToProps = (state: IStoreState): IFileStatusProps => {
     };
 };
 
-const GitStatusFileToGileStatus = (statusFile: StatusFile): Status => {
+const GitStatusFileToFileStatus = (statusFile: StatusFile): Status => {
     if (statusFile.isDeleted()) {
         return Status.Deleted;
     } else if (statusFile.isIgnored()) {
