@@ -7,22 +7,10 @@ export class CommitComponent extends React.Component<ICommitComponentProps, any>
         super(props);
     }
     public render() {
-        const style = {
-            paper: {
-                margin: "5px",
-                display: "flex",
-                flexFlow: "row nowrap",
-                justifyContent: "space-between",
-                alignItems: "center",
-            } as React.CSSProperties,
-            textField: {
-                flexGrow: 1,
-            } as React.CSSProperties,
-        };
-
         return (
-            <div className="paper">
+            <div className={["paper", "commit-area"].join(" ")}>
                 <textarea
+                    rows={2}
                     placeholder="Commit message"
                     onChange={(event) => this.onTextEnter(event.target.value)} />
                 <button onClick={() => this.onCommit()}>Commit</button>

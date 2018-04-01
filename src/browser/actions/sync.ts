@@ -30,8 +30,8 @@ export function Sync() {
     return async (dispatch: any, getState: () => IStoreState) => {
         try {
             const repo = getState().RepositoryState.Repository;
-            const states = await repo.getStatus();
-            dispatch(SyncSuccess(states));
+            const statuses = await repo.getStatusExt();
+            dispatch(SyncSuccess(statuses));
         } catch (error) {
             dispatch(SyncFailure(error));
         }

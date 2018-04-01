@@ -36,20 +36,22 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
 
         const headline = `${FileStatusAreaType[this.props.type]} Area`;
 
+        let stageAllButton;
+        if (this.props.fileStates.length > 0) {
+            stageAllButton =
+                <a onClick={() => this.OnStage(this.props.fileStates)}>
+                    {this.GetStagingActionIcon(this.props.type)}
+                </a>;
+        }
+
         return (
-            <div className={["file-status-area", this.className].join(" ")}>
+            <div className={["paper", "file-status-area", this.className].join(" ")}>
                 <table>
                     <thead>
                         <tr>
-                            <th colSpan={3}>{headline}</th>
-                        </tr>
-                        <tr>
-                            <th className="file-status-icon">Status</th>
-                            <th className="file-name">Filename</th>
+                            <th colSpan={2}>{headline}</th>
                             <th className="action-buttons">
-                                <a onClick={() => this.OnStage(this.props.fileStates)}>
-                                    {this.GetStagingActionIcon(this.props.type)}
-                                </a>
+                                {stageAllButton}
                             </th>
                         </tr>
                     </thead>
