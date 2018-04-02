@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import Octicon from "react-component-octicons";
-import * as ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 export default class NotificationComponent extends React.Component<INotificationProps, any> {
     private timeout: any;
@@ -38,12 +37,7 @@ export default class NotificationComponent extends React.Component<INotification
         }
 
         return (
-            <ReactCSSTransitionGroup
-                    transitionName="fade"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}>
-                {notificationContainer}
-            </ReactCSSTransitionGroup>
+            notificationContainer
         );
     }
 
