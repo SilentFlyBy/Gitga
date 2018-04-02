@@ -9,30 +9,26 @@ import {
 } from "../actions/notification";
 import { NotificationType } from "../components/app/notification";
 
-const initialState: INotificationState = {
-    Type: undefined,
-    Message: undefined,
-};
-
 export function NotificationReducer(
-    state: INotificationState = initialState,
+    state: INotificationState[] = [],
     action: NotificationAction,
-): INotificationState {
+): INotificationState[] {
     switch (action.type) {
         case NOTIFICATION_ADVICE:
-            return { ...state, Type: NotificationType.Advice, Message: action.message };
+            return [...state, { Type: NotificationType.Advice, Message: action.message, Timestamp: action.timestamp }];
 
         case NOTIFICATION_ERROR:
-            return { ...state, Type: NotificationType.Error, Message: action.message };
+            return [...state, { Type: NotificationType.Error, Message: action.message, Timestamp: action.timestamp }];
 
         case NOTIFICATION_SUCCESS:
-            return { ...state, Type: NotificationType.Success, Message: action.message };
+            return [...state, { Type: NotificationType.Success, Message: action.message, Timestamp: action.timestamp }];
 
         case NOTIFICATION_WARNING:
-            return { ...state, Type: NotificationType.Warning, Message: action.message };
+            return [...state, { Type: NotificationType.Warning, Message: action.message, Timestamp: action.timestamp }];
 
         case NOTIFICATION_CLEAR:
-            return initialState;
+            const newState = state.filter((n) => n.Timestamp !== action.timestamp);
+            return newState;
     }
 
     return state;

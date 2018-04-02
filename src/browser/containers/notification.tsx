@@ -5,15 +5,19 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state: IStoreState): INotificationProps => {
     return {
-        Message: state.NotificationState.Message,
-        Type: state.NotificationState.Type,
-        Time: 3000,
+        Notifications: state.NotificationState.map((n) => {
+            return {
+                Message: n.Message,
+                Type: n.Type,
+                Timestamp: n.Timestamp,
+            };
+        }),
     };
 };
 
 const mapDispatchToProps = (dispatch: any): INotificationProps => {
     return {
-        onNotificationClear: () => dispatch(NotificationClear()),
+        onNotificationClear: (index: number) => dispatch(NotificationClear(index)),
     };
 };
 

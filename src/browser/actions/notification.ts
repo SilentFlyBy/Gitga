@@ -13,35 +13,33 @@ export type NOTIFICATION_ERROR = typeof NOTIFICATION_ERROR;
 export const NOTIFICATION_CLEAR = "NOTIFICATION_CLEAR";
 export type NOTIFICATION_CLEAR = typeof NOTIFICATION_CLEAR;
 
-export type NOTIFICATION_ACTION =
-    NOTIFICATION_ADVICE
-    | NOTIFICATION_ERROR
-    | NOTIFICATION_SUCCESS
-    | NOTIFICATION_WARNING
-    | NOTIFICATION_CLEAR;
-
-interface INotificationAdvice {
-    type: NOTIFICATION_ACTION;
+export interface INotificationAdvice {
+    type: NOTIFICATION_ADVICE;
     message: string;
+    timestamp: number;
 }
 
-interface INotificationError {
+export interface INotificationError {
     type: NOTIFICATION_ERROR;
     message: string;
+    timestamp: number;
 }
 
-interface INotificationSuccess {
+export interface INotificationSuccess {
     type: NOTIFICATION_SUCCESS;
     message: string;
+    timestamp: number;
 }
 
-interface INotificationWarning {
+export interface INotificationWarning {
     type: NOTIFICATION_WARNING;
     message: string;
+    timestamp: number;
 }
 
-interface INotificationClear {
+export interface INotificationClear {
     type: NOTIFICATION_CLEAR;
+    timestamp: number;
 }
 
 export type NotificationAction =
@@ -55,6 +53,7 @@ export function NotificationAdvice(message: string): NotificationAction {
     return {
         type: NOTIFICATION_ADVICE,
         message,
+        timestamp: Date.now(),
     };
 }
 
@@ -62,6 +61,7 @@ export function NotificationError(message: string): NotificationAction {
     return {
         type: NOTIFICATION_ERROR,
         message,
+        timestamp: Date.now(),
     };
 }
 
@@ -69,6 +69,7 @@ export function NotificationSuccess(message: string): NotificationAction {
     return {
         type: NOTIFICATION_SUCCESS,
         message,
+        timestamp: Date.now(),
     };
 }
 
@@ -76,12 +77,13 @@ export function NotificationWarning(message: string): NotificationAction {
     return {
         type: NOTIFICATION_WARNING,
         message,
+        timestamp: Date.now(),
     };
 }
 
-export function NotificationClear(): NotificationAction {
+export function NotificationClear(timestamp: number): NotificationAction {
     return {
         type: NOTIFICATION_CLEAR,
-        message: undefined,
+        timestamp,
     };
 }

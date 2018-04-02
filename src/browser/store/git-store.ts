@@ -17,7 +17,7 @@ export interface IStoreState {
     FileState: IStoreFileState;
     CommitMessage: ICommitMessageState;
     RepositoryState: IRepositoryState;
-    NotificationState: INotificationState;
+    NotificationState: INotificationState[];
 }
 
 export interface IStoreFileState {
@@ -40,4 +40,5 @@ export interface IErrorState {
 export interface INotificationState {
     Message: string;
     Type: NotificationType;
+    Timestamp: number;
 }

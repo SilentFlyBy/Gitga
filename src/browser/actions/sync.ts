@@ -41,6 +41,7 @@ export function Sync() {
 
 export function SyncSuccess(newFileStates: Git.StatusFile[]) {
     return async (dispatch: any) => {
+        dispatch(NotificationSuccess("Sync success"));
         dispatch(_SyncSuccess(newFileStates));
     };
 }

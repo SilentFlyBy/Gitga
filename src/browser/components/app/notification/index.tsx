@@ -1,59 +1,75 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import Octicon from "react-component-octicons";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default class NotificationComponent extends React.Component<INotificationProps, any> {
-    private timeout: any;
+    private timeouts: ITimeoutEntry[] = [];
 
     constructor(props: INotificationProps) {
         super(props);
     }
 
     public componentDidUpdate() {
-        if (this.props.Type !== undefined) {
+        for (const n of this.props.Notifications) {
+            const timeout = setTimeout(() => {
+                this.onNotificationClear(n.Timestamp);
+            }, 3000);
 
-            this.timeout = setTimeout(() => {
-                this.onNotificationClear();
-            }, this.props.Time || 3000);
+            this.timeouts.push({timeout, id: n.Timestamp});
         }
     }
 
     public render() {
-        let notificationContainer = null;
-        if (this.props.Type !== undefined) {
-
-            const classes = [
-                "notification",
-                NotificationType[this.props.Type].toLowerCase(),
-            ];
-
-            notificationContainer =
-                    <div className={classes.join(" ")} key="content">
-                        <span key="message">{this.props.Message}</span>
-                        <button onClick={() => this.onNotificationClear()} key="button">
-                            <Octicon name="x" key="close" />
-                        </button>
-                    </div>;
-        }
-
         return (
-            notificationContainer
+            <TransitionGroup className="notification-list">
+                {this.props.Notifications.map((n) => (
+                    <CSSTransition
+                        key={n.Timestamp}
+                        timeout={500}
+                        classNames="fade"
+                    >
+
+                        <div
+                            className={[
+                                "notification",
+                                NotificationType[n.Type].toLowerCase(),
+                            ].join(" ")} key="content">
+
+                            <span key="message">{n.Message}</span>
+                            <button onClick={
+                                () => this.onNotificationClear(n.Timestamp)
+                            } key="button">
+                                <Octicon name="x" key="close" />
+                            </button>
+                        </div>
+
+                    </CSSTransition>
+                ))}
+            </TransitionGroup>
         );
     }
 
-    private onNotificationClear = () => {
-        clearTimeout(this.timeout);
+    private onNotificationClear = (time: number) => {
+        const timeout = this.timeouts.find((t) => t.id === time);
+        clearTimeout(timeout.timeout);
+        this.timeouts = this.timeouts.filter((t) => t.id !== time);
+
         if (typeof this.props.onNotificationClear === "function") {
-            this.props.onNotificationClear();
+            this.props.onNotificationClear(time);
         }
     }
 }
 
 export interface INotificationProps {
+    Notifications?: INotification[];
+    onNotificationClear?: (index: number) => void;
+}
+
+export interface INotification {
     Message?: string;
     Type?: NotificationType;
-    Time?: number;
-    onNotificationClear?: () => void;
+    Timestamp: number;
 }
 
 export enum NotificationType {
@@ -61,4 +77,9 @@ export enum NotificationType {
     Advice,
     Warning,
     Error,
+}
+
+interface ITimeoutEntry {
+    timeout: any;
+    id: number;
 }
