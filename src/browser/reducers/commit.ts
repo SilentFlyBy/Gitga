@@ -12,8 +12,6 @@ export function CommitReducer(
     switch (action.type) {
         case COMMIT_MESSAGE_CHANGE:
             return { ...state, CommitMessage: action.message };
-        case COMMIT_SUCCESS:
-            return { ...state, CommitMessage: ""};
     }
 
     return state;

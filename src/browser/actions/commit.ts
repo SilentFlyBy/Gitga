@@ -76,6 +76,7 @@ export function Commit() {
 
 export function CommitSuccess() {
     return async (dispatch: any) => {
+        dispatch(ChangeCommitMessage(""));
         dispatch(NotificationSuccess("Commit success"));
         dispatch(_CommitSuccess());
         dispatch(Sync());
