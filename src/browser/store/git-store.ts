@@ -1,16 +1,27 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../reducers/root-reducer";
 import thunk from "redux-thunk";
 import * as path from "path";
 import * as Git from "nodegit";
 import {app} from "electron";
 import { NotificationType } from "../components/app/notification";
+import {createLogger} from "redux-logger";
+import { Middleware } from "redux";
+
+const middlewares: Middleware[] = [];
+
+middlewares.push(thunk);
+
+if (process.env.NODE_ENV === "development") {
+    const logger = createLogger({
+        collapsed: true,
+    });
+
+    middlewares.push(logger);
+}
 
 export default function configureStore() {
-    return createStore(
-        rootReducer,
-        applyMiddleware(thunk),
-    );
+    return compose(applyMiddleware(...middlewares))(createStore)(rootReducer);
 }
 
 export interface IStoreState {

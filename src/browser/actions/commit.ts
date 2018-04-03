@@ -67,7 +67,6 @@ export function Commit() {
             await repo.createCommit("HEAD", signature, signature, message, tree, head);
 
             dispatch(CommitSuccess());
-            dispatch(Sync());
         } catch (error) {
             dispatch(CommitFailure(error));
         }
@@ -79,6 +78,7 @@ export function CommitSuccess() {
     return async (dispatch: any) => {
         dispatch(NotificationSuccess("Commit success"));
         dispatch(_CommitSuccess());
+        dispatch(Sync());
     };
 }
 

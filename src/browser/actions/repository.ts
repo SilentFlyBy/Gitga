@@ -57,7 +57,14 @@ export function OpenRepositorySuccess(repository: Git.Repository, path: string):
     };
 }
 
-export function OpenRepositoryFailure(error: Error): OpenRepository {
+export function OpenRepositoryFailure(error: Error) {
+    return (dispatch: any) => {
+        dispatch(NotificationError(error.message));
+        dispatch(_OpenRepositoryFailure(error));
+    };
+}
+
+export function _OpenRepositoryFailure(error: Error): OpenRepository {
     return {
         type: OPEN_REPOSITORY_FAILURE,
         error,
