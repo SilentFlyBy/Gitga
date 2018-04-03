@@ -12,11 +12,14 @@ export default class NotificationComponent extends React.Component<INotification
 
     public componentDidUpdate() {
         for (const n of this.props.Notifications) {
-            const timeout = setTimeout(() => {
-                this.onNotificationClear(n.Timestamp);
-            }, 3000);
+            const existingEntry = this.timeouts.find((t) => t.id === n.Timestamp);
+            if (existingEntry === undefined) {
+                const timeout = setTimeout(() => {
+                    this.onNotificationClear(n.Timestamp);
+                }, 3000);
 
-            this.timeouts.push({timeout, id: n.Timestamp});
+                this.timeouts.push({timeout, id: n.Timestamp});
+            }
         }
     }
 
