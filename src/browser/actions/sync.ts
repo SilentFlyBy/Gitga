@@ -1,6 +1,7 @@
 import * as Git from "nodegit";
 import { IStoreState } from "../store/git-store";
 import { NotificationSuccess } from "./notification";
+import { ISuccessAction, IErrorAction } from ".";
 
 export const SYNC = "SYNC";
 export type SYNC = typeof SYNC;
@@ -15,14 +16,13 @@ export interface ISync {
     type: SYNC;
 }
 
-export interface ISyncSuccess {
+export interface ISyncSuccess extends ISuccessAction {
     type: SYNC_SUCCESS;
     newFileStates: Git.StatusFile[];
 }
 
-export interface ISyncFailure {
+export interface ISyncFailure extends IErrorAction {
     type: SYNC_FAILURE;
-    error: Error;
 }
 
 export type Sync = ISync | ISyncSuccess | ISyncFailure;
@@ -39,17 +39,11 @@ export function Sync() {
     };
 }
 
-export function SyncSuccess(newFileStates: Git.StatusFile[]) {
-    return async (dispatch: any) => {
-        dispatch(NotificationSuccess("Sync success"));
-        dispatch(_SyncSuccess(newFileStates));
-    };
-}
-
-export function _SyncSuccess(newFileStates: Git.StatusFile[]): Sync {
+export function SyncSuccess(newFileStates: Git.StatusFile[], notificationMessage?: string): Sync {
     return {
         type: SYNC_SUCCESS,
         newFileStates,
+        notificationMessage,
     };
 }
 

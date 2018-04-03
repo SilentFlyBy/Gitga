@@ -7,10 +7,12 @@ import {app} from "electron";
 import { NotificationType } from "../components/app/notification";
 import {createLogger} from "redux-logger";
 import { Middleware } from "redux";
+import notificationCreator from "../middleware/notification-creator";
 
 const middlewares: Middleware[] = [];
 
 middlewares.push(thunk);
+middlewares.push(notificationCreator);
 
 if (process.env.NODE_ENV === "development") {
     const logger = createLogger({

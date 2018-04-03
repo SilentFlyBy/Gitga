@@ -2,6 +2,7 @@ import * as Git from "nodegit";
 import { Sync } from "./sync";
 import Settings from "../../core/settings";
 import { NotificationError } from "./notification";
+import { ISuccessAction, IErrorAction } from ".";
 
 export const OPEN_REPOSITORY = "OPEN_REPOSITORY";
 export type OPEN_REPOSITORY = typeof OPEN_REPOSITORY;
@@ -16,15 +17,14 @@ export interface IOpenRepository {
     type: OPEN_REPOSITORY;
 }
 
-export interface IOpenRepositorySuccess {
+export interface IOpenRepositorySuccess extends ISuccessAction {
     type: OPEN_REPOSITORY_SUCCESS;
     repository: Git.Repository;
     path: string;
 }
 
-export interface IOpenRepositoryFailure {
+export interface IOpenRepositoryFailure extends IErrorAction {
     type: OPEN_REPOSITORY_FAILURE;
-    error: Error;
 }
 
 export type OpenRepository = IOpenRepository | IOpenRepositorySuccess | IOpenRepositoryFailure;
@@ -49,22 +49,20 @@ export function OpenRepository(path: string) {
     };
 }
 
-export function OpenRepositorySuccess(repository: Git.Repository, path: string): OpenRepository {
+export function OpenRepositorySuccess(
+    repository: Git.Repository,
+    path: string,
+    notificationMessage?: string,
+): OpenRepository {
     return {
         type: OPEN_REPOSITORY_SUCCESS,
         repository,
         path,
+        notificationMessage,
     };
 }
 
-export function OpenRepositoryFailure(error: Error) {
-    return (dispatch: any) => {
-        dispatch(NotificationError(error.message));
-        dispatch(_OpenRepositoryFailure(error));
-    };
-}
-
-export function _OpenRepositoryFailure(error: Error): OpenRepository {
+export function OpenRepositoryFailure(error: Error): OpenRepository {
     return {
         type: OPEN_REPOSITORY_FAILURE,
         error,

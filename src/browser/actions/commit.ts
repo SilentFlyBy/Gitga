@@ -4,6 +4,7 @@ import Settings from "../../core/settings";
 import { Sync } from "./sync";
 import GitConfig from "../../core/git/config";
 import { NotificationSuccess, NotificationError } from "./notification";
+import { ISuccessAction, IErrorAction } from ".";
 
 export const COMMIT = "COMMIT";
 export type COMMIT = typeof COMMIT;
@@ -26,13 +27,12 @@ export interface ICommit {
     type: COMMIT;
 }
 
-export interface ICommitSuccess {
+export interface ICommitSuccess extends ISuccessAction {
     type: COMMIT_SUCCESS;
 }
 
-export interface ICommitFailure {
+export interface ICommitFailure extends IErrorAction {
     type: COMMIT_FAILURE;
-    error: Error;
 }
 
 export type Commit = ICommit | ICommitSuccess | ICommitFailure | ICommitMessageChange;
@@ -77,26 +77,19 @@ export function Commit() {
 export function CommitSuccess() {
     return async (dispatch: any) => {
         dispatch(ChangeCommitMessage(""));
-        dispatch(NotificationSuccess("Commit success"));
-        dispatch(_CommitSuccess());
+        dispatch(_CommitSuccess("Commit success"));
         dispatch(Sync());
     };
 }
 
-export function _CommitSuccess(): Commit {
+export function _CommitSuccess(notificationMessage?: string): Commit {
     return {
         type: COMMIT_SUCCESS,
+        notificationMessage,
     };
 }
 
-export function CommitFailure(error: Error) {
-    return async (dispatch: any) => {
-        dispatch(NotificationError(error.message));
-        dispatch(_CommitFailure(error));
-    };
-}
-
-export function _CommitFailure(error: Error): Commit {
+export function CommitFailure(error: Error): Commit {
     return {
         type: COMMIT_FAILURE,
         error,
