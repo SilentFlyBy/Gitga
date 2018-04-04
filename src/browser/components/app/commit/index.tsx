@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import Octicon from "react-component-octicons";
+import i18n from "../../../i18n";
 
 export class CommitComponent extends React.Component<ICommitComponentProps, any> {
     constructor(props: ICommitComponentProps) {
@@ -11,7 +12,7 @@ export class CommitComponent extends React.Component<ICommitComponentProps, any>
             <div className={["paper", "commit-area"].join(" ")}>
                 <textarea
                     rows={2}
-                    placeholder="Commit message"
+                    placeholder={i18n.t("commit.message")}
                     onChange={(event) => this.onTextEnter(event.target.value)}
                     value={this.props.commitMessage} />
                 <button onClick={() => this.onCommit()}>Commit</button>

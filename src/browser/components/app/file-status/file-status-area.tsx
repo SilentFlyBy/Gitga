@@ -1,8 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
+import { translate } from "react-i18next";
+
 import { Status } from "../../../../core/git/file-status";
 
-export default class FileStatusArea extends React.Component<IFileStatusProps, any> {
+class FileStatusArea extends React.Component<IFileStatusProps, any> {
     private className: string;
 
     constructor(props: IFileStatusProps) {
@@ -34,7 +37,7 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
             );
         }
 
-        const headline = `${FileStatusAreaType[this.props.type]} Area`;
+        const headline = `${FileStatusAreaType[this.props.type]}`;
 
         let stageAllButton;
         if (this.props.fileStates.length > 0) {
@@ -102,6 +105,8 @@ export default class FileStatusArea extends React.Component<IFileStatusProps, an
     }
 }
 
+export default translate()(FileStatusArea);
+
 export interface IAreaFileStatus {
     Path1: string;
     Path2?: string;
@@ -118,4 +123,6 @@ interface IFileStatusProps {
     type?: FileStatusAreaType;
     onSync?: () => void;
     onStage?: (files: IAreaFileStatus[]) => void;
+    t?: any;
+    tReady?: any;
 }

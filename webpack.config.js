@@ -27,6 +27,10 @@ module.exports = {
                 options: {
                     name: "fonts/[name].[ext]",
                 },
+            },
+            {
+                test: /translations/,
+                loader: '@alienfast/i18next-loader',
             }
         ]
     },

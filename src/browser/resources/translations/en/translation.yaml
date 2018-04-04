@@ -1,0 +1,6 @@
+translation:
+    area: "area"
+    commit:
+        _: "Commit"
+        message: "Commit message"
+        success: "Created new commit"

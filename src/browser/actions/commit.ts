@@ -5,6 +5,7 @@ import { Sync } from "./sync";
 import GitConfig from "../../core/git/config";
 import { NotificationSuccess, NotificationError } from "./notification";
 import { ISuccessAction, IErrorAction } from ".";
+import i18n from "../i18n";
 
 export const COMMIT = "COMMIT";
 export type COMMIT = typeof COMMIT;
@@ -77,7 +78,7 @@ export function Commit() {
 export function CommitSuccess() {
     return async (dispatch: any) => {
         dispatch(ChangeCommitMessage(""));
-        dispatch(_CommitSuccess("Commit success"));
+        dispatch(_CommitSuccess(i18n.t("commit.success")));
         dispatch(Sync());
     };
 }
