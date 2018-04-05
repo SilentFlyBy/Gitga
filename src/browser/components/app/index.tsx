@@ -7,6 +7,7 @@ import Toolbar from "../../containers/toolbar";
 import Notification from "../../containers/notification";
 import { IStoreState } from "../../store/git-store";
 import { connect } from "react-redux";
+import FileView from "../../containers/file-view";
 
 export default class AppComponent extends React.Component<IAppProps, any> {
 
@@ -20,11 +21,14 @@ export default class AppComponent extends React.Component<IAppProps, any> {
 
     public render() {
         return (
-            <div>
+            <div className="app">
                 <Notification />
                 <Toolbar />
-                <FileStates />
-                <CommitArea />
+                <div>
+                    <FileStates />
+                    <CommitArea />
+                </div>
+                <FileView />
             </div>
         );
     }

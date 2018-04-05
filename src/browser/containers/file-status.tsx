@@ -6,6 +6,7 @@ import { StageFile, UnstageFile } from "../actions/file-staging";
 import { Sync } from "../actions/sync";
 import { StatusFile } from "nodegit";
 import { IAreaFileStatus } from "../components/app/file-status/file-status-area";
+import { FileSelect } from "../actions/file-view";
 
 const mapStateToProps = (state: IStoreState): IFileStatusProps => {
     const stagedFileStates: IAreaFileStatus[] = state.FileState.FileState.filter((s) => s.inIndex())
@@ -52,6 +53,7 @@ const mapDispatchToProps = (dispatch: any): IFileStatusProps => {
         onStage: (files: IAreaFileStatus[]) => dispatch(StageFile(files)),
         onUnstage: (files: IAreaFileStatus[]) => dispatch(UnstageFile(files)),
         onSync: () => dispatch(Sync()),
+        onFileSelect: (file: string) => dispatch(FileSelect(file)),
     };
 };
 

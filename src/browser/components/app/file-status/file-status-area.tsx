@@ -28,8 +28,8 @@ class FileStatusArea extends React.Component<IFileStatusProps, any> {
 
             fileStateElements.push(
                 <tr key={s.Path1 + s.Status.toString()}>
-                    <td className={iconClassName}>{fileStatus}</td>
-                    <td className="file-name">{s.Path1}</td>
+                    <td className={iconClassName} onClick={() => this.OnFileFlick(s.Path1)}>{fileStatus}</td>
+                    <td className="file-name" onClick={() => this.OnFileFlick(s.Path1)}>{s.Path1}</td>
                     <td className="action-buttons">
                         <a onClick={() => this.OnStage([s])}>{stagingActionIcon}</a>
                     </td>
@@ -78,6 +78,12 @@ class FileStatusArea extends React.Component<IFileStatusProps, any> {
         }
     }
 
+    private OnFileFlick = (file: string) => {
+        if (typeof this.props.onFileClick === "function") {
+            this.props.onFileClick(file);
+        }
+    }
+
     private GetFileStatusIndicator(status: Status): string {
         switch (status) {
             case Status.Added:
@@ -123,6 +129,7 @@ interface IFileStatusProps {
     type?: FileStatusAreaType;
     onSync?: () => void;
     onStage?: (files: IAreaFileStatus[]) => void;
+    onFileClick?: (file: string) => void;
     t?: any;
     tReady?: any;
 }

@@ -13,12 +13,14 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
                 <FileStatusArea
                     type={FileStatusAreaType.Index}
                     fileStates={this.props.stagedFileStates}
-                    onStage = {this.onUnStage} />
+                    onStage={this.onUnStage}
+                    onFileClick={this.onFileSelect} />
 
                 <FileStatusArea
                     type={FileStatusAreaType.WorkTree}
                     fileStates={this.props.unstagedFileStates}
-                    onStage = {this.onStage} />
+                    onStage={this.onStage}
+                    onFileClick={this.onFileSelect} />
             </div>
         );
     }
@@ -40,6 +42,12 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
             this.props.onSync();
         }
     }
+
+    public onFileSelect = (file: string) => {
+        if (typeof this.props.onFileSelect === "function") {
+            this.props.onFileSelect(file);
+        }
+    }
 }
 
 export interface IFileStatusProps {
@@ -48,4 +56,5 @@ export interface IFileStatusProps {
     onStage?: (files: IAreaFileStatus[]) => void;
     onUnstage?: (file: IAreaFileStatus[]) => void;
     onSync?: () => void;
+    onFileSelect?: (file: string) => void;
 }
