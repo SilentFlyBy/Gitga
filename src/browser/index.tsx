@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import configureStore from "./store/git-store";
 import { I18nextProvider, I18n } from "react-i18next";
 import i18n from "./i18n";
+import "./resources/img/gitga-icon.svg";
 
 const store = configureStore();
 
