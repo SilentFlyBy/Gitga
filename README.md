@@ -1,4 +1,5 @@
-# Gitga
+<h1><img src="https://github.com/SilentFlyBy/Gitga/blob/master/src/browser/resources/img/gitga-icon.svg" width="128" />Gitga</h1>
+
 *Git graphical assistant*
 
 [![Build-Travis](https://img.shields.io/travis/SilentFlyBy/Gitga.svg?longCache=true&style=flat-square&logo=travis)](https://travis-ci.org/SilentFlyBy/Gitga/)
