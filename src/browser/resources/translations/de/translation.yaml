@@ -4,3 +4,4 @@ translation:
         _: "Commit"
         message: "Commit-Nachricht"
         success: "Neuer Commit erstellt"
+        nothing: "Nichts zu committen"

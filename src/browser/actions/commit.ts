@@ -3,7 +3,7 @@ import { IStoreState } from "../store/git-store";
 import Settings from "../../core/settings";
 import { Sync } from "./sync";
 import GitConfig from "../../core/git/config";
-import { NotificationSuccess, NotificationError } from "./notification";
+import { NotificationSuccess, NotificationError, NotificationAdvice } from "./notification";
 import { ISuccessAction, IErrorAction } from ".";
 import i18n from "../i18n";
 
@@ -48,7 +48,17 @@ export function ChangeCommitMessage(message: string): Commit {
 export function Commit() {
     return async (dispatch: any, getState: () => IStoreState) => {
         try {
+            await dispatch(Sync());
+
             const state = getState();
+            const filesToCommitCount
+                = state.FileState.FileState.filter((s) => s.inIndex()).length;
+
+            if (filesToCommitCount === 0) {
+                dispatch(NotificationAdvice(i18n.t("commit.nothing")));
+                return;
+            }
+
             const repo = state.RepositoryState.Repository;
             const message = state.CommitMessage.CommitMessage;
             const author = await GitConfig.GetAuthor();
