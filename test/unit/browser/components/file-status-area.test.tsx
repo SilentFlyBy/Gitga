@@ -5,7 +5,8 @@ import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 import * as sinon from "sinon";
 
-import FileStatusArea, {
+import {
+    FileStatusArea,
     FileStatusAreaType,
     IAreaFileStatus,
 } from "../../../../src/browser/components/app/file-status/file-status-area";
@@ -18,7 +19,7 @@ const fileStates: IAreaFileStatus[] = [{
 
 describe("<FileStatusArea />", () => {
     it("renders table", () => {
-        const wrapper = shallow(<FileStatusArea fileStates={[]} type={FileStatusAreaType.Index} />);
+        const wrapper = shallow(<FileStatusArea fileStates={[]} type={FileStatusAreaType.Index} t={(key) => key}/>);
 
         expect(wrapper.find("table")).to.have.length(1);
     });

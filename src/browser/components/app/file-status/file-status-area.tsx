@@ -5,7 +5,7 @@ import { translate } from "react-i18next";
 
 import { Status } from "../../../../core/git/file-status";
 
-class FileStatusArea extends React.Component<IFileStatusProps, any> {
+export class FileStatusArea extends React.Component<IFileStatusProps, any> {
     private className: string;
 
     constructor(props: IFileStatusProps) {
@@ -110,7 +110,6 @@ class FileStatusArea extends React.Component<IFileStatusProps, any> {
         }
     }
 }
-
 export default translate()(FileStatusArea);
 
 export interface IAreaFileStatus {
