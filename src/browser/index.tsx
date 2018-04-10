@@ -18,5 +18,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </I18nextProvider>,
-    document.getElementById("root"),
+    document.getElementById("app"),
   );

@@ -2,21 +2,35 @@
   "name": "gitga",
   "version": "0.0.0",
   "description": "A graphical git interface",
-  "main": "dist/bundle_main.js",
+  "main": "dist/main/main.js",
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
   "scripts": {
+    "compile": "electron-webpack",
     "test": "cross-env NODE_ENV=test electron-mocha",
     "coverage": "cross-env NODE_ENV=test istanbul cover electron-mocha -- --renderer --R spec",
     "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
-    "build": "run-p build:**",
-    "build:renderer": "webpack --mode production --config webpack.electron.js --display-error-details",
+    "build": "run-p build:renderer build:electron",
+    "build:renderer": "webpack --mode production --config webpack.renderer.js --display-error-details",
     "build:electron": "webpack --mode production --config webpack.electron.js --display-error-details",
     "dev": "run-s build:electron serve",
+    "dv": "electron-webpack dev",
     "serve": "concurrently --kill-others \"npm run serve:renderer\" \"npm run serve:electron\" ",
     "serve:renderer": "webpack-dev-server --mode development --hot --port 8081 --config webpack.renderer.js",
-    "serve:electron": "electron . --remote-debugging-port 9222"
+    "serve:electron": "electron . --remote-debugging-port 9222",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "electronWebpack": {
+    "commonSourceDirectory": "src/core",
+    "main": {
+      "sourceDirectory": "src/electron"
+    },
+    "renderer": {
+      "sourceDirectory": "src/browser"
+    }
   },
   "author": "Erik Moldtmann",
   "license": "GPL-3.0",
@@ -38,6 +52,12 @@
       "ts-node/register"
     ],
     "sourceMap": true
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   },
   "devDependencies": {
     "@alienfast/i18next-loader": "^1.0.15",
@@ -61,10 +81,12 @@
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
     "electron": "^1.8.4",
+    "electron-builder": "^20.8.1",
     "electron-connect": "^0.6.3",
     "electron-json-storage": "^4.0.2",
     "electron-mocha": "^6.0.1",
     "electron-rebuild": "^1.7.3",
+    "electron-webpack": "^2.0.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "file-loader": "^1.1.11",
@@ -88,7 +110,6 @@
     "redux-thunk": "^2.2.0",
     "sinon": "^4.4.4",
     "source-map-loader": "^0.2.3",
-    "source-map-support": "^0.5.3",
     "style-loader": "^0.20.3",
     "ts-loader": "^4.0.0",
     "ts-node": "^5.0.1",
@@ -101,6 +122,7 @@
     "yarn": "^1.5.1"
   },
   "dependencies": {
-    "nodegit": "^0.21.2"
+    "nodegit": "^0.21.2",
+    "source-map-support": "^0.5.4"
   }
 }

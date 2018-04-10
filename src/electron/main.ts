@@ -3,15 +3,15 @@ import * as path from "path";
 import * as url from "url";
 import { BrowserWindow, dialog } from "electron";
 import GitgaMenu from "./menu";
+import { format as formatUrl } from "url";
+
+const isDevelopment = process.env.NODE_ENV !== "production";
 
 const app = electron.app;
 const browserWindow = electron.BrowserWindow;
 
-const icon = path.join(__dirname, "../browser/resources/img/gitga-icon.png");
-
 let mainWindow: BrowserWindow;
 
-app.commandLine.appendSwitch("remote-debugging-port", "9222");
 app.on("ready", createWindow);
 app.on("window-all-closed", () => {
     // On OS X it is common for applications and their menu bar
@@ -32,10 +32,17 @@ const menu: GitgaMenu = new GitgaMenu(openRepository);
 menu.buildMenu();
 
 function createWindow() {
-    mainWindow = new BrowserWindow({ width: 1200, height: 800, icon });
+    mainWindow = new BrowserWindow({ width: 1200, height: 800});
 
-    const indexURL = `file://${app.getAppPath()}/index.html`;
-    mainWindow.loadURL(indexURL);
+    if (isDevelopment) {
+        mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
+    } else {
+        mainWindow.loadURL(formatUrl({
+          pathname: path.join(__dirname, "index.html"),
+          protocol: "file",
+          slashes: true,
+        }));
+    }
 
     mainWindow.on("closed", () => {
         // Dereference the window object, usually you would store windows
