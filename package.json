@@ -2,7 +2,7 @@
   "name": "gitga",
   "version": "0.0.0",
   "description": "A graphical git interface",
-  "main": "src/electron/main.js",
+  "main": "dist/bundle_main.js",
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
@@ -10,9 +10,12 @@
     "test": "cross-env NODE_ENV=test electron-mocha",
     "coverage": "cross-env NODE_ENV=test istanbul cover electron-mocha -- --renderer --R spec",
     "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
-    "build": "webpack --mode production",
+    "build": "run-p build:**",
+    "build:renderer": "webpack --mode production --config webpack.electron.js --display-error-details",
+    "build:electron": "webpack --mode production --config webpack.electron.js --display-error-details",
+    "dev": "run-s build:electron serve",
     "serve": "concurrently --kill-others \"npm run serve:renderer\" \"npm run serve:electron\" ",
-    "serve:renderer": "webpack-dev-server --mode development --hot --port 8081",
+    "serve:renderer": "webpack-dev-server --mode development --hot --port 8081 --config webpack.renderer.js",
     "serve:electron": "electron . --remote-debugging-port 9222"
   },
   "author": "Erik Moldtmann",
