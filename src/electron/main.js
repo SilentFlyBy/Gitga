@@ -1,14 +1,15 @@
 const {Menu} =  require('electron');
 
-const electron = require('electron')
+const electron = require('electron');
+const {dialog} = require('electron');
 //const client = require('electron-connect').client;
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
-const path = require('path')
-const url = require('url')
+const path = require('path');
+const url = require('url');
 
 let icon = path.join(__dirname, "../browser/resources/img/gitga-icon.png");
 
@@ -69,7 +70,8 @@ const template = [
     label: "File",
     submenu: [
       {
-        label: "Open"
+        label: "Open",
+        click: () => openRepository(),
       }
     ]
   },
@@ -148,6 +150,18 @@ const template = [
      ]
   }
 ]
+
+const openRepository = () => {
+  const path = dialog.showOpenDialog({properties: ['openDirectory']});
+
+  if(path && path.length) {
+    sendEvent("openRepository", path[0]);
+  }
+}
+
+const sendEvent = (eventName, eventObject) => {
+  mainWindow.webContents.send(eventName, eventObject);
+}
 
 const menu = Menu.buildFromTemplate(template);
 Menu.setApplicationMenu(menu);
