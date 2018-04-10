@@ -14,13 +14,15 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
                     type={FileStatusAreaType.Index}
                     fileStates={this.props.stagedFileStates}
                     onStage={this.onUnStage}
-                    onFileClick={this.onFileSelect} />
+                    onFileClick={this.onFileSelect}
+                    onStageAll={this.onUnstageAll} />
 
                 <FileStatusArea
                     type={FileStatusAreaType.WorkTree}
                     fileStates={this.props.unstagedFileStates}
                     onStage={this.onStage}
-                    onFileClick={this.onFileSelect} />
+                    onFileClick={this.onFileSelect}
+                    onStageAll={this.onStageAll} />
             </div>
         );
     }
@@ -31,9 +33,21 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
         }
     }
 
+    public onStageAll = () => {
+        if (typeof this.props.onStageAll === "function") {
+            this.props.onStageAll();
+        }
+    }
+
     public onUnStage = (files: IAreaFileStatus[]) => {
         if (typeof this.props.onUnstage === "function") {
             this.props.onUnstage(files);
+        }
+    }
+
+    public onUnstageAll = () => {
+        if (typeof this.props.onUnstageAll === "function") {
+            this.props.onUnstageAll();
         }
     }
 
@@ -54,7 +68,9 @@ export interface IFileStatusProps {
     unstagedFileStates?: IAreaFileStatus[];
     stagedFileStates?: IAreaFileStatus[];
     onStage?: (files: IAreaFileStatus[]) => void;
+    onStageAll?: () => void;
     onUnstage?: (file: IAreaFileStatus[]) => void;
+    onUnstageAll?: () => void;
     onSync?: () => void;
     onFileSelect?: (file: string) => void;
 }

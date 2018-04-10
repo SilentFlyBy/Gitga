@@ -39,6 +39,17 @@ export function StageFile(files: IAreaFileStatus[]) {
     };
 }
 
+export function StageAllFiles() {
+    return async (dispatch: any, getState: () => IStoreState) => {
+        const repo = getState().RepositoryState.Repository;
+        const index = await repo.refreshIndex();
+
+        await index.addAll(".", Git.Index.ADD_OPTION.ADD_DEFAULT);
+        await index.write();
+        dispatch(Sync());
+    };
+}
+
 export function UnstageFile(files: IAreaFileStatus[]) {
     return async (dispatch: any, getState: () => IStoreState) => {
         const repo = getState().RepositoryState.Repository;
@@ -55,6 +66,28 @@ export function UnstageFile(files: IAreaFileStatus[]) {
         const index = await repo.refreshIndex();
 
         await Git.Reset.default(repo, obj, files.map((f) => f.Path1));
+
+        await index.write();
+        dispatch(Sync());
+    };
+}
+
+export function UnstageAllFiles() {
+    return async (dispatch: any, getState: () => IStoreState) => {
+        const repo = getState().RepositoryState.Repository;
+        let obj: Git.Object;
+
+        try {
+            const head = await repo.head();
+            obj = await head.peel(Git.Reference.TYPE.OID);
+        }
+        // in new repositories there is no HEAD. Leave obj undefined then
+        /* tslint:disable:no-empty one-line */
+        catch (error) {}
+
+        const index = await repo.refreshIndex();
+
+        await Git.Reset.reset(repo, obj, Git.Reset.TYPE.MIXED, undefined);
 
         await index.write();
         dispatch(Sync());

@@ -2,7 +2,7 @@ import FileStatus, { IFileStatusProps } from "../components/app/file-status";
 import { Status } from "../../core/git/file-status";
 import { connect } from "react-redux";
 import { IStoreState } from "../store/git-store";
-import { StageFile, UnstageFile } from "../actions/file-staging";
+import { StageFile, UnstageFile, StageAllFiles, UnstageAllFiles } from "../actions/file-staging";
 import { Sync } from "../actions/sync";
 import { StatusFile } from "nodegit";
 import { IAreaFileStatus } from "../components/app/file-status/file-status-area";
@@ -51,7 +51,9 @@ const GitStatusFileToFileStatus = (statusFile: StatusFile): Status => {
 const mapDispatchToProps = (dispatch: any): IFileStatusProps => {
     return {
         onStage: (files: IAreaFileStatus[]) => dispatch(StageFile(files)),
+        onStageAll: () => dispatch(StageAllFiles()),
         onUnstage: (files: IAreaFileStatus[]) => dispatch(UnstageFile(files)),
+        onUnstageAll: () => dispatch(UnstageAllFiles()),
         onSync: () => dispatch(Sync()),
         onFileSelect: (file: string) => dispatch(FileSelect(file)),
     };

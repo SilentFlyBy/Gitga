@@ -42,7 +42,7 @@ export class FileStatusArea extends React.Component<IFileStatusProps, any> {
         let stageAllButton;
         if (this.props.fileStates.length > 0) {
             stageAllButton =
-                <a onClick={() => this.OnStage(this.props.fileStates)}>
+                <a onClick={() => this.OnStageAll()}>
                     {this.GetStagingActionIcon(this.props.type)}
                 </a>;
         }
@@ -75,6 +75,12 @@ export class FileStatusArea extends React.Component<IFileStatusProps, any> {
     private OnStage = (files: IAreaFileStatus[]) => {
         if (typeof this.props.onStage === "function") {
             this.props.onStage(files);
+        }
+    }
+
+    private OnStageAll = () => {
+        if (typeof this.props.onStageAll === "function") {
+            this.props.onStageAll();
         }
     }
 
@@ -128,6 +134,7 @@ interface IFileStatusProps {
     type?: FileStatusAreaType;
     onSync?: () => void;
     onStage?: (files: IAreaFileStatus[]) => void;
+    onStageAll?: () => void;
     onFileClick?: (file: string) => void;
     t?: any;
     tReady?: any;
