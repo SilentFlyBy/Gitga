@@ -10,6 +10,7 @@ type IAction = ISuccessAction | IErrorAction;
 const notificationCreator: Middleware = <S>(api: MiddlewareAPI<S>) =>
     (next: Dispatch<S>) =>
     <A extends IAction>(action: A): A => {
+        const result = next(action);
 
         const successAction = action as ISuccessAction;
         const failureAction = action as IErrorAction;
@@ -27,8 +28,6 @@ const notificationCreator: Middleware = <S>(api: MiddlewareAPI<S>) =>
                 api.dispatch(NotificationError(message));
             }
         }
-
-        const result = next(action);
 
         return result;
 };
