@@ -20,7 +20,7 @@
     "serve:renderer": "webpack-dev-server --mode development --hot --port 8081 --config webpack.renderer.js",
     "serve:electron": "electron . --remote-debugging-port 9222",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
+    "dist": "yarn compile && electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
   "electronWebpack": {
@@ -59,6 +59,10 @@
       "category": "your.app.category.type"
     }
   },
+  "dependencies": {
+    "nodegit": "^0.22.0",
+    "source-map-support": "^0.5.4"
+  },
   "devDependencies": {
     "@alienfast/i18next-loader": "^1.0.15",
     "@types/chai": "^4.1.2",
@@ -85,8 +89,8 @@
     "electron-connect": "^0.6.3",
     "electron-json-storage": "^4.0.2",
     "electron-mocha": "^6.0.1",
-    "electron-rebuild": "^1.7.3",
     "electron-webpack": "^2.0.1",
+    "electron-webpack-ts": "^2.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "file-loader": "^1.1.11",
@@ -115,14 +119,13 @@
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2",
-    "webpack": "^4.0.1",
+    "webpack": "^4.4.1",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1",
     "webpack-stream": "^4.0.2",
     "yarn": "^1.5.1"
   },
-  "dependencies": {
-    "nodegit": "^0.21.2",
-    "source-map-support": "^0.5.4"
+  "resolutions": {
+    "webpack-sources": "1.0.1"
   }
 }
