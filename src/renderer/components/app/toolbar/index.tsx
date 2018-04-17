@@ -68,14 +68,6 @@ export default class ToolbarComponent extends React.Component<IToolbarProps, any
     }
 }
 
-enum ToolbarButton {
-    Commit,
-    Push,
-    Pull,
-    Branch,
-    Merge,
-}
-
 export interface IToolbarProps {
     onSyncClick?: () => void;
     onCommitClick?: () => void;

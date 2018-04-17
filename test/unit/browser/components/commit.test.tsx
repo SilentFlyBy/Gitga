@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import "mocha";
 import * as sinon from "sinon";
 
-import { CommitComponent } from "../../../../src/browser/components/app/commit";
+import { CommitComponent } from "../../../../src/renderer/components/app/commit";
 
 describe("<CommitComponent />", () => {
     it("renders textarea and button", () => {

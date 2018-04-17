@@ -4,8 +4,8 @@ import { shallow } from "enzyme";
 import "mocha";
 import * as sinon from "sinon";
 import { Status } from "../../../../src/core/git/file-status";
-import FileStatus from "../../../../src/browser/components/app/file-status";
-import FileStatusArea, { IAreaFileStatus } from "../../../../src/browser/components/app/file-status/file-status-area";
+import FileStatus from "../../../../src/renderer/components/app/file-status";
+import FileStatusArea, { IAreaFileStatus } from "../../../../src/renderer/components/app/file-status/file-status-area";
 
 const file1: IAreaFileStatus[] = [{
     Path1: "test1.js",

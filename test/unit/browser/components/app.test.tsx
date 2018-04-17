@@ -4,8 +4,8 @@ import { shallow, configure } from "enzyme";
 import * as ReactSixteenAdapter from "enzyme-adapter-react-16";
 import "mocha";
 
-import App from "../../../../src/browser/components/app";
-import Toolbar from "../../../../src/browser/containers/toolbar";
+import App from "../../../../src/renderer/components/app";
+import Toolbar from "../../../../src/renderer/containers/toolbar";
 
 configure({ adapter: new ReactSixteenAdapter() });
 

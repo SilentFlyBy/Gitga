@@ -8,7 +8,7 @@ import {
     FileStatusArea,
     FileStatusAreaType,
     IAreaFileStatus,
-} from "../../../../src/browser/components/app/file-status/file-status-area";
+} from "../../../../src/renderer/components/app/file-status/file-status-area";
 import { Status } from "../../../../src/core/git/file-status";
 
 const fileStates: IAreaFileStatus[] = [{
@@ -18,7 +18,10 @@ const fileStates: IAreaFileStatus[] = [{
 
 describe("<FileStatusArea />", () => {
     it("renders table", () => {
-        const wrapper = shallow(<FileStatusArea fileStates={[]} type={FileStatusAreaType.Index} t={(key) => key}/>);
+        const wrapper = shallow(<FileStatusArea
+            fileStates={[]}
+            type={FileStatusAreaType.Index}
+            t={(key: any) => key}/>);
 
         expect(wrapper.find("table")).to.have.length(1);
     });
