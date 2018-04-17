@@ -5,6 +5,7 @@ import GitgaMenu from "./menu";
 import { format as formatUrl } from "url";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
+const icon = electron.nativeImage.createFromPath("build/icon.png");
 
 const app = electron.app;
 
@@ -30,7 +31,7 @@ const menu: GitgaMenu = new GitgaMenu(openRepository);
 menu.buildMenu();
 
 function createWindow() {
-    mainWindow = new BrowserWindow({ width: 1200, height: 800});
+    mainWindow = new BrowserWindow({ width: 1200, height: 800, icon});
 
     if (isDevelopment) {
         mainWindow.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);

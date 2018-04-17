@@ -1,6 +1,6 @@
 # Gitga
 
-<img src="https://github.com/SilentFlyBy/Gitga/blob/master/src/browser/resources/img/gitga-icon.svg" width="128" />
+<img src="https://github.com/SilentFlyBy/Gitga/blob/master/src/renderer/resources/img/gitga-icon.svg" width="128" />
 
 *Git graphical assistant*
 
