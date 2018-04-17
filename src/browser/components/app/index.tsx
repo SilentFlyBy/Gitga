@@ -1,11 +1,9 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import FileStates from "../../containers/file-status";
 import CommitArea from "../../containers/commit";
 import Toolbar from "../../containers/toolbar";
 import Notification from "../../containers/notification";
-import { connect } from "react-redux";
 import FileView from "../../containers/file-view";
 
 export default class AppComponent extends React.Component<IAppProps, any> {

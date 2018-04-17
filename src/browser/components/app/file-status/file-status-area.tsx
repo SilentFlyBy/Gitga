@@ -114,6 +114,8 @@ export class FileStatusArea extends React.Component<IFileStatusProps, any> {
                 return "-";
             case FileStatusAreaType.WorkTree:
                 return "+";
+            default:
+                return undefined;
         }
     }
 }

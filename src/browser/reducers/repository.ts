@@ -1,5 +1,5 @@
 import { IRepositoryState } from "../store/git-store";
-import { OpenRepository, OPEN_REPOSITORY_SUCCESS, OPEN_REPOSITORY_FAILURE } from "../actions/repository";
+import { OpenRepository, OPEN_REPOSITORY_SUCCESS} from "../actions/repository";
 
 const initialRepositoryState: IRepositoryState = {
     Repository: undefined,

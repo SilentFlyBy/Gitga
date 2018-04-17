@@ -1,6 +1,5 @@
 import * as Git from "nodegit";
 import { IStoreState } from "../store/git-store";
-import Settings from "../../core/settings";
 import { Sync } from "./sync";
 import GitConfig from "../../core/git/config";
 import { NotificationAdvice } from "./notification";

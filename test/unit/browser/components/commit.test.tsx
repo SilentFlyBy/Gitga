@@ -1,6 +1,6 @@
 import * as React from "react";
 import { expect } from "chai";
-import { shallow, configure } from "enzyme";
+import { shallow } from "enzyme";
 import "mocha";
 import * as sinon from "sinon";
 

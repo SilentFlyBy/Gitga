@@ -1,7 +1,6 @@
 import AppComponent, { IAppProps } from "../components/app";
 import { OpenRepository, OpenInitialRepository } from "../actions/repository";
 import { connect } from "react-redux";
-import { Sync } from "../actions/sync";
 
 const mapStateToProps = (): IAppProps => {
     return {};

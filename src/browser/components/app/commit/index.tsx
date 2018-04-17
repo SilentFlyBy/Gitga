@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import i18n from "../../../i18n";
 
 export class CommitComponent extends React.Component<ICommitComponentProps, any> {

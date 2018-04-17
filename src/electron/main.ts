@@ -1,6 +1,5 @@
 import * as electron from "electron";
 import * as path from "path";
-import * as url from "url";
 import { BrowserWindow, dialog } from "electron";
 import GitgaMenu from "./menu";
 import { format as formatUrl } from "url";
@@ -8,7 +7,6 @@ import { format as formatUrl } from "url";
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 const app = electron.app;
-const browserWindow = electron.BrowserWindow;
 
 let mainWindow: BrowserWindow;
 

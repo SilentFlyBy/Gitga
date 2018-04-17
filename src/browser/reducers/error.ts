@@ -1,6 +1,6 @@
 import { IErrorState } from "../store/git-store";
 import { ErrorAction } from "../actions";
-import { COMMIT_FAILURE, COMMIT_SUCCESS } from "../actions/commit";
+import { COMMIT_FAILURE } from "../actions/commit";
 import { SYNC_FAILURE } from "../actions/sync";
 import { OPEN_REPOSITORY_FAILURE } from "../actions/repository";
 
