@@ -2,7 +2,7 @@
   "name": "gitga",
   "version": "0.0.0",
   "description": "A graphical git interface",
-  "main": "dist/main/main.js",
+  "main": "dist/bundle_main.js",
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },

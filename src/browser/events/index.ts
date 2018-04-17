@@ -1,6 +1,5 @@
 import { Store } from "react-redux";
 import { OpenRepository } from "../actions/repository";
-import * as electron from "electron";
 
 export default function configureEvents<S>(store: Store<S>) {
     if (process.versions.electron) {

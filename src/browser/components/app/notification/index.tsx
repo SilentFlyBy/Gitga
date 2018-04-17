@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import Octicon from "react-component-octicons";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 

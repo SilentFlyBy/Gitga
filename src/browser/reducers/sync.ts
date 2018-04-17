@@ -1,4 +1,4 @@
-import { Sync, SYNC, SYNC_SUCCESS, ISyncSuccess, SYNC_FAILURE } from "../actions/sync";
+import { Sync, SYNC_SUCCESS, ISyncSuccess, SYNC_FAILURE } from "../actions/sync";
 
 import { IStoreFileState } from "../store/git-store";
 
@@ -10,7 +10,7 @@ export function SyncReducer(state: IStoreFileState = initialStoreFileState, acti
     switch (action.type) {
         case SYNC_SUCCESS:
             return {...state, FileState: action.newFileStates};
+        default:
+            return state;
     }
-
-    return state;
 }

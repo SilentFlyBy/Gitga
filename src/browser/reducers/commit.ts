@@ -1,5 +1,5 @@
 import { ICommitMessageState } from "../store/git-store";
-import { Commit, COMMIT_MESSAGE_CHANGE, COMMIT_SUCCESS } from "../actions/commit";
+import { Commit, COMMIT_MESSAGE_CHANGE } from "../actions/commit";
 
 const initialStoreCommitMessageState: ICommitMessageState = {
     CommitMessage: "",
@@ -12,7 +12,7 @@ export function CommitReducer(
     switch (action.type) {
         case COMMIT_MESSAGE_CHANGE:
             return { ...state, CommitMessage: action.message };
+        default:
+            return state;
     }
-
-    return state;
 }

@@ -16,7 +16,6 @@ export function ErrorReducer(state: IErrorState = initialState, action: ErrorAct
             return { ...state, Error: action.error };
         case OPEN_REPOSITORY_FAILURE:
             return { ...state, Error: action.error };
+        default: return state;
     }
-
-    return state;
 }

@@ -1,7 +1,6 @@
 import * as Git from "nodegit";
 import { ISuccessAction, IErrorAction } from ".";
 import { IStoreState } from "../store/git-store";
-import { url } from "inspector";
 
 export const PUSH = "PUSH";
 export type PUSH = typeof PUSH;

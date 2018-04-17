@@ -3,7 +3,7 @@ import { IStoreState } from "../store/git-store";
 import Settings from "../../core/settings";
 import { Sync } from "./sync";
 import GitConfig from "../../core/git/config";
-import { NotificationSuccess, NotificationError, NotificationAdvice } from "./notification";
+import { NotificationAdvice } from "./notification";
 import { ISuccessAction, IErrorAction } from ".";
 import i18n from "../i18n";
 

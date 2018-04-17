@@ -1,7 +1,6 @@
 import * as Git from "nodegit";
 import { Sync } from "./sync";
 import Settings from "../../core/settings";
-import { NotificationError } from "./notification";
 import { ISuccessAction, IErrorAction } from ".";
 
 export const OPEN_REPOSITORY = "OPEN_REPOSITORY";

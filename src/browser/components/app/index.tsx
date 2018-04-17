@@ -5,7 +5,6 @@ import FileStates from "../../containers/file-status";
 import CommitArea from "../../containers/commit";
 import Toolbar from "../../containers/toolbar";
 import Notification from "../../containers/notification";
-import { IStoreState } from "../../store/git-store";
 import { connect } from "react-redux";
 import FileView from "../../containers/file-view";
 
@@ -33,12 +32,6 @@ export default class AppComponent extends React.Component<IAppProps, any> {
         );
     }
 
-    private onSync = () => {
-        if (typeof this.props.onSync === "function") {
-            this.props.onSync();
-        }
-    }
-
     private onInit = () => {
         if (typeof this.props.onInit === "function") {
             this.props.onInit();
@@ -48,6 +41,5 @@ export default class AppComponent extends React.Component<IAppProps, any> {
 
 export interface IAppProps {
     getGitRepo?: (path: string) => void;
-    onSync?: () => void;
     onInit?: () => void;
 }

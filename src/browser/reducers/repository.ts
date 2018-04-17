@@ -13,7 +13,6 @@ export function RepositoryReducer(
     switch (action.type) {
         case OPEN_REPOSITORY_SUCCESS:
             return {...state, Repository: action.repository, RepositoryPath: action.path};
+        default: return state;
     }
-
-    return state;
 }

@@ -3,7 +3,6 @@ import rootReducer from "../reducers/root-reducer";
 import thunk from "redux-thunk";
 import * as path from "path";
 import * as Git from "nodegit";
-import {app} from "electron";
 import { NotificationType } from "../components/app/notification";
 import {createLogger} from "redux-logger";
 import { Middleware } from "redux";

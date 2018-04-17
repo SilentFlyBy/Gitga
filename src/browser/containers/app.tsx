@@ -10,7 +10,6 @@ const mapStateToProps = (): IAppProps => {
 const mapDispatchToProps = (dispatch: any): IAppProps => {
     return {
         getGitRepo: (path: string) => dispatch(OpenRepository(path)),
-        onSync: () => dispatch(Sync()),
         onInit: () => dispatch(OpenInitialRepository()),
     };
 };

@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import { translate } from "react-i18next";
 
@@ -104,6 +103,8 @@ export class FileStatusArea extends React.Component<IFileStatusProps, any> {
                 return "M";
             case Status.Renamed:
                 return "R";
+            default:
+                return undefined;
         }
     }
 
