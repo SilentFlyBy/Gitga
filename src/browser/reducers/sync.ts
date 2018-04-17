@@ -1,4 +1,4 @@
-import { Sync, SYNC_SUCCESS, SYNC_FAILURE } from "../actions/sync";
+import { Sync, SYNC_SUCCESS } from "../actions/sync";
 
 import { IStoreFileState } from "../store/git-store";
 
