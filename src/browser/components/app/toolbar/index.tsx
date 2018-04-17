@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import Octicon from "react-component-octicons";
 
 export default class ToolbarComponent extends React.Component<IToolbarProps, any> {

@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import FileStatusArea, { FileStatusAreaType, IAreaFileStatus } from "./file-status-area";
 
 export default class FileStatus extends React.Component<IFileStatusProps, any> {

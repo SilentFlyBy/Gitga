@@ -1,4 +1,3 @@
-import { app } from "electron";
 import * as storage from "electron-json-storage";
 import {IGitAuthor} from "../git/config";
 

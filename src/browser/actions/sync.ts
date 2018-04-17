@@ -1,6 +1,5 @@
 import * as Git from "nodegit";
 import { IStoreState } from "../store/git-store";
-import { NotificationSuccess } from "./notification";
 import { ISuccessAction, IErrorAction } from ".";
 
 export const SYNC = "SYNC";

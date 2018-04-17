@@ -1,10 +1,10 @@
 const fs = require('fs')
 
 module.exports = {
-    entry: './src/browser/index.tsx',
+    entry: "./src/browser/index.tsx",
     output: {
         filename: "bundle_renderer.js",
-        publicPath: 'http://localhost:8081/'
+        publicPath: "http://localhost:8081/"
     },
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
@@ -12,13 +12,13 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.ts(x?)$/, loader: 'ts-loader' },
+            { test: /\.ts(x?)$/, loader: "ts-loader" },
             {
                 test: /\.less$/,
                 use: [
-                  { loader: 'style-loader' },
-                  { loader: 'css-loader' },
-                  { loader: 'less-loader' }
+                  { loader: "style-loader" },
+                  { loader: "css-loader" },
+                  { loader: "less-loader" }
                 ]
             },
             {
@@ -37,14 +37,14 @@ module.exports = {
             },
             {
                 test: /translations/,
-                loader: '@alienfast/i18next-loader',
+                loader: "@alienfast/i18next-loader",
             }
         ]
     },
-    target: 'electron-renderer',
+    target: "electron-renderer",
     performance: { hints: false },
-    devtool: 'source-map',
+    devtool: "source-map",
     externals: {
-        nodegit: 'commonjs nodegit'
+        nodegit: "commonjs nodegit"
     },
 };

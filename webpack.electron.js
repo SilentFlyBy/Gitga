@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/electron/main.ts',
+    entry: "./src/electron/main.ts",
     output: {
         filename: "bundle_main.js"
     },
@@ -13,4 +13,4 @@ module.exports = {
             { test: /\.ts(x?)$/, loader: 'ts-loader' },
         ]
     }
-}
+};

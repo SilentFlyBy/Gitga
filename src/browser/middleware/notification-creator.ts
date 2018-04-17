@@ -1,7 +1,6 @@
 import { MiddlewareAPI } from "redux";
 import { Middleware } from "redux";
 import { Dispatch } from "redux";
-import { Action } from "redux";
 import { NotificationSuccess, NotificationError } from "../actions/notification";
 import { ISuccessAction, IErrorAction } from "../actions";
 

@@ -29,7 +29,7 @@ export function NotificationReducer(
         case NOTIFICATION_CLEAR:
             const newState = state.filter((n) => n.Timestamp !== action.timestamp);
             return newState;
+        default:
+            return state;
     }
-
-    return state;
 }
