@@ -1,5 +1,4 @@
 {
-    "extends": "./node_modules/electron-webpack/tsconfig-base.json",
     "compilerOptions": {
         "outDir": "./dist/ts",
         "module": "commonjs",

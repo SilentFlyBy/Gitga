@@ -13,7 +13,8 @@
     "coverage-report": "cross-env NODE_ENV=test nyc report --reporter=text-lcov > coverage.lcov",
     "dev": "electron-webpack dev",
     "pack": "electron-builder --dir",
-    "dist": "yarn compile && electron-builder"
+    "dist": "yarn compile && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "author": "Erik Moldtmann",
   "license": "GPL-3.0",
