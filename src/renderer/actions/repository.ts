@@ -2,6 +2,7 @@ import * as Git from "nodegit";
 import { Sync } from "./sync";
 import Settings from "../../core/settings";
 import { ISuccessAction, IErrorAction } from ".";
+import { FileUnselectAction } from "./file-view";
 
 export const OPEN_REPOSITORY = "OPEN_REPOSITORY";
 export type OPEN_REPOSITORY = typeof OPEN_REPOSITORY;
@@ -42,6 +43,7 @@ export function OpenRepository(path: string) {
             await Settings.setRepositoryPath(path);
             await dispatch(OpenRepositorySuccess(repo, path));
             dispatch(Sync());
+            dispatch(FileUnselectAction());
         } catch (error) {
             dispatch(OpenRepositoryFailure(error));
         }
