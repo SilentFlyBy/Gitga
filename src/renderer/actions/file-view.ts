@@ -6,19 +6,32 @@ import { FileLine } from "../../core/git/file-status/file-line";
 export const FILE_SELECT = "FILE_SELECT";
 export type FILE_SELECT = typeof FILE_SELECT;
 
+export const FILE_UNSELECT = "FILE_UNSELECT";
+export type FILE_UNSELECT = typeof FILE_UNSELECT;
+
 export interface IFileSelect {
     type: FILE_SELECT;
     file: string;
     hunks: FileHunk[];
 }
 
-export type FileAction = IFileSelect;
+export interface IFileUnselect {
+    type: FILE_UNSELECT;
+}
+
+export type FileAction = IFileSelect | IFileUnselect;
 
 export function FileSelectAction(file: string, hunks: FileHunk[]): FileAction {
     return {
         type: FILE_SELECT,
         file,
         hunks,
+    };
+}
+
+export function FileUnselectAction(): FileAction {
+    return {
+        type: FILE_UNSELECT,
     };
 }
 
@@ -66,21 +79,11 @@ const GetDiff = async (repo: Git.Repository, file: string, diff: Git.Diff): Prom
         };
 
         const fileLines = await h.lines();
-        const newStart = h.newStart();
-        const newCount = h.newLines();
-        const oldStart = h.oldStart();
-        const oldCount = h.oldLines();
-
-        let added: boolean = false;
-        let removed: boolean = false;
 
         for (const l of fileLines) {
 
             const newLineNo = l.newLineno();
             const oldLineNo = l.oldLineno();
-
-            added = newLineNo >= 0 && newLineNo !== oldLineNo;
-            removed = newLineNo < 0 && newLineNo !== oldLineNo;
 
             const line: FileLine = {
                 newNumber: newLineNo,
@@ -92,6 +95,7 @@ const GetDiff = async (repo: Git.Repository, file: string, diff: Git.Diff): Prom
         }
 
         fileHunks.push(hunk);
-        return fileHunks;
     }
+
+    return fileHunks;
 };
