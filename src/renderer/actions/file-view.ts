@@ -38,7 +38,6 @@ export function FileUnselectAction(): FileAction {
 export function FileSelect(file: string, inIndex: boolean) {
     return async (dispatch: any, getState: () => IStoreState) => {
         const repo = getState().RepositoryState.Repository;
-        const fileStatus = await repo.getStatus({pathspec: file});
 
         let fileHunks = [];
         if (!inIndex) {
