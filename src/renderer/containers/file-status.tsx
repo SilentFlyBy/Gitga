@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch: any): IFileStatusProps => {
         onUnstage: (files: IAreaFileStatus[]) => dispatch(UnstageFile(files)),
         onUnstageAll: () => dispatch(UnstageAllFiles()),
         onSync: () => dispatch(Sync()),
-        onFileSelect: (file: string) => dispatch(FileSelect(file)),
+        onFileSelect: (file: string, inIndex: boolean) => dispatch(FileSelect(file, inIndex)),
     };
 };
 

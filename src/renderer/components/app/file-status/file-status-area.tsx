@@ -85,7 +85,8 @@ export class FileStatusArea extends React.Component<IFileStatusProps, any> {
 
     private OnFileFlick = (file: string) => {
         if (typeof this.props.onFileClick === "function") {
-            this.props.onFileClick(file);
+            const inIndex = this.props.type === FileStatusAreaType.Index;
+            this.props.onFileClick(file, inIndex);
         }
     }
 
@@ -138,7 +139,7 @@ interface IFileStatusProps {
     onSync?: () => void;
     onStage?: (files: IAreaFileStatus[]) => void;
     onStageAll?: () => void;
-    onFileClick?: (file: string) => void;
+    onFileClick?: (file: string, inIndex: boolean) => void;
     t?: any;
     tReady?: any;
 }

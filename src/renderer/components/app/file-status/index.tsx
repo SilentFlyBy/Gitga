@@ -56,9 +56,9 @@ export default class FileStatus extends React.Component<IFileStatusProps, any> {
         }
     }
 
-    public onFileSelect = (file: string) => {
+    public onFileSelect = (file: string, inIndex: boolean) => {
         if (typeof this.props.onFileSelect === "function") {
-            this.props.onFileSelect(file);
+            this.props.onFileSelect(file, inIndex);
         }
     }
 }
@@ -71,5 +71,5 @@ export interface IFileStatusProps {
     onUnstage?: (file: IAreaFileStatus[]) => void;
     onUnstageAll?: () => void;
     onSync?: () => void;
-    onFileSelect?: (file: string) => void;
+    onFileSelect?: (file: string, inIndex: boolean) => void;
 }
