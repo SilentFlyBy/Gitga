@@ -6,6 +6,7 @@ import { NotificationType } from "../components/app/notification";
 import {createLogger} from "redux-logger";
 import { Middleware } from "redux";
 import notificationCreator from "../middleware/notification-creator";
+import { FileHunk } from "../../core/git/file-status/file-hunk";
 
 const middlewares: Middleware[] = [];
 
@@ -29,6 +30,7 @@ export interface IStoreState {
     CommitMessage: ICommitMessageState;
     RepositoryState: IRepositoryState;
     NotificationState: INotificationState[];
+    SelectedFileState: ISelectedFileState;
 }
 
 export interface IStoreFileState {
@@ -52,4 +54,9 @@ export interface INotificationState {
     Message: string;
     Type: NotificationType;
     Timestamp: number;
+}
+
+export interface ISelectedFileState {
+    Path: string;
+    Hunks: FileHunk[];
 }

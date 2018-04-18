@@ -2,7 +2,6 @@
   "name": "gitga",
   "version": "0.0.0",
   "description": "A graphical git interface",
-  "main": "src/main/main.ts",
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
@@ -16,7 +15,10 @@
     "dist": "yarn compile && electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
-  "author": "Erik Moldtmann",
+  "author": {
+    "name": "Erik Moldtmann",
+    "email": "erik@moldtmann.de"
+  },
   "license": "GPL-3.0",
   "nyc": {
     "include": [

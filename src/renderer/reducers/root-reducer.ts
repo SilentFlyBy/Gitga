@@ -4,6 +4,7 @@ import { CommitReducer } from "./commit";
 import { RepositoryReducer } from "./repository";
 import { ErrorReducer } from "./error";
 import { NotificationReducer } from "./notification";
+import { FileViewReducer } from "./file-view";
 
 export default combineReducers({
     FileState: SyncReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
     RepositoryState: RepositoryReducer,
     ErrorState: ErrorReducer,
     NotificationState: NotificationReducer,
+    SelectedFileState: FileViewReducer,
 });

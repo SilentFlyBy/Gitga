@@ -1,18 +1,7 @@
 {
+    "extends": "./node_modules/electron-webpack/tsconfig-base.json",
     "compilerOptions": {
-        "outDir": "./dist/ts",
-        "module": "commonjs",
-        "target": "es2015",
         "jsx": "react",
-        "noImplicitAny": true,
-        "sourceMap": true
-    },
-    "include": [
-        "./src/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "scripts",
-        "tests"
-    ]
+        "strict": false
+    }
 }
