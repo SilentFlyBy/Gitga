@@ -43,6 +43,21 @@
     "appId": "your.id",
     "mac": {
       "category": "public.app-category.developer-tools"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "zip",
+        "tar.gz"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi",
+        "zip"
+      ]
     }
   },
   "dependencies": {
