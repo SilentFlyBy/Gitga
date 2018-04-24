@@ -600,16 +600,16 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.0.0.tgz#a3014921991066193f6c8e47290d4d598dfd19e6"
 
 "@types/node@*":
-  version "9.6.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.5.tgz#ee700810fdf49ac1c399fc5980b7559b3e5a381d"
+  version "9.6.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.6.tgz#439b91f9caf3983cad2eef1e11f6bedcbf9431d2"
 
 "@types/node@^8.0.24":
   version "8.10.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.8.tgz#794cba23cc9f8d9715f6543fa8827433b5f5cd3b"
 
-"@types/nodegit@^0.18.6":
-  version "0.18.6"
-  resolved "https://registry.yarnpkg.com/@types/nodegit/-/nodegit-0.18.6.tgz#9e4fa7bcb6613bee177c2c6b50d091f487e9f676"
+"@types/nodegit@^0.18.7":
+  version "0.18.7"
+  resolved "https://registry.yarnpkg.com/@types/nodegit/-/nodegit-0.18.7.tgz#3f39fb0b1215c267b7de1f6ed72a80880364a466"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
