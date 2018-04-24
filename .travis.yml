@@ -1,20 +1,22 @@
 language: node_js
-node_js: "8"
-
+node_js: '8'
 python:
-  - "2.7"
-
+- '2.7'
 os:
-  - linux
-
+- linux
 cache: yarn
-
 install:
-  - yarn
-
+- yarn
 before_script:
-  - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start
-
+- export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start
 script:
-  - yarn test
-  - yarn dist
+- yarn test
+- yarn dist
+deploy:
+  provider: releases
+  api_key: "$GITHUB_OAUTH_TOKEN"
+  on:
+    tags: true
+env:
+  global:
+    secure: lWZpC4qoNbISxlbOb3glMlXVXnimzT7V5Ln8zpA0vRPlUTYSqBrDCq09sNlagSEtAKxAI1D+Mgqe0YEI1nLlOh3/JvmdtoR8I9VheS9Dw4Dx/ekblYbaBmnk37MTAW3BganzspS5MShi84JxsQb3jAqBYs3vjwUzEKbmC277M+stktqMIlyJHLvSt7nqR6+5i+7+4LgPopwQ/P/R3WFIjsi/TfRdUJUky1XVhx7jROHrU83iC2BZiNI6y+tmTgCEw0uN3E7KkxPZZ4nuga1fS5gdDPyToUMyRgh/yGsV+cVW3yGK5o+o2I9X9bXxb/cLhe8sR9zhHURaGziOMrwIWyT/vd5KEM63hLMxqk0rCu/7tV93VTMvrqIr1BL8BT24R8f72SJoAjU02Unm9TGuHhcEGy79F5palITlGvbYktcvDt3pkAs2Bzm7rHLKbeil+QR8d9jC6AICm/ASu9ormHbrFIIteB115kJ7vyznKID9LwMwzuyF7w1RkQu1od2+VvpT4Kzd7ZbpIrGokT3EAA4p6/X31aE06HTez6b5/UIxsA7vt5oGgQmh2VlCiuCGhGkGiIInC1pZAQj+1YDzVHqp+kjGZluoFELs5ymZxdOu6TC4gDd9OhJPpgBlq1xAAhCnKnLU+bO2PMO8QvTCAmNHZUGTwwuZrJuedfDGTHw=
