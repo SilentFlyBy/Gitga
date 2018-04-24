@@ -9,24 +9,24 @@ export default class FileViewComponent extends React.Component<IFileViewProps> {
             for (const l of h.Lines) {
                 let line;
                 if (l.newNumber >= 0 && l.oldNumber < 0) {
-                    line = <div className="added">
+                    line = <div className="added" key={l.Content + l.newNumber}>
                         <span>{l.newNumber}</span>
                         {l.Content}
                     </div>;
                 } else if (l.newNumber >= 0 && l.oldNumber >= 0) {
-                    line = <div>
+                    line = <div key={l.Content + l.newNumber}>
                         <span>{l.newNumber}</span>
                         {l.Content}
                     </div>;
                 } else {
-                    line = <div className="removed">
+                    line = <div className="removed" key={l.Content + l.oldNumber}>
                         <span>{l.oldNumber}</span>
                         {l.Content}
                     </div>;
                 }
                 lines.push(line);
             }
-            hunks.push(<div className="paper">{lines}</div>);
+            hunks.push(<div className="paper" key={h.Lines.toString()}>{lines}</div>);
         }
         return (
             <div className="file-view paper">
