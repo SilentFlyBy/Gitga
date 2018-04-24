@@ -40,7 +40,11 @@ export function FileSelect(file: string, inIndex: boolean) {
         const repo = getState().RepositoryState.Repository;
 
         let fileHunks = [];
-        if (!inIndex) {
+
+        const status = await repo.getStatus({pathspec: file});
+        if (status[0].isNew()) {
+            // TODO handle new files
+        } else if (!inIndex) {
             fileHunks = await GetDiffFromWorkdir(repo, file);
         } else {
             fileHunks = await GetDiffFromIndex(repo, file);
